@@ -51,7 +51,7 @@ for (i=0; i<N; i++)
         c[i] = a[i] + b[i];
       print_results(c, tid, section);
       }
-#pragma omp barrier
+        
     }  /* end of sections */
 
   /*** Use barrier for clean output ***/
