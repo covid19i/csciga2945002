@@ -56,6 +56,9 @@ Dimension       Time    Gflop/s       GB/s        Error
 
 Optimal value for BLOCK SIZE: 16
 
+
+
+
 WITH OMP:
 
 With #pragma omp for schedule (dynamic, 4):
@@ -154,4 +157,168 @@ With #pragma omp for schedule (runtime)
 
 OMP parallel for gave the best performance with (guided, 4). Nested didn’t work well. 
 
-For Dimension = 4096, (guided, 4) gave a flop rate of 14.95 giga flops/ second. The maximum possible is 3.9*4 = 15.6 giga flops/ second with turbo boost (of Intel). Without turbo boost the max limit is 1.4*4 = 5.6 giga flops/second.
+For Dimension = 4096, (guided, 4) gave a flop rate of 14.95 giga flops/ second. The maximum possible is 3.9*4 = 15.6 giga flops/ second with turbo boost (of Intel). Without turbo boost the max limit is 1.4*4 = 5.6 giga flops/second. That gives 95.83% of the peak-flop rate.
+
+
+
+Q4)
+
+System Architecture:
+  Processor Name:	Quad-Core Intel Core i5
+  Processor Speed:	1.4 GHz (Turbo Boost up to 3.9GHz)
+  Number of Processors:	1
+  Total Number of Cores:	4
+  L2 Cache (per Core):	256 KB
+  L3 Cache:	6 MB
+  Memory:	16 GB 2133 MHz LPDDR3
+
+
+
+For Gauss-Seidel/Jacobi, Flop rate and Memory access rate are calculated by the following two equations. Norm calculation also contributes along with the update calculation. N is the no of points and i is the number of loops run.
+	printf("%d: %f GB/s\n", nrT, 16*N*N*i*sizeof(double) / 1e9 / t);
+	printf("%d: %f Gflops/s\n", nrT, 15*N*N*i / 1e9 / t);
+
+For Jacobi with N=100 (loops: 1000)
+Ilyeechs-MacBook-Pro:HomeWork2 ilyeech$ ./jacobi2D-omp 
+Enter the no of points:100
+Enter maximum number of loops:1000
+1: time elapsed = 0.048119, speedup = 1.000000
+1: 26.600719 GB/s
+1: 3.117272 Gflops/s
+2: time elapsed = 0.056382, speedup = 0.853446
+2: 22.702281 GB/s
+2: 2.660424 Gflops/s
+4: time elapsed = 0.059878, speedup = 0.803617
+4: 21.376799 GB/s
+4: 2.505094 Gflops/s
+8: time elapsed = 0.089478, speedup = 0.537775
+8: 14.305192 GB/s
+8: 1.676390 Gflops/s
+16: time elapsed = 0.155374, speedup = 0.309698
+16: 8.238187 GB/s
+16: 0.965412 Gflops/s
+32: time elapsed = 0.286827, speedup = 0.167763
+32: 4.462620 GB/s
+32: 0.522963 Gflops/s
+
+For Jacobi with N=1000 (loops: 1000)
+Ilyeechs-MacBook-Pro:HomeWork2 ilyeech$ ./jacobi2D-omp 
+Enter the no of points:1000
+Enter maximum number of loops:1000
+1: time elapsed = 4.077376, speedup = 1.000000
+1: 31.392739 GB/s
+1: 3.678837 Gflops/s
+2: time elapsed = 1.947126, speedup = 2.094048
+2: 65.737913 GB/s
+2: 7.703662 Gflops/s
+4: time elapsed = 1.455655, speedup = 2.801059
+4: 87.932924 GB/s
+4: 10.304639 Gflops/s
+8: time elapsed = 1.505367, speedup = 2.708559
+8: 85.029099 GB/s
+8: 9.964348 Gflops/s
+16: time elapsed = 1.527937, speedup = 2.668550
+16: 83.773088 GB/s
+16: 9.817159 Gflops/s
+32: time elapsed = 1.735315, speedup = 2.349646
+32: 73.761824 GB/s
+32: 8.643964 Gflops/s
+
+
+For Jacobi with N=5000 (loops: 1000)
+Ilyeechs-MacBook-Pro:HomeWork2 ilyeech$ ./jacobi2D-omp 
+Enter the no of points:5000
+Enter maximum number of loops:1000
+1: time elapsed = 118.880913, speedup = 1.000000
+1: 26.917694 GB/s
+1: 3.154417 Gflops/s
+2: time elapsed = 94.811369, speedup = 1.253868
+2: 33.751227 GB/s
+2: 3.955222 Gflops/s
+4: time elapsed = 94.783110, speedup = 1.254242
+4: 33.761289 GB/s
+4: 3.956401 Gflops/s
+8: time elapsed = 94.733559, speedup = 1.254898
+8: 33.778948 GB/s
+8: 3.958471 Gflops/s
+16: time elapsed = 94.735832, speedup = 1.254867
+16: 33.778138 GB/s
+16: 3.958376 Gflops/s
+32: time elapsed = 97.147268, speedup = 1.223719
+32: 32.939681 GB/s
+32: 3.860119 Gflops/s
+
+
+
+For Gauss-Seidel with N=100 (loops: 1000)
+Ilyeechs-MacBook-Pro:HomeWork2 ilyeech$ ./gs2D-omp 
+Enter the no of points:100
+Enter maximum number of loops:1000
+1: time elapsed = 0.048030, speedup = 1.000000
+1: 26.650010 GB/s
+1: 3.123048 Gflops/s
+2: time elapsed = 0.057682, speedup = 0.832669
+2: 22.190631 GB/s
+2: 2.600465 Gflops/s
+4: time elapsed = 0.061521, speedup = 0.780709
+4: 20.805904 GB/s
+4: 2.438192 Gflops/s
+8: time elapsed = 0.092534, speedup = 0.519052
+8: 13.832753 GB/s
+8: 1.621026 Gflops/s
+16: time elapsed = 0.163531, speedup = 0.293706
+16: 7.827262 GB/s
+16: 0.917257 Gflops/s
+32: time elapsed = 0.289200, speedup = 0.166079
+32: 4.426003 GB/s
+32: 0.518672 Gflops/s
+
+
+For Gauss-Seidel with N=1000 (loops: 1000)
+Ilyeechs-MacBook-Pro:HomeWork2 ilyeech$ ./gs2D-omp 
+Enter the no of points:1000
+Enter maximum number of loops:1000
+1: time elapsed = 4.104030, speedup = 1.000000
+1: 31.188856 GB/s
+1: 3.654944 Gflops/s
+2: time elapsed = 1.834668, speedup = 2.236933
+2: 69.767391 GB/s
+2: 8.175866 Gflops/s
+4: time elapsed = 1.422486, speedup = 2.885111
+4: 89.983311 GB/s
+4: 10.544919 Gflops/s
+8: time elapsed = 1.436322, speedup = 2.857319
+8: 89.116507 GB/s
+8: 10.443341 Gflops/s
+16: time elapsed = 1.500842, speedup = 2.734485
+16: 85.285460 GB/s
+16: 9.994390 Gflops/s
+32: time elapsed = 1.707083, speedup = 2.404119
+32: 74.981709 GB/s
+32: 8.786919 Gflops/s
+
+For Gauss-Seidel with N=5000 (loops: 1000)
+Ilyeechs-MacBook-Pro:HomeWork2 ilyeech$ ./gs2D-omp 
+Enter the no of points:5000
+Enter maximum number of loops:1000
+1: time elapsed = 122.774010, speedup = 1.000000
+1: 26.064148 GB/s
+1: 3.054392 Gflops/s
+2: time elapsed = 98.679251, speedup = 1.244172
+2: 32.428296 GB/s
+2: 3.800191 Gflops/s
+4: time elapsed = 90.634136, speedup = 1.354611
+4: 35.306786 GB/s
+4: 4.137514 Gflops/s
+8: time elapsed = 93.012595, speedup = 1.319972
+8: 34.403943 GB/s
+8: 4.031712 Gflops/s
+16: time elapsed = 91.682748, speedup = 1.339118
+16: 34.902968 GB/s
+16: 4.090192 Gflops/s
+32: time elapsed = 90.880001, speedup = 1.350946
+32: 35.211267 GB/s
+32: 4.126320 Gflops/s
+
+
+For N = 5000, Gauss-Seidel took less time for the same number of loops. But, only slightly.
