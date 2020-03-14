@@ -82,8 +82,8 @@ void f ( int n )
     x[i] = x[i-1] + x[i-2];
     cout << "  " << i << "  " << x[i] << "\n";
   }
-//Mismatched free/delete. Malloc is undone by free (delete can be erroneous/undefined-behavior
-  free (x);
+//malloc has to be undone with free()
+  free( x);
 
   return;
 }
