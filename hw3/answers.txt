@@ -1,0 +1,41 @@
+Q2)
+Ilyeechs-MacBook-Pro:hw3 ilyeech$ ./fast-sin
+Reference time: 0.2726
+Taylor time:    1.6566      Error: 6.927903e-12
+Intrin time:    0.0022      Error: 6.927903e-12
+Vector time:    0.0023      Error: 2.454113e-03
+
+
+Q3)
+System Architecture:
+  Processor Name:	Quad-Core Intel Core i5
+  Processor Speed:	1.4 GHz (Turbo Boost up to 3.9GHz)
+  Number of Processors:	1
+  Total Number of Cores:	4
+  L2 Cache (per Core):	256 KB
+  L3 Cache:	6 MB
+  Memory:	16 GB 2133 MHz LPDDR3
+
+
+Even though I calculated the correction terms sequentially, adding the correction term to each element in the scan vector (prefix_sum in code) can be done in parallel. I have used a parallel for that. Without that, the performance is worse than sequential as expected. Performance was best with number of threads 8 when N = 100000000.
+
+sequential-scan = 0.346075s
+
+Number of threads: 2
+parallel-scan   = 0.259247s
+
+Number of threads: 4
+parallel-scan   = 0.174379s
+
+Number of threads: 8
+parallel-scan   = 0.145919s
+
+Number of threads: 16
+parallel-scan   = 0.150061s
+
+Number of threads: 32
+parallel-scan   = 0.155434s
+
+Number of threads: 64
+parallel-scan   = 0.160398s
+
