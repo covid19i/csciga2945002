@@ -46,6 +46,8 @@ int main(int argc, const char * argv[]) {
     int n_labels;
     uchar *testingData;
     testingData=data.read_mnist_labels("train-labels.idx1-ubyte",n_labels);
+    double oldloss=mlog.getLoss(weight,trainingData,testingData,n_images,size_image+1,10);
+    printf("old loss: %f \n",oldloss);
     /*
     for(int i=0;i<5;i++){
         printf("%d ",testingData[i]);
@@ -53,18 +55,22 @@ int main(int argc, const char * argv[]) {
     */
     
     double lambda;
-    lambda=0.001;
+    lambda=0.1;
     //double loss;
     //loss=mlog.getLoss(weight,trainingData,testingData,n_images,size_image+1,10);
-    //printf("%f ",loss)4
+    //printf("%f ",loss)
     printf("start update\n\n\n");
-    algo.updateWeight(mlog,trainingData,testingData,lambda,5000,n_images,size_image+1,10);
+    algo.updateWeight(mlog,trainingData,testingData,lambda,800,n_images,size_image+1,10);
     //updateWeight(LossType& loss,uchar** trainingData,uchar* testingData,double lambda,int n_iterations,int n_data,int size_weight,int size_label)
     weight=algo.getWeight();
     
-    for(int i=300;i<303;i++){
+    double newloss=mlog.getLoss(weight,trainingData,testingData,n_images,size_image+1,10);
+    printf("new loss: %f \n",newloss);
+    /*
+    for(int i=0;i<(size_image+1)*10;i++){
         printf("%f ",weight[i]);
     }
+    */
     /*
     uchar a=1;
     int b=1;

@@ -14,8 +14,32 @@ using namespace std;
 
 class MultiLog: public LossType{
 public:
-    double getLoss(double* weight,double** data,uchar* label,int size_data,int size_weight,int size_label){
-        return 0;
+    double getLoss(vector<double> weight,double** data,uchar* label,int size_data,int size_image,int size_label){
+        
+        double summ=0;
+        for(int i=0;i<size_data;i++)
+        {
+            
+            for(int j=0;j<size_image;j++)
+            {
+            
+                double expSum=0;
+                
+                for(int k=0;k<size_label;k++)
+                {
+                    expSum += exp(weight[k*size_image+j] * data[i][j]);
+                    if(k==label[i]){
+                        summ += weight[k*size_image+j] * data[i][j];
+                    }
+                }
+                summ-=log(expSum);
+                
+            }
+            
+            
+        }
+        
+        return summ;
     }
     
     vector<double> getGradient(vector<double> weight,double* data,uchar label,int size_data,int size_label){
@@ -33,7 +57,7 @@ public:
                 }
             }
         }
-         */
+        */
         
         //calculate the probability
         for(int i=0;i<size_label;i++){
@@ -42,7 +66,7 @@ public:
             for(int j=0;j<size_data;j++){
                 
                 prob+=weight[i*size_data+j]*data[i*size_data+j];
-                if(isnan(prob)){printf("%d,%d,%f,%f",i,j,weight[i*size_data+j],data[i*size_data+j]);exit(1);}
+                //if(isnan(prob)){printf("%d,%d,%f,%f",i,j,weight[i*size_data+j],data[i*size_data+j]);exit(1);}
                 
             }
             

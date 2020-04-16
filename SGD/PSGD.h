@@ -46,7 +46,8 @@ public:
         return weight;
     }
     
-    void updateWeight(LossType& loss,double** trainingData,uchar* testingData,double lambda,int n_iterations,int n_data,int n_weights,int n_labels){
+    void updateWeight(LossType& loss,double** trainingData,uchar* testingData,double lambda,int n_iterations,int n_data,int n_weights,int n_labels)
+    {
         
         
         
@@ -64,61 +65,63 @@ public:
         }
         
         
-        //#pragma omp parallel num_threads(n_threads) shared(copy_weight) private(parallel_weight,delta_weight)
-        //#pragma omp for
-        for(int n=0;n<n_threads;n++)
+        #pragma omp parallel num_threads(n_threads) shared(copy_weight) //private(parallel_weight,delta_weight)
         {
-            vector<double>parallel_weight(weight_size);
-            vector<double>delta_weight(weight_size);
-
-            for(int i=0;i<weight_size;i++)
+            #pragma omp for
+            for(int n=0;n<n_threads;n++)
             {
-                parallel_weight[i]=copy_weight[i];//isnan
-            }
-            
+                vector<double>parallel_weight(weight_size);
+                vector<double>delta_weight(weight_size);
 
-            for(int j=0;j<n_iterations;j++)
-            {
-                    
-                int index=rand() % n_data;//
-                //printf("index %d ",index);
-                //n_data is 60000, size_weights is 28*28+1, size_label is 10
-                //printf("index %d",index);
-                
-                
-                delta_weight=loss.getGradient(parallel_weight, trainingData[index], testingData[index], n_weights, n_labels);
-                
-                
-                /*
                 for(int i=0;i<weight_size;i++)
                 {
-                    if(isnan(delta_weight[i]))
+                    parallel_weight[i]=copy_weight[i];//isnan
+                }
+                
+
+                for(int j=0;j<n_iterations;j++)
+                {
+                        
+                    int index=rand() % n_data;//
+                    //printf("index %d ",index);
+                    //n_data is 60000, size_weights is 28*28+1, size_label is 10
+                    //printf("index %d",index);
+                    
+                    
+                    delta_weight=loss.getGradient(parallel_weight, trainingData[index], testingData[index], n_weights, n_labels);
+                    
+                    
+                    /*
+                    for(int i=0;i<weight_size;i++)
                     {
-                        printf("%f,%d,%d",delta_weight[i],j,i);
-                        exit(1);
+                        if(isnan(delta_weight[i]))
+                        {
+                            printf("%f,%d,%d",delta_weight[i],j,i);
+                            exit(1);
+                        }
+                    }
+                    */
+                    
+                    for(int k=0;k<weight_size;k++){
+                        parallel_weight[k]-=lambda*delta_weight[k];
+                    }
+                    //printf("delta_weight %f %f %f \n",parallel_weight[300],parallel_weight[301],parallel_weight[302]);
+                    
+                    
+                    
+                }
+                
+             //printf("%d,delta_weight %f %f %f \n",omp_get_thread_num(),parallel_weight[300],parallel_weight[301],parallel_weight[302]);
+
+                #pragma omp critical
+                {
+                //printf("critical %d\n",omp_get_thread_num());
+                    for(int k=0;k<weight_size;k++){
+                        weight[k]+=parallel_weight[k]/n_threads;
                     }
                 }
-                 */
-                
-                for(int k=0;k<weight_size;k++){
-                    parallel_weight[k]-=lambda*delta_weight[k];
-                }
-                //printf("delta_weight %f %f %f \n",parallel_weight[300],parallel_weight[301],parallel_weight[302]);
-                
-                
-                
             }
-                
-            //printf("%d,delta_weight %f %f %f \n",omp_get_thread_num(),parallel_weight[300],parallel_weight[301],parallel_weight[302]);
-
-            //#pragma omp critical
-            {
-                //printf("critical %d\n",omp_get_thread_num());
-                for(int k=0;k<weight_size;k++){
-                    weight[k]+=parallel_weight[k]/n_threads;
-                }
-                
-            }
+            
         }
         
     }
