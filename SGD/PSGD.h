@@ -48,16 +48,11 @@ public:
     
     void updateWeight(LossType& loss,double** trainingData,uchar* testingData,double lambda,int n_iterations,int n_data,int n_weights,int n_labels)
     {
-        
-        
-        
         //printf("%d ",weight_size);
-        
-        
         //double* copy_weight=(double*)malloc(weight_size*sizeof(double));
         vector<double>copy_weight(weight_size);
-        //double* parallel_weight;
-        //double* delta_weight;
+	//vector<double>parallel_weight(weight_size);
+	//vector<double>delta_weight(weight_size);
         for(int i=0;i<weight_size;i++)
         {
             copy_weight[i]=weight[i];
@@ -65,7 +60,7 @@ public:
         }
         
         
-        #pragma omp parallel num_threads(n_threads) shared(copy_weight) //private(parallel_weight,delta_weight)
+        #pragma omp parallel num_threads(n_threads) shared(copy_weight)
         {
             #pragma omp for
             for(int n=0;n<n_threads;n++)
@@ -75,22 +70,27 @@ public:
 
                 for(int i=0;i<weight_size;i++)
                 {
+		    //Why is copy_weight is shared?
                     parallel_weight[i]=copy_weight[i];//isnan
                 }
                 
-
                 for(int j=0;j<n_iterations;j++)
                 {
-                        
-                    int index=rand() % n_data;//
+		    //printf("Thr %d, Iter %d started\n", n, j);
+                    int index = rand() % n_data;//
                     //printf("index %d ",index);
                     //n_data is 60000, size_weights is 28*28+1, size_label is 10
                     //printf("index %d",index);
-                    
-                    
+		    //del w = -grad f. But, because of a minus when we update weights, this MISTAKE is fine.
                     delta_weight=loss.getGradient(parallel_weight, trainingData[index], testingData[index], n_weights, n_labels);
-                    
-                    
+		    // l2-norm
+		    double accum = 0;
+		    for (int l = 0; l < weight_size; ++l) {
+			accum += delta_weight[l] * delta_weight[l];
+		    }
+		    double norm = sqrt(accum);
+		    printf("Delta Norm = %f\n", norm);
+		    //printf("Thr %d, Iter %d middle\n", n, j);
                     /*
                     for(int i=0;i<weight_size;i++)
                     {
@@ -101,35 +101,32 @@ public:
                         }
                     }
                     */
-                    
                     for(int k=0;k<weight_size;k++){
-                        parallel_weight[k]-=lambda*delta_weight[k];
+                        parallel_weight[k] -= lambda*delta_weight[k];
                     }
+		    // l2-norm
+		    accum = 0;
+		    for (int l = 0; l < weight_size; ++l) {
+			accum += parallel_weight[l] * parallel_weight[l];
+		    }
+		    //printf("Norm = %f\n", norm);
+		    //printf("Thr %d, Iter %d ended\n", n, j);
                     //printf("delta_weight %f %f %f \n",parallel_weight[300],parallel_weight[301],parallel_weight[302]);
-                    
-                    
-                    
                 }
-                
-             //printf("%d,delta_weight %f %f %f \n",omp_get_thread_num(),parallel_weight[300],parallel_weight[301],parallel_weight[302]);
-
-                #pragma omp critical
-                {
-                //printf("critical %d\n",omp_get_thread_num());
-                    for(int k=0;k<weight_size;k++){
-                        weight[k]+=parallel_weight[k]/n_threads;
-                    }
-                }
+		//printf("%d,delta_weight %f %f %f \n",omp_get_thread_num(),parallel_weight[300],parallel_weight[301],parallel_weight[302]);
+		#pragma omp critical
+		{
+		//printf("critical %d\n",omp_get_thread_num());
+		    for(int k=0;k<weight_size;k++){
+			weight[k] += parallel_weight[k]/n_threads;
+		    }
+		}
             }
-            
         }
-        
+	
     }
     
     ~PSGD(){}
 };
-
-
-
 
 #endif /* PSGD_h */
