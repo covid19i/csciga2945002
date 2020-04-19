@@ -28,6 +28,10 @@ public:
         n_threads=number_threads;
     }
     
+    int getn_threads(){
+	return n_threads;
+    }
+    
     void initWeight(int n_weights,int n_labels){
         
         int seed =1;//chrono::system_clock::now().time_since_epoch().count();
@@ -46,7 +50,7 @@ public:
         return weight;
     }
     
-    void updateWeight(LossType& loss,double** trainingData,uchar* testingData,double lambda,int n_iterations,int n_data,int n_weights,int n_labels)
+    void updateWeight(LossType& loss,double** trainingData,uchar* testingData,double eta,int n_iterations,int n_data,int n_weights,int n_labels)
     {
         //printf("%d ",weight_size);
         //double* copy_weight=(double*)malloc(weight_size*sizeof(double));
@@ -73,7 +77,8 @@ public:
 		    //Why is copy_weight is shared?
                     parallel_weight[i]=copy_weight[i];//isnan
                 }
-                
+
+		double accum = 0;
                 for(int j=0;j<n_iterations;j++)
                 {
 		    //printf("Thr %d, Iter %d started\n", n, j);
@@ -82,14 +87,15 @@ public:
                     //n_data is 60000, size_weights is 28*28+1, size_label is 10
                     //printf("index %d",index);
 		    //del w = -grad f. But, because of a minus when we update weights, this MISTAKE is fine.
-                    delta_weight=loss.getGradient(parallel_weight, trainingData[index], testingData[index], n_weights, n_labels);
-		    // l2-norm
-		    double accum = 0;
-		    for (int l = 0; l < weight_size; ++l) {
-			accum += delta_weight[l] * delta_weight[l];
+                    delta_weight=loss.getGradient(parallel_weight, trainingData[index], testingData[index], n_data, n_weights, n_labels);
+		    if(j %(n_iterations/5) == 0 || j == n_iterations-1){
+			// l2-norm
+			accum = 0;
+			for (int l = 0; l < weight_size; l++) {
+			    accum += delta_weight[l] * delta_weight[l];
+			}
+			printf("Delta Norm[%d] \t= %f \tin thread %d\n", index, sqrt(accum), omp_get_thread_num());//NOT SURE if n can be used as the thread ID
 		    }
-		    double norm = sqrt(accum);
-		    printf("Delta Norm = %f\n", norm);
 		    //printf("Thr %d, Iter %d middle\n", n, j);
                     /*
                     for(int i=0;i<weight_size;i++)
@@ -102,14 +108,17 @@ public:
                     }
                     */
                     for(int k=0;k<weight_size;k++){
-                        parallel_weight[k] -= lambda*delta_weight[k];
+                        parallel_weight[k] -= eta*delta_weight[k];
                     }
-		    // l2-norm
-		    accum = 0;
-		    for (int l = 0; l < weight_size; ++l) {
-			accum += parallel_weight[l] * parallel_weight[l];
+		    if(j %(n_iterations/5) == 0 || j == n_iterations-1){
+			// l2-norm
+			accum = 0;
+			for (int l = 0; l < weight_size; ++l) {
+			    accum += parallel_weight[l] * parallel_weight[l];
+			}
+			printf("Weight Norm \t= %f \tin thread %d\n", sqrt(accum), omp_get_thread_num());
 		    }
-		    //printf("Norm = %f\n", norm);
+		    
 		    //printf("Thr %d, Iter %d ended\n", n, j);
                     //printf("delta_weight %f %f %f \n",parallel_weight[300],parallel_weight[301],parallel_weight[302]);
                 }
@@ -124,6 +133,38 @@ public:
             }
         }
 	
+    }
+    
+    void test(double** testingData, uchar* testingLabels, int n_data, int n_weights,int n_labels)
+    {
+	int correct_data = 0;
+        vector<double> probList(n_labels);
+	double prob_exponent, maxProb, probSum;
+	#pragma omp parallel num_threads(n_threads) reduction(+:correct_data)
+        {
+            #pragma omp for
+	    for(int j=0; j<n_data; j++)
+	    {
+		//n_data is 60000, size_weights is 28*28+1, size_label is 10
+		maxProb = 0;
+		probSum = 0;
+		for(int i=0;i<n_labels;i++){
+		    //probList[i] = 0;//unnecessary
+		    prob_exponent=0;//necessary
+		    for(int k=0;k<n_weights;k++){
+			prob_exponent += weight[i*n_weights+k]*testingData[j][k];
+		    }
+		    probList[i] = exp(prob_exponent);
+		    if(probList[i] > maxProb)
+			maxProb = probList[i];
+		    probSum += probList[i];
+		}
+		if(probList[testingLabels[j]] == maxProb)
+		    correct_data++;
+		
+	    }
+        }
+	printf("\n%d correct out of %d.\nRatio: %f\n", correct_data, n_data, (float)correct_data/n_data);
     }
     
     ~PSGD(){}

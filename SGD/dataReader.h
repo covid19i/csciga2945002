@@ -41,11 +41,12 @@ public:
         ifstream file(full_path, ios::binary);
 
         if(file.is_open()) {
+	    //printf("FILE OPEN: %s\n", &full_path);
             int magic_number = 0, n_rows = 0, n_cols = 0;
 
             file.read((char *)&magic_number, sizeof(magic_number));
             magic_number = reverseInt(magic_number);
-
+	    //printf("MAGIC NUMBER:%d\n", magic_number);
             if(magic_number != 2051) throw runtime_error("Invalid MNIST image file!");
 
             file.read((char *)&number_of_images, sizeof(number_of_images));
@@ -69,7 +70,7 @@ public:
                 
                 file.read(temp, image_size);
                 for(int j=0;j<image_size;j++){
-                    _dataset[i][j]=temp[j]/255.0;
+		    _dataset[i][j]=temp[j]/255.0; // Is this giving rise to zeroes?
                 }
                 
                 _dataset[i][image_size]=1;
@@ -95,6 +96,7 @@ public:
         ifstream file(full_path, ios::binary);
 
         if(file.is_open()) {
+	    //printf("FILE OPEN: %s\n", full_path);
             int magic_number = 0;
             file.read((char *)&magic_number, sizeof(magic_number));
             magic_number = reverseInt(magic_number);

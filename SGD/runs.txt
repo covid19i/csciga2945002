@@ -1,0 +1,107 @@
+
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -o main -fopenmp main.cpp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+pixel[100][188]: -0.058824	pixel[100][189]: 0.403922	pixel[100][190]: 0.000000
+image (roaster) size + 1: 785
+Enter no of threads:
+1
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951
+
+Enter regularization parameter (lambda): (Note: make this zero if you don't want regularization.)
+0.001
+
+old logloss: 354262.369810
+
+Enter learning rate (eta):
+0.001
+Start Training.
+Enter iterations for each thread:
+4000000
+Delta Norm[16807] 	= 0.941183 	in thread 0
+Weight Norm 	= 88.827227 	in thread 0
+Delta Norm[10186] 	= 3.276571 	in thread 0
+Weight Norm 	= 73.042278 	in thread 0
+Delta Norm[12512] 	= 0.754872 	in thread 0
+Weight Norm 	= 68.857913 	in thread 0
+Delta Norm[26356] 	= 2.778598 	in thread 0
+Weight Norm 	= 66.857599 	in thread 0
+Delta Norm[7791] 	= 2.332394 	in thread 0
+Weight Norm 	= 65.582232 	in thread 0
+Delta Norm[7375] 	= 3.233501 	in thread 0
+Weight Norm 	= 64.723507 	in thread 0
+
+Training complete.
+New logloss: -19972813.464720
+Old logloss: 354262.369810
+Diff logloss: -20327075.834531
+
+No of iterations for each thread: 4000000
+No of threads: 1
+
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+Enter no of threads:
+1
+Enter regularization parameter (lambda): (Note: make this zero if you don't want regularization.)
+0.001
+Enter learnign rate (eta):
+0.001
+Enter iterations for each thread:
+1000000
+Delta Norm[16807] 	= 0.941183 	in thread 0
+Weight Norm 	= 88.827227 	in thread 0
+Delta Norm[40149] 	= 4.660725 	in thread 0
+Weight Norm 	= 82.354028 	in thread 0
+Delta Norm[56268] 	= 3.131212 	in thread 0
+Weight Norm 	= 77.992574 	in thread 0
+Delta Norm[41960] 	= 3.535309 	in thread 0
+Weight Norm 	= 75.074110 	in thread 0
+Delta Norm[10186] 	= 3.276571 	in thread 0
+Weight Norm 	= 73.042278 	in thread 0
+Delta Norm[43347] 	= 0.485967 	in thread 0
+Weight Norm 	= 71.579661 	in thread 0
+new logloss: -18812143.254243
+old logloss: 354262.369810
+diff logloss: -19166405.624053
+
+16976 correct out of 60000.
+Ratio: 0.282933
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+Enter no of threads:
+1
+Enter regularization parameter (lambda): (Note: make this zero if you don't want regularization.)
+0.001
+Enter learnign rate (eta):
+0.001
+Enter iterations for each thread:
+10000
+Delta Norm[16807] 	= 0.941183 	in thread 0
+Weight Norm 	= 88.827227 	in thread 0
+Delta Norm[18587] 	= 4.341735 	in thread 0
+Weight Norm 	= 88.745334 	in thread 0
+Delta Norm[28807] 	= 3.536479 	in thread 0
+Weight Norm 	= 88.666268 	in thread 0
+Delta Norm[5791] 	= 2.947545 	in thread 0
+Weight Norm 	= 88.585559 	in thread 0
+Delta Norm[56779] 	= 2.506593 	in thread 0
+Weight Norm 	= 88.510172 	in thread 0
+Delta Norm[38065] 	= 2.928610 	in thread 0
+Weight Norm 	= 88.430369 	in thread 0
+new logloss: -117900.208826
+old logloss: 354262.369810
+diff logloss: -472162.578636
+
+5843 correct out of 60000.
+Ratio: 0.097383

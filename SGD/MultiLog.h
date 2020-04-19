@@ -13,11 +13,19 @@ typedef unsigned char uchar;
 using namespace std;
 
 class MultiLog: public LossType{
+private:
+    double lambda;//Regularization parameter for L2 Regularization
 public:
+    void setLambda(double l){
+	lambda = l;
+    }
+    double getLambda(){
+	return lambda;
+    }
     double getLoss(vector<double> weight,double** data,uchar* label,int size_data,int size_weights,int size_label){
 	//size_data = 3;
-        double summ = -1529628.136844;
-        //double summ=0;
+        //double summ = -1529628.136844;
+        double summ=0;
 	vector<double> exponent(size_label);
         for(int i=0; i<size_data; i++){
             /*for(int j=0; j<size_weights; j++){
@@ -47,10 +55,19 @@ public:
 		summ += log(expSum);
 	    }
         }
-        return summ;
+	
+	double regularizationTerm = 0;
+	for(int k=0; k<size_label; k++){
+	    for(int j=0; j<size_weights; j++){
+		regularizationTerm += weight[k*size_weights+j] * weight[k*size_weights+j];
+	    }
+	}
+	regularizationTerm *= lambda;
+	
+        return summ + regularizationTerm;
     }
     
-    vector<double> getGradient(vector<double> weight,double* data,uchar label,int size_weights,int size_label){
+    vector<double> getGradient(vector<double> weight,double* data,uchar label,int n_data, int size_weights,int size_label){
         vector<double> delta_weight(size_weights*size_label);
         vector<double> probList(size_label);
         double probSum=0;
@@ -65,20 +82,19 @@ public:
             probSum += exp(prob_exponent);
         }
 	if(probSum <= 0){
-	    printf("\nERROR in prob sum\n");
+	    printf("\nERROR in prob sum\n");//THIS HAS TO BE REMOVED? It can go to zero due to hardware!!!!!!!!!!!!!!!!!!!!!!!!
 	    exit(1);
 	}
         for(int i=0;i<size_label;i++){
             probList[i] /= probSum;
             double sign=(i==label)?1:0;
-	    if(sign==1){
-		//printf("SIGN = 1\n");
-	    }
             for(int j=0;j<size_weights;j++){
                 delta_weight[i*size_weights+j] = -(sign-probList[i]) * data[j];
+		delta_weight[i*size_weights+j] -= (2/n_data) * lambda * delta_weight[i*size_weights+j];//scaling because in SGD, gradient is calculated for just one point.
             }
         }
         //printf("delta_weight inside gradient descent %f %f %f \n",delta[300],delta[301],delta[302]);
+	
         return delta_weight;
     }
     //getGradient(parallel_weight, trainingData[index], testingData[index], size_weight, size_label)

@@ -15,7 +15,7 @@ class LossType{
 public:
     virtual double getLoss(vector<double> weight,double** data,uchar* label,int size_data,int size_image,int size_label)=0;
     
-    virtual vector<double> getGradient(vector<double> weight,double* data,uchar label,int size_data,int size_label)=0;
+    virtual vector<double> getGradient(vector<double> weight,double* data,uchar label,int n_data, int size_data,int size_label)=0;
     //virtual double* getGradient(double* weight,uchar* data,uchar* label,int size_data,int size_label);
 };
 
