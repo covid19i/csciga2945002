@@ -42,7 +42,11 @@ Diff logloss: -20327075.834531
 
 No of iterations for each thread: 4000000
 No of threads: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
 
+3421 correct out of 10000.
+Ratio: 0.342100
 
 
 
