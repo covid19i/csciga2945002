@@ -87,6 +87,61 @@ Memory:	16 GB 2133 MHz LPDDR3
 
 
 
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -O3 -o main -fopenmp main.cpp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+New logloss: -18823842.553051
+Old logloss: 354262.369810
+Diff logloss: -19178104.922861
+
+No of iterations for each thread: 1000000
+No of threads: 8
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+912 correct out of 10000.
+Ratio: 0.091200
+Time elapsed in training = 41.232886
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -O3 -o main -fopenmp main.cpp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+New logloss: -20071679.383405
+Old logloss: 362144.754447
+Diff logloss: -20433824.137852
+
+No of iterations for each thread: 8000000
+No of threads: 1
+Lambda (Regularization Parameter): 1.000000
+Eta (Learning Rate): 0.001000
+
+3488 correct out of 10000.
+Ratio: 0.348800
+Time elapsed in training = 156.617041
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -O3 -o main -fopenmp main.cpp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+New logloss: -20075581.110053
+Old logloss: 354254.487426
+Diff logloss: -20429835.597479
+
+No of iterations for each thread: 8000000
+No of threads: 1
+Lambda (Regularization Parameter): 0.000001
+Eta (Learning Rate): 0.001000
+
+3488 correct out of 10000.
+Ratio: 0.348800
+Time elapsed in training = 159.090472
+
+
+
+
+
 Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -O3 -o main -fopenmp main.cpp
 Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
 New logloss: -20448998.469320
