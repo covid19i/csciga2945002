@@ -1,4 +1,425 @@
+On crackle1.cims.nyu.edu:
+crackle1.cims.nyu.edu 	Two Intel Xeon E5630 (2.53 GHz) (16 cores) 	64 GB 	CentOS 7
 
+
+
+
+[oad245@crackle1 SGD]$ ./main
+New logloss: -20284426.698910
+Old logloss: 354262.369810
+Diff logloss: -20638689.068720
+
+No of iterations for each thread: 16000000
+No of threads: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+3527 correct out of 10000.
+Ratio: 0.352700
+Time elapsed in training = 425.500875
+
+
+
+
+[oad245@crackle1 SGD]$ g++ -O3 -fopenmp -o main main.cpp
+[oad245@crackle1 SGD]$ ./main
+pixel[100][188]: -0.058824	pixel[100][189]: 0.403922	pixel[100][190]: 0.000000
+image (roaster) size + 1: 785
+Enter no of threads:
+1
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951
+
+Enter regularization parameter (lambda): (Note: make this zero if you don't want regularization.)
+0.001
+
+old logloss: 354262.369810
+
+Enter learning rate (eta = 0.001):
+0.001
+Start Training.
+Enter iterations for each thread (> 10):
+32000000
+Delta Norm[29383] 	= 3.270193 	in thread 0
+Weight Norm 	= 88.827217 	in thread 0
+Delta Norm[2984] 	= 1.799560 	in thread 0
+Weight Norm 	= 63.129725 	in thread 0
+Delta Norm[33020] 	= 1.641663 	in thread 0
+Weight Norm 	= 61.365201 	in thread 0
+Delta Norm[34785] 	= 2.882760 	in thread 0
+Weight Norm 	= 60.732981 	in thread 0
+Delta Norm[49795] 	= 2.914018 	in thread 0
+Weight Norm 	= 60.413952 	in thread 0
+Delta Norm[57668] 	= 2.313902 	in thread 0
+Weight Norm 	= 60.376322 	in thread 0
+
+Training complete.
+New logloss: -20426500.011737
+Old logloss: 354262.369810
+Diff logloss: -20780762.381547
+
+No of iterations for each thread: 32000000
+No of threads: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+3535 correct out of 10000.
+Ratio: 0.353500
+Time elapsed in training = 854.049864
+
+
+
+
+
+
+
+
+ON Ilyeech's MacBook:
+
+System Architecture:
+Processor Name:	Quad-Core Intel Core i5
+Processor Speed:	1.4 GHz (Turbo Boost up to 3.9GHz)
+Number of Processors:	1
+Total Number of Cores:	4
+L2 Cache (per Core):	256 KB
+L3 Cache:	6 MB
+Memory:	16 GB 2133 MHz LPDDR3
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -O3 -o main -fopenmp main.cpp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+New logloss: -20448998.469320
+Old logloss: 354262.369810
+Diff logloss: -20803260.839131
+
+No of iterations for each thread: 32000000
+No of threads: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+3518 correct out of 10000.
+Ratio: 0.351800
+Time elapsed in training = 648.042845
+
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+New logloss: -20276672.259110
+Old logloss: 354262.369810
+Diff logloss: -20630934.628920
+
+No of iterations for each thread: 16000000
+No of threads: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+3496 correct out of 10000.
+Ratio: 0.349600
+Time elapsed in training = 314.526922
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+Training complete.
+New logloss: -20075577.212224
+Old logloss: 354262.369810
+Diff logloss: -20429839.582035
+
+No of iterations for each thread: 8000000
+No of threads: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+3488 correct out of 10000.
+Ratio: 0.348800
+Time elapsed in training = 154.838719
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+New logloss: -19972813.464720
+Old logloss: 354262.369810
+Diff logloss: -20327075.834531
+
+No of iterations for each thread: 4000000
+No of threads: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+3421 correct out of 10000.
+Ratio: 0.342100
+Time elapsed in training = 77.616136
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+New logloss: -18826953.374480
+Old logloss: 354262.369810
+Diff logloss: -19181215.744291
+
+No of iterations for each thread: 1000000
+No of threads: 2
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+1234 correct out of 10000.
+Ratio: 0.123400
+Time elapsed in training = 21.944274
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -O3 -o main -fopenmp main.cpp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+
+New logloss: -18824539.214177
+Old logloss: 354262.369810
+Diff logloss: -19178801.583987
+
+No of iterations for each thread: 1000000
+No of threads: 8
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+936 correct out of 10000.
+Ratio: 0.093600
+Time elapsed in training = 40.646726
+
+
+
+
+
+SHIFTED TO -O3 flag to speed things up
+
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+
+New logloss: -18826826.157614
+Old logloss: 354262.369810
+Diff logloss: -19181088.527424
+
+No of iterations for each thread: 1000000
+No of threads: 16
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+833 correct out of 10000.
+Ratio: 0.083300
+Time elapsed in training = 980.983760
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+
+New logloss: -18836150.788027
+Old logloss: 354262.369810
+Diff logloss: -19190413.157837
+
+No of iterations for each thread: 1000000
+No of threads: 4
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+927 correct out of 10000.
+Ratio: 0.092700
+Time elapsed in training = 240.768346
+
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+
+New logloss: -18812143.254243
+Old logloss: 354262.369810
+Diff logloss: -19166405.624053
+
+No of iterations for each thread: 1000000
+No of threads: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+2738 correct out of 10000.
+Ratio: 0.273800
+Time elapsed in training = 181.201322
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -o main -fopenmp main.cpp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+pixel[100][188]: -0.058824	pixel[100][189]: 0.403922	pixel[100][190]: 0.000000
+image (roaster) size + 1: 785
+Enter no of threads:
+4
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951
+
+Enter regularization parameter (lambda): (Note: make this zero if you don't want regularization.)
+0.001
+
+old logloss: 354262.369810
+
+Enter learning rate (eta = 0.001):
+0.001
+Start Training.
+Enter iterations for each thread:
+1000000
+Delta Norm[16807] 	= 0.941183 	in thread 2
+Delta Norm[55249] 	= 3.392997 	in thread 1
+Delta Norm[10073] 	= 3.519141 	in thread 0
+Delta Norm[43658] 	= 3.704679 	in thread 3
+Weight Norm 	= 88.827148 	in thread 1
+Weight Norm 	= 88.827142 	in thread 0
+Weight Norm 	= 88.827227 	in thread 2
+Weight Norm 	= 88.827144 	in thread 3
+Delta Norm[46405] 	= 3.748099 	in thread 0
+Weight Norm 	= 82.352660 	in thread 0
+Delta Norm[5] 	= 4.228763 	in thread 1
+Weight Norm 	= 82.341675 	in thread 1
+Delta Norm[28382] 	= 3.287072 	in thread 3
+Weight Norm 	= 82.339600 	in thread 3
+Delta Norm[44501] 	= 3.094068 	in thread 2
+Weight Norm 	= 82.349279 	in thread 2
+Delta Norm[51170] 	= 1.863302 	in thread 0
+Weight Norm 	= 77.975972 	in thread 0
+Delta Norm[9135] 	= 3.245439 	in thread 1
+Weight Norm 	= 77.980861 	in thread 1
+Delta Norm[58547] 	= 2.883123 	in thread 3
+Weight Norm 	= 77.963100 	in thread 3
+Delta Norm[5508] 	= 2.350355 	in thread 2
+Weight Norm 	= 77.986983 	in thread 2
+Delta Norm[32494] 	= 2.968978 	in thread 0
+Weight Norm 	= 75.055029 	in thread 0
+Delta Norm[28891] 	= 2.184642 	in thread 1
+Weight Norm 	= 75.053028 	in thread 1
+Delta Norm[6428] 	= 2.424442 	in thread 3
+Weight Norm 	= 75.042934 	in thread 3
+Delta Norm[11304] 	= 1.293319 	in thread 2
+Weight Norm 	= 75.055188 	in thread 2
+Delta Norm[20265] 	= 3.257007 	in thread 0
+Weight Norm 	= 73.017576 	in thread 0
+Delta Norm[26248] 	= 2.046595 	in thread 1
+Weight Norm 	= 73.022083 	in thread 1
+Delta Norm[6584] 	= 2.797394 	in thread 3
+Weight Norm 	= 73.024669 	in thread 3
+Delta Norm[27064] 	= 1.696607 	in thread 2
+Weight Norm 	= 73.039611 	in thread 2
+Delta Norm[57478] 	= 3.460011 	in thread 0
+Weight Norm 	= 71.565068 	in thread 0
+Delta Norm[8533] 	= 0.199404 	in thread 1
+Weight Norm 	= 71.557355 	in thread 1
+Delta Norm[44699] 	= 2.936542 	in thread 3
+Weight Norm 	= 71.580633 	in thread 3
+Delta Norm[17052] 	= 2.707792 	in thread 2
+Weight Norm 	= 71.568977 	in thread 2
+
+Training complete.
+New logloss: -18836899.769329
+Old logloss: 354262.369810
+Diff logloss: -19191162.139139
+
+No of iterations for each thread: 1000000
+No of threads: 4
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+965 correct out of 10000.
+Ratio: 0.096500
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -o main -fopenmp main.cpp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+pixel[100][188]: -0.058824	pixel[100][189]: 0.403922	pixel[100][190]: 0.000000
+image (roaster) size + 1: 785
+Enter no of threads:
+4
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951
+
+Enter regularization parameter (lambda): (Note: make this zero if you don't want regularization.)
+0.001
+
+old logloss: 354262.369810
+
+Enter learning rate (eta = 0.001):
+0.001
+Start Training.
+Enter iterations for each thread:
+1000000
+Delta Norm[55249] 	= 3.392997 	in thread 0
+Delta Norm[10073] 	= 3.519141 	in thread 3
+Delta Norm[16807] 	= 0.941183 	in thread 1
+Delta Norm[43658] 	= 3.704679 	in thread 2
+Weight Norm 	= 88.827142 	in thread 3
+Weight Norm 	= 88.827148 	in thread 0
+Weight Norm 	= 88.827227 	in thread 1
+Weight Norm 	= 88.827144 	in thread 2
+Delta Norm[13156] 	= 3.443435 	in thread 0
+Weight Norm 	= 82.335385 	in thread 0
+Delta Norm[47392] 	= 2.924575 	in thread 2
+Weight Norm 	= 82.357586 	in thread 2
+Delta Norm[58493] 	= 2.420563 	in thread 1
+Weight Norm 	= 82.359860 	in thread 1
+Delta Norm[55353] 	= 2.215205 	in thread 3
+Weight Norm 	= 82.330727 	in thread 3
+Delta Norm[15581] 	= 3.632399 	in thread 0
+Weight Norm 	= 77.967587 	in thread 0
+Delta Norm[31583] 	= 2.745477 	in thread 1
+Weight Norm 	= 77.984597 	in thread 1
+Delta Norm[32987] 	= 3.667797 	in thread 2
+Weight Norm 	= 77.991648 	in thread 2
+Delta Norm[35969] 	= 2.274107 	in thread 3
+Weight Norm 	= 77.964596 	in thread 3
+Delta Norm[2931] 	= 0.151336 	in thread 0
+Weight Norm 	= 75.033510 	in thread 0
+Delta Norm[30731] 	= 2.217799 	in thread 2
+Weight Norm 	= 75.059743 	in thread 2
+Delta Norm[17285] 	= 2.928354 	in thread 1
+Weight Norm 	= 75.064315 	in thread 1
+Delta Norm[35174] 	= 2.902047 	in thread 3
+Weight Norm 	= 75.047724 	in thread 3
+Delta Norm[12428] 	= 2.365820 	in thread 0
+Weight Norm 	= 73.010875 	in thread 0
+Delta Norm[38631] 	= 1.971055 	in thread 2
+Weight Norm 	= 73.031166 	in thread 2
+Delta Norm[56000] 	= 2.144492 	in thread 1
+Weight Norm 	= 73.038041 	in thread 1
+Delta Norm[16726] 	= 1.295682 	in thread 3
+Weight Norm 	= 73.025701 	in thread 3
+Delta Norm[37434] 	= 3.178656 	in thread 0
+Weight Norm 	= 71.550933 	in thread 0
+Delta Norm[12810] 	= 0.925545 	in thread 2
+Weight Norm 	= 71.566885 	in thread 2
+Delta Norm[26352] 	= 1.915888 	in thread 1
+Weight Norm 	= 71.577659 	in thread 1
+Delta Norm[48685] 	= 2.459781 	in thread 3
+Weight Norm 	= 71.574727 	in thread 3
+
+Training complete.
+New logloss: -18838053.598641
+Old logloss: 354262.369810
+Diff logloss: -19192315.968451
+
+No of iterations for each thread: 1000000
+No of threads: 4
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+907 correct out of 10000.
+Ratio: 0.090700
 
 
 

@@ -71,10 +71,13 @@ int main(int argc, const char * argv[]) {
     //loss=mlog.getLoss(weight,trainingData,trainingLabels,n_images,size_image+1,10);
     //printf("%f ",loss)
     printf("Start Training.\n");
-    printf("Enter iterations for each thread:\n");
+    printf("Enter iterations for each thread (> 10):\n");
     int n_iter;
     scanf("%d", &n_iter);
+    
+    double t = omp_get_wtime();
     psgd.updateWeight(mlog, trainingData, trainingLabels, eta, n_iter, n_images, size_image+1, 10);//Training the model
+    t = omp_get_wtime() - t;
     //updateWeight(LossType& loss,uchar** trainingData,uchar* trainingLabels,
     //double lambda,int n_iterations,int n_data,int size_weight,int size_label)
     printf("\nTraining complete.\n");
@@ -103,6 +106,7 @@ int main(int argc, const char * argv[]) {
     testingLabels = data.read_mnist_labels("t10k-labels-idx1-ubyte",n_labels_test);
     psgd.test(testingData, testingLabels, n_images_test, size_image+1, 10);
     //psgd.test(trainingData, trainingLabels, n_images, size_image+1, 10);
+    printf("Time elapsed in training = %f\n", t);
     
     /*
     uchar a=1;
