@@ -1,0 +1,230 @@
+For compiling (removes previous executables) and running:
+sh compile.sh
+
+For just running (without compilation):
+sh run.sh
+
+I've loaded the following modules(during development and reporting performance):
+1) cuda-10.2   2) gcc-6.3.0
+
+Question 1 & 2:
+
+
+Results on various machines from CUDA servers of CIMS:
+
+
+
+cuda5.cims.nyu.edu:
+For Vector Vector dot product with N = 33554432:
+CPU Bandwidth = 17.833179 GB/s
+GPU Bandwidth = 2.972357 GB/s
+Error = 0.000000
+
+For Matrix Vector multiplication with N = 33554432	 M = 17
+CPU Bandwidth = 9.043083 GB/s
+ERROR: malloc x failed: out of memory
+
+For Jacobi calculation with N = 1000 points	Loops = 10000:
+CPU:
+No of Threads 1: time elapsed = 104.065762, speedup = 1.000000
+No of Threads 1: CPU Bandwidth = 1.537489 GB/s
+No of Threads 1: CPU Floprate = 0.480465 Gflops/s
+No of Threads 4: time elapsed = 88.444551, speedup = 1.176622
+No of Threads 4: CPU Bandwidth = 1.809043 GB/s
+No of Threads 4: CPU Floprate = 0.565326 Gflops/s
+No of Threads 32: time elapsed = 18.560228, speedup = 5.606923
+No of Threads 32: CPU Bandwidth = 8.620584 GB/s
+No of Threads 32: CPU Floprate = 2.693932 Gflops/s
+
+GPU:
+Device Number: 0
+  Device name: GeForce GTX TITAN Z
+Device Number: 1
+  Device name: GeForce GTX TITAN Z
+Device Number: 2
+  Device name: GeForce GTX TITAN Z
+Device Number: 3
+  Device name: GeForce GTX TITAN Z
+GPU Time Elapsed = 1.728147
+GPU Bandwidth = 92.584730 GB/s
+GPU Flop Rate: 28.932728 Gflops/s
+Error = 0.000000
+
+
+
+
+
+
+cuda1.cims.nyu.edu:
+For Vector Vector dot product with N = 33554432:
+CPU Bandwidth = 61.908098 GB/s
+GPU Bandwidth = 7.947131 GB/s
+Error = 0.000000
+
+For Matrix Vector multiplication with N = 33554432	 M = 17
+CPU Bandwidth = 31.459763 GB/s
+GPU Bandwidth = 6.923476 GB/s
+Error = 0.008826
+
+For Jacobi calculation with N = 1000 points	Loops = 10000:
+CPU:
+No of Threads 1: time elapsed = 65.058744, speedup = 1.000000
+No of Threads 1: CPU Bandwidth = 2.459316 GB/s
+No of Threads 1: CPU Floprate = 0.768536 Gflops/s
+No of Threads 4: time elapsed = 17.073320, speedup = 3.810550
+No of Threads 4: CPU Bandwidth = 9.371347 GB/s
+No of Threads 4: CPU Floprate = 2.928546 Gflops/s
+No of Threads 32: time elapsed = 3.972857, speedup = 16.375807
+No of Threads 32: CPU Bandwidth = 40.273283 GB/s
+No of Threads 32: CPU Floprate = 12.585401 Gflops/s
+
+GPU:
+Device Number: 0
+  Device name: GeForce GTX TITAN Black
+Device Number: 1
+  Device name: GeForce GTX TITAN Black
+GPU Time Elapsed = 1.275225
+GPU Bandwidth = 125.468029 GB/s
+GPU Flop Rate: 39.208759 Gflops/s
+Error = 0.000000
+
+
+
+
+
+cuda2.cims.nyu.edu:
+For Vector Vector dot product with N = 33554432:
+CPU Bandwidth = 34.735279 GB/s
+GPU Bandwidth = 8.570052 GB/s
+Error = 0.000000
+
+For Matrix Vector multiplication with N = 33554432	 M = 17
+CPU Bandwidth = 20.096508 GB/s
+GPU Bandwidth = 6.636191 GB/s
+Error = 0.008826
+
+For Jacobi calculation with N = 1000 points	Loops = 10000:
+CPU:
+No of Threads 1: time elapsed = 66.307030, speedup = 1.000000
+No of Threads 1: CPU Bandwidth = 2.413017 GB/s
+No of Threads 1: CPU Floprate = 0.754068 Gflops/s
+No of Threads 4: time elapsed = 18.903197, speedup = 3.507715
+No of Threads 4: CPU Bandwidth = 8.464177 GB/s
+No of Threads 4: CPU Floprate = 2.645055 Gflops/s
+No of Threads 32: time elapsed = 4.962048, speedup = 13.362834
+No of Threads 32: CPU Bandwidth = 32.244748 GB/s
+No of Threads 32: CPU Floprate = 10.076484 Gflops/s
+
+GPU:
+Device Number: 0
+  Device name: GeForce RTX 2080 Ti
+Device Number: 1
+  Device name: GeForce RTX 2080 Ti
+GPU Time Elapsed = 0.722274
+GPU Bandwidth = 221.522610 GB/s
+GPU Flop Rate: 69.225816 Gflops/s
+Error = 0.000000
+
+
+
+
+
+cuda3.cims.nyu.edu:
+For Vector Vector dot product with N = 33554432:
+CPU Bandwidth = 18.843347 GB/s
+GPU Bandwidth = 4.322233 GB/s
+Error = 0.000000
+
+For Matrix Vector multiplication with N = 33554432	 M = 17
+CPU Bandwidth = 17.823417 GB/s
+GPU Bandwidth = 4.176473 GB/s
+Error = 0.008826
+
+For Jacobi calculation with N = 1000 points	Loops = 10000:
+CPU:
+
+No of Threads 1: time elapsed = 70.933180, speedup = 1.000000
+No of Threads 1: CPU Bandwidth = 2.255644 GB/s
+No of Threads 1: CPU Floprate = 0.704889 Gflops/s
+No of Threads 4: time elapsed = 19.195499, speedup = 3.695303
+No of Threads 4: CPU Bandwidth = 8.335287 GB/s
+No of Threads 4: CPU Floprate = 2.604777 Gflops/s
+No of Threads 32: time elapsed = 16.955927, speedup = 4.183386
+No of Threads 32: CPU Bandwidth = 9.436229 GB/s
+No of Threads 32: CPU Floprate = 2.948821 Gflops/s
+
+GPU:
+Device Number: 0
+  Device name: TITAN V
+Device Number: 1
+  Device name: TITAN V
+GPU Time Elapsed = 28.529765
+GPU Bandwidth = 5.608178 GB/s
+GPU Flop Rate: 1.752556 Gflops/s
+
+
+
+
+
+cuda4.cims.nyu.edu:
+For Vector Vector dot product with N = 33554432:
+CPU Bandwidth = 20.668248 GB/s
+^C
+
+(Some other higher priority task is scheduled on the machine. The task scheduler was killing my process.)
+
+
+
+Known bugs:
+For Matrix vector multiplication:
+
+ long N = 16*1024;
+  long M = 9*1024;
+Gives problems.
+
+
+
+Project Update:
+
+Yue and I have implemented the Parallel SGD program as defined in the first paper mentioned in our proposal (Parallelized SGD proposed in https://papers.nips.cc/paper/4006-parallelized-stochastic-gradient-descent (2010)). The code and data are available at https://github.com/covid19i/csciga2945002/tree/master/SGD.
+
+We have implemented it in Opem MP. The serial performance on test data has reached 35%. The parallel performance of test data however is worse than serial. With 8 threads, the test performance is 9.4%. The runs are available at https://github.com/covid19i/csciga2945002/blob/master/SGD/runs.txt.
+
+Hence, we weren't able to replicate the paper results. We are gonna inquire into that now. 
+
+To run the project:
+g++-9 -O3 -o main -fopenmp main.cpp
+./main
+
+Parallel code looks quite efficient though. 4x speed up (as my machine has 4 processors) has been achieved regularly. See below for two runs:
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -O3 -o main -fopenmp main.cpp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+New logloss: -18823842.553051
+Old logloss: 354262.369810
+Diff logloss: -19178104.922861
+
+No of iterations for each thread: 1000000
+No of threads: 8
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+
+912 correct out of 10000.
+Ratio: 0.091200
+Time elapsed in training = 41.232886
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -O3 -o main -fopenmp main.cpp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+New logloss: -20071679.383405
+Old logloss: 362144.754447
+Diff logloss: -20433824.137852
+
+No of iterations for each thread: 8000000
+No of threads: 1
+Lambda (Regularization Parameter): 1.000000
+Eta (Learning Rate): 0.001000
+
+3488 correct out of 10000.
+Ratio: 0.348800
+Time elapsed in training = 156.617041
