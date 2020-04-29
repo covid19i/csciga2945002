@@ -8,7 +8,9 @@
 
 
 #include "dataReader.h"
-
+#include "PSGD.h"
+#include "MultiLog.h"
+#include "LossType.h"
 
 #include <iostream>
 #include <cstdlib>
@@ -19,6 +21,7 @@
 #include <vector>
 #include <curand_kernel.h>
 #include <curand.h>
+
 
 using namespace std;
 typedef unsigned char uchar;
@@ -164,7 +167,19 @@ int main(int argc, const char * argv[]) {
     for(int i=0;i<n_labels;i++){
         trainingLabel[i]=tempLabel[i];
     }
-    
+   
+    int n_images_test;
+    int size_image_test;
+    double **testingData;
+    testingData = data.read_mnist_images("t10k-images-idx3-ubyte", n_images_test, size_image_test);
+    int n_labels_test;
+    uchar *testingLabels;
+    testingLabels = data.read_mnist_labels("t10k-labels-idx1-ubyte",n_labels_test);
+
+    PSGD psgd(1);
+    psgd.initialize(size_image+1,10);
+    //vector<double> weight_openmp = psgd.getWeight();
+ 
     //define the size of cuda grid and block. after test, this is the maximum i can use
     dim3 gridSize(4,4);
     dim3 blockSize(5,5);
@@ -181,7 +196,7 @@ int main(int argc, const char * argv[]) {
     for (int i=0;i<weight_size;i++){
         weight[i]=distribution(generator);
     }
-    
+    psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);
     
     
     
@@ -209,6 +224,11 @@ int main(int argc, const char * argv[]) {
         offset=(j%20)*4*4*5*5;
         updateWeightKernel<<<gridSize,blockSize>>>(weight,trainingData,trainingLabel,eta,n_images,size_image+1,10,2,lambda,offset);
         cudaDeviceSynchronize();
+    	if(j %(n_iterations/5) == 0 || j == n_iterations-1){
+		double loss_now = getLoss(weight, tempData, tempLabel, n_images, size_image+1,10, lambda);
+		printf("Training (log)loss: %f\t thread:%d\n",loss_now, omp_get_thread_num());
+		psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);
+	}
         
     }
     
@@ -216,7 +236,13 @@ int main(int argc, const char * argv[]) {
     
     double newLoss=getLoss(weight,tempData,tempLabel,n_images,size_image+1,10,lambda);
     printf("new loss: %f \n",newLoss);
-    
+
+    MultiLog mlog;
+    mlog.setLambda(lambda);//Regularization parameter
+    psgd.loss = &mlog;//setting the loss function in PSGD object  
+
+    psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);
+ 
     printf("end");
     free(tempData);
     free(tempLabel);

@@ -172,6 +172,39 @@ public:
 		}
 		printf("%d correct out of %d.\t Testing accuracy: %f\t thread:%d\n", correct_data, n_data, (float)correct_data/n_data, omp_get_thread_num());
     }
+
+
+
+    void testGPU(double* weights, double** testingData, uchar* testingLabels, int n_data, int n_weights,int n_labels)
+    {
+		int correct_data = 0;
+		vector<double> probList(n_labels);
+		double prob_exponent, maxProb, probSum;
+		#pragma omp parallel num_threads(n_threads) reduction(+:correct_data)
+		{
+			#pragma omp for
+			for(int j=0; j<n_data; j++){
+				maxProb = 0;
+				probSum = 0;
+				for(int i=0;i<n_labels;i++){
+					prob_exponent=0;//necessary
+					for(int k=0;k<n_weights;k++){
+						prob_exponent += weights[i*n_weights+k]*testingData[j][k];
+					}
+					probList[i] = exp(prob_exponent);
+					if(probList[i] > maxProb)
+						maxProb = probList[i];
+					probSum += probList[i];
+				}
+				//probList[] has to be divided by probSum at the end if it have to be used.
+				if(probList[testingLabels[j]] == maxProb)
+					correct_data++;
+			}
+		}
+		printf("%d correct out of %d.\t Testing accuracy: %f\t thread:%d\n", correct_data, n_data, (float)correct_data/n_data, omp_get_thread_num());
+    }
+
+
     
     ~PSGD(){}
 };
