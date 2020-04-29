@@ -15,6 +15,7 @@
 #include <vector>
 #include <cstdint>
 #include <memory>
+#include <limits>
 
 typedef unsigned char uchar;
 using namespace std;
@@ -62,17 +63,25 @@ public:
             image_size = n_rows * n_cols;
 
             double** _dataset = new double*[number_of_images];
-            
+            double min, max;
             for(int i = 0; i < number_of_images; i++) {
                 //_dataset[i] = new uchar[image_size+1];
                 char* temp=(char*)malloc((image_size)*sizeof(char));
                 _dataset[i] = (double*)malloc((image_size+1)*sizeof(double));
                 
                 file.read(temp, image_size);
+                min = std::numeric_limits<double>::lowest();;
+                max = std::numeric_limits<double>::max();;
                 for(int j=0;j<image_size;j++){
-		    _dataset[i][j]=temp[j]/255.0; // Is this giving rise to zeroes?
+                	_dataset[i][j]=temp[j]/255.0;
+                	if(min > _dataset[i][j])
+                		min = _dataset[i][j];
+                	if(max < _dataset[i][j])
+                		max = _dataset[i][j];
                 }
-                
+                /*for(int j=0;j<image_size;j++){
+					_dataset[i][j]=(_dataset[i][j] - min) / (max - min);
+				}*/
                 _dataset[i][image_size]=1;
                 free(temp);
             }
