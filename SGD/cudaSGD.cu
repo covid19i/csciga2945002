@@ -217,7 +217,8 @@ int main(int argc, const char * argv[]) {
     
     double oldLoss=getLoss(weight,tempData,tempLabel,n_images,size_image+1,10,lambda);
     printf("old loss: %f \n",oldLoss);
-    
+    double t = omp_get_wtime();
+
     //update the weight
     int offset=0;
     for(int j=0;j<n_iterations;j++){
@@ -231,8 +232,8 @@ int main(int argc, const char * argv[]) {
 	}
         
     }
-    
-    
+    t = omp_get_wtime() - t;
+    printf("Training ran for %10f\n", t);
     
     double newLoss=getLoss(weight,tempData,tempLabel,n_images,size_image+1,10,lambda);
     printf("new loss: %f \n",newLoss);
