@@ -1,0 +1,219 @@
+--------------------------------------------------------------------------
+By default, for Open MPI 4.0 and later, infiniband ports on a device
+are not used by default.  The intent is to use UCX for these devices.
+You can override this policy by setting the btl_openib_allow_ib MCA parameter
+to true.
+
+  Local host:              c01-02
+  Local adapter:           mlx5_0
+  Local port:              1
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   c01-02
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+[c01-02:165448] 3 more processes have sent help message help-mpi-btl-openib.txt / ib port not selected
+[c01-02:165448] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[c01-02:165448] 3 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+By default, for Open MPI 4.0 and later, infiniband ports on a device
+are not used by default.  The intent is to use UCX for these devices.
+You can override this policy by setting the btl_openib_allow_ib MCA parameter
+to true.
+
+  Local host:              c01-02
+  Local adapter:           mlx5_0
+  Local port:              1
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   c01-02
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+[c01-02:165489] 15 more processes have sent help message help-mpi-btl-openib.txt / ib port not selected
+[c01-02:165489] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[c01-02:165489] 15 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+By default, for Open MPI 4.0 and later, infiniband ports on a device
+are not used by default.  The intent is to use UCX for these devices.
+You can override this policy by setting the btl_openib_allow_ib MCA parameter
+to true.
+
+  Local host:              c01-02
+  Local adapter:           mlx5_0
+  Local port:              1
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   c01-02
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+[c01-02:165566] 63 more processes have sent help message help-mpi-btl-openib.txt / ib port not selected
+[c01-02:165566] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[c01-02:165566] 63 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+By default, for Open MPI 4.0 and later, infiniband ports on a device
+are not used by default.  The intent is to use UCX for these devices.
+You can override this policy by setting the btl_openib_allow_ib MCA parameter
+to true.
+
+  Local host:              c04-04
+  Local adapter:           mlx5_0
+  Local port:              1
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   c04-04
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+[c01-02:165657] 255 more processes have sent help message help-mpi-btl-openib.txt / ib port not selected
+[c01-02:165657] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[c01-02:165657] 255 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+By default, for Open MPI 4.0 and later, infiniband ports on a device
+are not used by default.  The intent is to use UCX for these devices.
+You can override this policy by setting the btl_openib_allow_ib MCA parameter
+to true.
+
+  Local host:              c01-02
+  Local adapter:           mlx5_0
+  Local port:              1
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   c01-02
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+By default, for Open MPI 4.0 and later, infiniband ports on a device
+are not used by default.  The intent is to use UCX for these devices.
+You can override this policy by setting the btl_openib_allow_ib MCA parameter
+to true.
+
+  Local host:              c01-02
+  Local adapter:           mlx5_0
+  Local port:              1
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   c01-02
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+[c01-02:165823] 3 more processes have sent help message help-mpi-btl-openib.txt / ib port not selected
+[c01-02:165823] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[c01-02:165823] 3 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+By default, for Open MPI 4.0 and later, infiniband ports on a device
+are not used by default.  The intent is to use UCX for these devices.
+You can override this policy by setting the btl_openib_allow_ib MCA parameter
+to true.
+
+  Local host:              c01-02
+  Local adapter:           mlx5_0
+  Local port:              1
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   c01-02
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+[c01-02:165866] 15 more processes have sent help message help-mpi-btl-openib.txt / ib port not selected
+[c01-02:165866] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[c01-02:165866] 15 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+By default, for Open MPI 4.0 and later, infiniband ports on a device
+are not used by default.  The intent is to use UCX for these devices.
+You can override this policy by setting the btl_openib_allow_ib MCA parameter
+to true.
+
+  Local host:              c04-04
+  Local adapter:           mlx5_0
+  Local port:              1
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   c04-04
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+[c01-02:165944] 63 more processes have sent help message help-mpi-btl-openib.txt / ib port not selected
+[c01-02:165944] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[c01-02:165944] 63 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+--------------------------------------------------------------------------
+By default, for Open MPI 4.0 and later, infiniband ports on a device
+are not used by default.  The intent is to use UCX for these devices.
+You can override this policy by setting the btl_openib_allow_ib MCA parameter
+to true.
+
+  Local host:              c01-02
+  Local adapter:           mlx5_0
+  Local port:              1
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   c01-02
+  Local device: mlx5_0
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD
+with errorcode 0.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+[c01-04][[10830,1],38][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(18) failed: Connection reset by peer (104)--------------------------------------------------------------------------
+WARNING: Open MPI failed to TCP connect to a peer MPI process.  This
+should not happen.
+
+Your Open MPI job may now hang or fail.
+
+  Local host: c12-04
+  PID:        121018
+  Message:    connect() to 172.16.0.72:1068 failed
+  Error:      Operation now in progress (115)
+--------------------------------------------------------------------------
+[c12-04][[10830,1],132][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(20) failed: Connection reset by peer (104)
+[c12-04][[10830,1],136][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(20) failed: Connection reset by peer (104)
+[c01-04][[10830,1],20][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c01-04][[10830,1],21][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c01-04][[10830,1],22][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c03-01][[10830,1],40][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c01-04][[10830,1],23][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c03-01][[10830,1],41][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c01-04][[10830,1],24][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c03-01][[10830,1],42][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c01-04][[10830,1],25][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c03-01][[10830,1],43][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c01-04][[10830,1],26][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c03-01][[10830,1],44][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(18) failed: Connection reset by peer (104)
+[c01-04][[10830,1],27][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(16) failed: Connection reset by peer (104)
+[c03-01][[10830,1],45][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(18) failed: Connection reset by peer (104)
+[c01-04][[10830,1],36][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(18) failed: Connection reset by peer (104)
+[c03-01][[10830,1],46][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(18) failed: Connection reset by peer (104)
+[c01-04][[10830,1],37][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(18) failed: Connection reset by peer (104)
+[c03-01][[10830,1],47][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(18) failed: Connection reset by peer (104)
+[c01-04][[10830,1],39][btl_tcp.c:559:mca_btl_tcp_recv_blocking] recv(18) failed: Connection reset by peer (104)
+
+[c01-02:166034] 255 more processes have sent help message help-mpi-btl-openib.txt / ib port not selected
+[c01-02:166034] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[c01-02:166034] 255 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+[c01-02:166034] 45 more processes have sent help message help-mpi-btl-tcp.txt / client connect fail

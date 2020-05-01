@@ -1,0 +1,74 @@
+Iter 0: Residual: 199.124
+Iter 2000: Residual: 129.61
+Iter 4000: Residual: 100.158
+Iter 6000: Residual: 78.2991
+Iter 8000: Residual: 61.3113
+Iter 9999: Residual: 48.0262
+
+With 4 processes, N = 40000, N_l = 10000: time elapsed is 0.160852 seconds.
+
+Iter 0: Residual: 399.125
+Iter 2000: Residual: 329.61
+Iter 4000: Residual: 300.057
+Iter 6000: Residual: 277.378
+Iter 8000: Residual: 258.258
+Iter 9999: Residual: 241.425
+
+With 16 processes, N = 160000, N_l = 10000: time elapsed is 0.186441 seconds.
+
+Iter 0: Residual: 799.125
+Iter 2000: Residual: 729.61
+Iter 4000: Residual: 700.057
+Iter 6000: Residual: 677.378
+Iter 8000: Residual: 658.258
+Iter 9999: Residual: 641.42
+
+With 64 processes, N = 640000, N_l = 10000: time elapsed is 1.107792 seconds.
+
+Iter 0: Residual: 1599.12
+Iter 2000: Residual: 1529.61
+Iter 4000: Residual: 1500.06
+Iter 6000: Residual: 1477.38
+Iter 8000: Residual: 1458.26
+Iter 9999: Residual: 1441.42
+
+With 256 processes, N = 2560000, N_l = 10000: time elapsed is 2.327834 seconds.
+
+Iter 0: Residual: 999.125
+Iter 2000: Residual: 929.61
+Iter 4000: Residual: 900.057
+Iter 6000: Residual: 877.378
+Iter 8000: Residual: 858.258
+Iter 9999: Residual: 841.42
+
+With 1 processes, N = 1000000, N_l = 1000000: time elapsed is 8.982452 seconds.
+
+Iter 0: Residual: 999.125
+Iter 2000: Residual: 929.61
+Iter 4000: Residual: 900.057
+Iter 6000: Residual: 877.378
+Iter 8000: Residual: 858.258
+Iter 9999: Residual: 841.42
+
+With 4 processes, N = 1000000, N_l = 250000: time elapsed is 2.376736 seconds.
+
+Iter 0: Residual: 999.125
+Iter 2000: Residual: 929.61
+Iter 4000: Residual: 900.057
+Iter 6000: Residual: 877.378
+Iter 8000: Residual: 858.258
+Iter 9999: Residual: 841.42
+
+With 16 processes, N = 1000000, N_l = 62500: time elapsed is 0.766782 seconds.
+
+Iter 0: Residual: 999.125
+Iter 2000: Residual: 929.61
+Iter 4000: Residual: 900.057
+Iter 6000: Residual: 877.378
+Iter 8000: Residual: 858.258
+Iter 9999: Residual: 841.42
+
+With 64 processes, N = 1000000, N_l = 15625: time elapsed is 1.199778 seconds.
+
+Nsqrt: 1000, local Nsqrt: 62
+Exiting. Nsqrt must be a multiple of psqrt
