@@ -27,6 +27,8 @@
 using namespace std;
 typedef unsigned char uchar;
 
+#define BLOCK_SIZE 1024
+
 void Check_CUDA_Error(const char *message){
   cudaError_t error = cudaGetLastError();
   if(error!=cudaSuccess) {
@@ -120,8 +122,8 @@ int main(int argc, const char * argv[]) {
     double *trainingData_d;
     uchar  *trainingLabel_d;
     cudaMalloc(&trainingData_d, (n_images * (size_image+1) *sizeof(double)));
+    Check_CUDA_Error("Malloc trainingData failed");
     cudaMalloc(&trainingLabel_d, n_images *sizeof(uchar));
-    Check_CUDA_Error("Malloc f failed");
     cudaMemcpy(trainingData_d, trainingData, (n_images * (size_image+1) *sizeof(double)), cudaMemcpyHostToDevice);
     cudaMemcpy(trainingLabel_d, trainingLabel,n_images *sizeof(uchar), cudaMemcpyHostToDevice);
     cudaDeviceSynchronize(); 
@@ -167,12 +169,12 @@ int main(int argc, const char * argv[]) {
     double eta;
     eta=0.001;
     printf("\nEnter learning rate (eta = 0.001):\n");
-    scanf("%lf", &eta);
+    //scanf("%lf", &eta);
     
     double lambda;
     lambda=0.001;
     printf("\nEnter regularization parameter (lambda = 0.001):\n");
-    scanf("%lf", &lambda);
+    //scanf("%lf", &lambda);
     
     double oldLoss=getLoss(weight,tempData,tempLabel,n_images,size_image+1,10,lambda);
     printf("old loss: %f \n",oldLoss);
@@ -183,10 +185,11 @@ int main(int argc, const char * argv[]) {
     for(int j=0;j<n_iterations;j++){
 	run_hogwild_one_processor<<<n_blocks, BLOCK_SIZE>>>(weight_d,trainingData_d,trainingLabel_d,eta,n_images,size_image+1,10,lambda, j);
 	cudaDeviceSynchronize();
+        //printf("Iteration %i done.\n", j);
     	if(j %(n_iterations/5) == 0 || j == n_iterations-1){
           cudaMemcpy(weight, weight_d, weight_size*sizeof(double), cudaMemcpyDeviceToHost);
 	  cudaDeviceSynchronize();
-          printf("weight[103] = %f\n", weight[103]);
+          printf("weight[107] = %f\n", weight[107]);
 	  double loss_now = getLoss(weight, tempData, tempLabel, n_images, size_image+1,10, lambda);
 	  printf("Training (log)loss: %f\t thread:%d\n",loss_now, omp_get_thread_num());
 	  psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);
@@ -207,7 +210,7 @@ int main(int argc, const char * argv[]) {
 
     psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);
  
-    printf("end");
+    printf("End\n");
     free(tempData);
     free(tempLabel);
     cudaFree(trainingData);
