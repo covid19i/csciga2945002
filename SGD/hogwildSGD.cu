@@ -11,7 +11,7 @@
 #include "PSGD.h"
 #include "MultiLog.h"
 #include "LossType.h"
-#include "hogwildSGD.h"
+#include "hogwild.h"
 
 #include <iostream>
 #include <cstdlib>
@@ -27,8 +27,31 @@
 using namespace std;
 typedef unsigned char uchar;
 
+void Check_CUDA_Error(const char *message){
+  cudaError_t error = cudaGetLastError();
+  if(error!=cudaSuccess) {
+    fprintf(stderr,"ERROR: %s: %s\n", message, cudaGetErrorString(error) );
+    exit(-1);
+  }
+}
 
-double getLoss(double* weight,double** trainingData,uchar* trainingLabel,int n_data,int n_weights,int n_labels,double lambda){
+
+// Convenience function for checking CUDA runtime API results
+// can be wrapped around any runtime API call. No-op in release builds.
+
+inline cudaError_t checkCuda(cudaError_t result)
+{
+#if defined(DEBUG) || defined(_DEBUG)
+  if (result != cudaSuccess) {
+    fprintf(stderr, "CUDA Runtime Error: %s\n", cudaGetErrorString(result));
+    assert(result == cudaSuccess);
+  }
+#endif
+  return result;
+}
+
+
+double getLossHogwild(double* weight,double** trainingData,uchar* trainingLabel,int n_data,int n_weights,int n_labels,double lambda){
 
     double summ=0;
     double* exponent=(double*)malloc(n_labels*sizeof(double));
@@ -60,13 +83,13 @@ double getLoss(double* weight,double** trainingData,uchar* trainingLabel,int n_d
 }
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
+    printf("Started main.\n");
     mnist data;
     int n_images;
     int size_image;
     double **tempData;
     tempData = data.read_mnist_images("train-images.idx3-ubyte",n_images, size_image);
-    //n_images 60000,size_images=785
+    //n_images 60000,size_image=784
     double * trainingData;
     cudaMallocHost((void**)&trainingData,n_images*(size_image+1)*sizeof(double));
     
@@ -94,17 +117,26 @@ int main(int argc, const char * argv[]) {
     uchar *testingLabels;
     testingLabels = data.read_mnist_labels("t10k-labels-idx1-ubyte",n_labels_test);
 
+    double *trainingData_d;
+    uchar  *trainingLabel_d;
+    cudaMalloc(&trainingData_d, (n_images * (size_image+1) *sizeof(double)));
+    cudaMalloc(&trainingLabel_d, n_images *sizeof(uchar));
+    Check_CUDA_Error("Malloc f failed");
+    cudaMemcpy(trainingData_d, trainingData, (n_images * (size_image+1) *sizeof(double)), cudaMemcpyHostToDevice);
+    cudaMemcpy(trainingLabel_d, trainingLabel,n_images *sizeof(uchar), cudaMemcpyHostToDevice);
+    cudaDeviceSynchronize(); 
+    printf("Data loaded.\n");
+
     PSGD psgd(1);
     psgd.initialize(size_image+1,10);
     //vector<double> weight_openmp = psgd.getWeight();
     
-    int n_blocks = 20;
     
     
     double* weight;
     int weight_size=(size_image+1)*10;
     cudaMallocHost((void**)&weight,weight_size*sizeof(double));
-    
+ 
     //initialize the weight
     int seed =1;//chrono::system_clock::now().time_since_epoch().count();
     default_random_engine generator (seed);
@@ -114,8 +146,19 @@ int main(int argc, const char * argv[]) {
     }
     psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);
     
-    
-    
+    double* weight_d;
+    cudaMalloc(&weight_d, weight_size*sizeof(double));
+    cudaMemcpy(weight_d, weight, weight_size*sizeof(double), cudaMemcpyHostToDevice);
+    cudaDeviceSynchronize();    
+    printf("\nGPU:\n");
+    int nDevices;
+    cudaGetDeviceCount(&nDevices);
+    for (int i = 0; i < nDevices; i++) { 
+      cudaDeviceProp prop;
+      cudaGetDeviceProperties(&prop, i);
+      printf("Device Number: %d\n", i);
+      printf("  Device name: %s\n", prop.name);
+    }
     
     printf("Enter iterations (> 10):\n");
     int n_iterations=1000;
@@ -135,20 +178,26 @@ int main(int argc, const char * argv[]) {
     printf("old loss: %f \n",oldLoss);
     double t = omp_get_wtime();
 
+    int n_blocks = 1;
     //update the weight
     for(int j=0;j<n_iterations;j++){
-	run_hogwild_one_processor<<<n_blocks, BLOCK_SIZE>>>(weight,trainingData,trainingLabel,eta,n_images,size_image+1,10,lambda);
+	run_hogwild_one_processor<<<n_blocks, BLOCK_SIZE>>>(weight_d,trainingData_d,trainingLabel_d,eta,n_images,size_image+1,10,lambda, j);
 	cudaDeviceSynchronize();
     	if(j %(n_iterations/5) == 0 || j == n_iterations-1){
-		double loss_now = getLoss(weight, tempData, tempLabel, n_images, size_image+1,10, lambda);
-		printf("Training (log)loss: %f\t thread:%d\n",loss_now, omp_get_thread_num());
-		psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);
+          cudaMemcpy(weight, weight_d, weight_size*sizeof(double), cudaMemcpyDeviceToHost);
+	  cudaDeviceSynchronize();
+          printf("weight[103] = %f\n", weight[103]);
+	  double loss_now = getLoss(weight, tempData, tempLabel, n_images, size_image+1,10, lambda);
+	  printf("Training (log)loss: %f\t thread:%d\n",loss_now, omp_get_thread_num());
+	  psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);
 	}
     }
     
     t = omp_get_wtime() - t;
     printf("Training ran for %10f\n", t);
     
+    cudaMemcpy(weight, weight_d, weight_size*sizeof(double), cudaMemcpyDeviceToHost);
+    cudaDeviceSynchronize();
     double newLoss=getLoss(weight,tempData,tempLabel,n_images,size_image+1,10,lambda);
     printf("new loss: %f \n",newLoss);
 
@@ -164,5 +213,8 @@ int main(int argc, const char * argv[]) {
     cudaFree(trainingData);
     cudaFree(trainingLabel);
     cudaFree(weight);
+	checkCuda( cudaFree(trainingData_d));	
+	checkCuda( cudaFree(trainingLabel_d));	
+	checkCuda( cudaFree(weight_d));
 }
 

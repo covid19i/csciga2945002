@@ -1,3 +1,42 @@
+On cuda1.cims.nyu.edu:
+
+
+[ir967@cuda1 SGD]$ ./cudaSGD
+973 correct out of 10000.	 Testing accuracy: 0.097300	 thread:0
+Enter iterations (> 10):
+10000
+
+Enter learning rate (eta = 0.001):
+0.001
+
+Enter regularization parameter (lambda = 0.001):
+0.001
+old loss: 354262.369810 
+Training (log)loss: 354232.270919	 thread:0
+973 correct out of 10000.	 Testing accuracy: 0.097300	 thread:0
+Training (log)loss: 328701.090647	 thread:0
+979 correct out of 10000.	 Testing accuracy: 0.097900	 thread:0
+Training (log)loss: 303097.576610	 thread:0
+977 correct out of 10000.	 Testing accuracy: 0.097700	 thread:0
+Training (log)loss: 277425.054552	 thread:0
+979 correct out of 10000.	 Testing accuracy: 0.097900	 thread:0
+Training (log)loss: 251686.821115	 thread:0
+985 correct out of 10000.	 Testing accuracy: 0.098500	 thread:0
+Training (log)loss: 225918.386261	 thread:0
+982 correct out of 10000.	 Testing accuracy: 0.098200	 thread:0
+
+Training ran for 165.315514
+new loss: 225918.386261 
+982 correct out of 10000.	 Testing accuracy: 0.098200	 thread:0
+
+
+
+
+
+
+
+
+
 On crackle1.cims.nyu.edu:
 crackle1.cims.nyu.edu 	Two Intel Xeon E5630 (2.53 GHz) (16 cores) 	64 GB 	CentOS 7
 

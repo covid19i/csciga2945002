@@ -63,16 +63,20 @@ __device__ void warpReduce(volatile double* smem, int tid) {
   smem[tid] += smem[tid + 1];
 }
 
-__global__  void run_hogwild_one_processor(double* weight, const double* trainingData, const double* trainingLabel, int data_point, double eta, int n_data, int n_weights, int n_labels, double lambda) {
-  __shared__ double smem[n_weights];//Gonna update 100% of weights in this kernel though.
-  __shared__ double denominator = 0;
-  __shared__ double numerator[n_labels];
-  __shared__ double indicator[n_labels];
+__global__  void run_hogwild_one_processor(double* weight, const double* trainingData, const uchar* trainingLabel, double eta, int n_data, const int n_weights, const int n_labels, double lambda, int loop) {
+  __shared__ double smem[785];//Gonna update 100% of weights in this kernel though.
+  __shared__ double denominator;
+  __shared__ double numerator[10];
+  __shared__ double indicator[10];
   int tid = threadIdx.x;
   //printf("Block %d: smem[%d] = a[%d] * b[%d] == %f += %f * %f\n", blockIdx.x, tid, idx, idx, smem[tid], a[idx], b[idx]);
+  curandState_t state;
+  curand_init(loop, tid,0, &state);
+  int r;
+  r = curand(&state) % n_data;
   for(int i=0; i < n_labels; i++){
     if(tid < n_weights){
-      smem[tid] = weight[i*n_weights + tid] * trainingData[data_point * n_weights + tid];
+      smem[tid] = weight[i*n_weights + tid] * trainingData[r * n_weights + tid];
     } else {
       smem[tid] = 0;
     }
@@ -94,72 +98,26 @@ __global__  void run_hogwild_one_processor(double* weight, const double* trainin
   if(tid < n_labels)
     numerator[tid] = exp(numerator[tid]);
   __syncthreads();
-  if(tid == 0)
+  if(tid == 0){
     denominator = numerator[0] + numerator[1] + numerator[2] + numerator[3] + numerator[4] +
 			numerator[5] + numerator[6] + numerator[7] + numerator[8] + numerator[9];
+    printf("Denominator = %f\n", denominator);
+  }
   __syncthreads();
   if(tid < n_labels){
     numerator[tid] = numerator[tid] / denominator;
-    indicator[tid] = ((trainingLabel[data_point] == tid)?1:0);
+    indicator[tid] = ((trainingLabel[r] == tid)?1:0);
   __syncthreads();
     for(int j=0; j < n_labels; j++){
       //Lock free
-      weight[j * n_weights + tid] -= eta * ( (indicator[j] - numerator[j]) * trainingData[data_point * n_weights + tid] +
+      if(tid == 103){
+        printf("first term for weight[103]= %f\n", (indicator[j] - numerator[j]) * trainingData[r * n_weights + tid]);
+      }
+      weight[j * n_weights + tid] -= eta * ( (indicator[j] - numerator[j]) * trainingData[r * n_weights + tid] +
                                              (lambda * 2 * weight[j * n_weights + tid] / n_data) );//1/n_data makes a difference?
     }
   }
   __syncthreads();
 
 }
-
-
-__global__ void updateWeightKernel(double* weight,const double* trainingData,const uchar* trainingLabel,double eta,int n_data,int n_weights,int n_labels,int batchSize,double lambda,int offset){
-    int x=blockIdx.x*blockDim.x+threadIdx.x;
-    int y=blockIdx.y*blockDim.y+threadIdx.y;
-    int index=(x*gridDim.x*blockDim.x+y)+offset;
-    int weight_size=n_weights*n_labels;
-    if(index<weight_size){
-        double deltaWeight;
-        double* data;
-        data=(double*)malloc(batchSize*n_weights*sizeof(double));
-        
-        uchar* label;
-        label=(uchar*)malloc(batchSize*sizeof(uchar));
-        
-        for(int b=0;b<batchSize;b++){
-            curandState_t state;
-            curand_init(index,0,b,&state);
-            int r;
-            r=curand(&state)%n_data;
-            label[b]=trainingLabel[r];
-            for(int w=0;w<n_weights;w++){
-                data[b*n_weights+w]=trainingData[r*n_weights+w];
-            }
-        }
-        deltaWeight=getOneGradient(weight,index, data, label,eta, batchSize, n_weights, n_labels,lambda/batchSize);
-        weight[index]-=eta* deltaWeight;
-    }
-    
-}
-
-
-
-    //int block_size = 785;
-    int n_blocks = 20;
-
-    double* weight;
-    int weight_size=(size_image+1)*10;
-    cudaMallocHost((void**)&weight,weight_size*sizeof(double));
-    psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);
-    //update the weight
-    for(int j=0;j<n_iterations;j++){
-        updateWeightKernel<<<n_blocks, BLOCK_SIZE>>>(weight,trainingData,trainingLabel,eta,n_images,size_image+1,10,lambda);
-        cudaDeviceSynchronize();
-	}
-        
-
-    psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);
-
-
-
 
