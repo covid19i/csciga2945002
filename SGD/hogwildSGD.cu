@@ -11,6 +11,7 @@
 #include "PSGD.h"
 #include "MultiLog.h"
 #include "LossType.h"
+#include "hogwildSGD.h"
 
 #include <iostream>
 #include <cstdlib>
