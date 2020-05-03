@@ -27,7 +27,6 @@
 using namespace std;
 typedef unsigned char uchar;
 
-#define BLOCK_SIZE 64
 //Should probably be 800 (= 785/32 * 32) for MNIST job
 
 void Check_CUDA_Error(const char *message){
@@ -136,9 +135,9 @@ int main(int argc, const char * argv[]) {
       printf("  Device name: %s\n", prop.name);
     }*/
     
-    //printf("Enter iterations (> 10):\n");
+    printf("Enter iterations (> 10):\n");
     int n_iterations=10;
-    //scanf("%d", &n_iterations);
+    scanf("%d", &n_iterations);
     
     double eta;
     eta=0.001;
@@ -159,14 +158,14 @@ int main(int argc, const char * argv[]) {
     int n_blocks = 1;
     //update the weight
     for(long j=0;j<n_iterations;j++){
-	run_hogwild_one_processor<<<n_blocks, BLOCK_SIZE>>>(weight,trainingData_d,trainingLabel_d,eta,n_images,size_image+1,10,lambda, j);
-        Check_CUDA_Error("Kernel Failed\n");
+	run_hogwild_one_processor<<<n_blocks, BLOCK_SIZE>>>(weight_d,trainingData_d,trainingLabel_d,eta,n_images,size_image+1,10,lambda, j);
+        Check_CUDA_Error("Kernel Failed to launch\n");
 	cudaDeviceSynchronize();
-        printf("Iteration %d done.\n", j);
+        //printf("Iteration %d done.\n", j);
     	if(j %(n_iterations/5) == 0 || j == n_iterations-1){
-          //cudaMemcpy(weight, weight_d, weight_size*sizeof(double), cudaMemcpyDeviceToHost);
+          cudaMemcpy(weight, weight_d, weight_size*sizeof(double), cudaMemcpyDeviceToHost);
 	  cudaDeviceSynchronize();
-          printf("weight[107] = %f\n", weight[107]);
+          printf("weight[%d] = %f\n",(int)sqrt(BLOCK_SIZE), weight[(int)sqrt(BLOCK_SIZE)]);
 	  double loss_now = getLoss(weight, tempData, tempLabel, n_images, size_image+1,10, lambda);
 	  printf("Training (log)loss: %f\t thread:%d\n",loss_now, omp_get_thread_num());
 	  psgd.testGPU(weight, testingData, testingLabels, n_images_test, size_image+1, 10);

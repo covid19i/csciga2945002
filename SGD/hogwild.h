@@ -60,12 +60,11 @@ __device__ void warpReduce(volatile double* smem, int tid) {
   smem[tid] += smem[tid + 2];
   smem[tid] += smem[tid + 1];
 }
-#define BLOCK_SIZE 64 //make sure this agrees with other files
+#define BLOCK_SIZE 1024 //make sure this agrees with other files
 __global__  void run_hogwild_one_processor(double* weight, double* trainingData, uchar* trainingLabel, double eta, int n_data, const int n_weights, const int n_labels,const double lambda,const long loop) {
   __shared__ double smem[BLOCK_SIZE];//Gonna update 100% of weights in this kernel though.
   __shared__ double denominator;
   __shared__ double numerator[10];
-  __shared__ double indicator[10];
   int tid = threadIdx.x;
   //printf("tid = %d\n", tid);
   //printf("Block %d: smem[%d] = a[%d] * b[%d] == %f += %f * %f\n", blockIdx.x, tid, idx, idx, smem[tid], a[idx], b[idx]);
@@ -75,7 +74,7 @@ __global__  void run_hogwild_one_processor(double* weight, double* trainingData,
   __shared__ int r;
   if(tid == 0){
     r = curand(&state) % n_data;
-    printf("__shared__ r = %d for thread id: %d\n", r, tid);
+   // printf("__shared__ r = %d for thread id: %d\n", r, tid);
   }
   for(int i=0; i < n_labels; i++){
     if(tid < n_weights){
@@ -91,7 +90,7 @@ __global__  void run_hogwild_one_processor(double* weight, double* trainingData,
         }
         __syncthreads();
     }
-    if(tid < 32) warpReduce(smem, tid);//Minimum BLOCK_SIZE = 64 because of this.
+    if(tid < 32) warpReduce(smem, tid);//Minimum BLOCK_SIZE = 64 because of this. BLOCK_SIZE has to be a power of 2
     __syncthreads();
     if(tid == 0){
       numerator[i] = smem[tid];
@@ -104,21 +103,22 @@ __global__  void run_hogwild_one_processor(double* weight, double* trainingData,
   if(tid == 0){
     denominator = numerator[0] + numerator[1] + numerator[2] + numerator[3] + numerator[4] +
 			numerator[5] + numerator[6] + numerator[7] + numerator[8] + numerator[9];
-    printf("Denominator = %f\n", denominator);
+    //printf("Denominator = %f\n", denominator);
   }
   __syncthreads();
   if(tid < n_labels){
-    numerator[tid] = numerator[tid] / denominator;
-    indicator[tid] = ((trainingLabel[r] == tid)?1:0);
+    numerator[tid] = ((trainingLabel[r] == tid)?1:0) - numerator[tid] / denominator;//Not just the numerator anymore
   }
   __syncthreads();
     for(int j=0; j < n_labels; j++){
-      //Lock free
-      if(tid == 107){
-        printf("first term for weight[107]= %f\n", (indicator[j] - numerator[j]) * trainingData[r * n_weights + tid]);
-      }
-      weight[j * n_weights + tid] -= eta * ( (indicator[j] - numerator[j]) * trainingData[r * n_weights + tid] +
+      if(tid < 785){//BLOCK_SIZE can't be 785
+        //Lock free
+        if(tid == (int)sqrt(BLOCK_SIZE) && j==0){
+        //  printf("first term for weight[%d]= %f\n", tid, (numerator[j]) * trainingData[r * n_weights + tid]);
+        }
+        weight[j * n_weights + tid] -= eta * ( (numerator[j]) * trainingData[r * n_weights + tid] +
                                              (lambda * 2 * weight[j * n_weights + tid] / n_data) );//1/n_data makes a difference?
+      }
     }
   __syncthreads();
 

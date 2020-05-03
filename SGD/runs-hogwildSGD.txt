@@ -1,0 +1,33 @@
+[ir967@cuda2 SGD]$ ./hogwildSGD 
+Started main.
+Data loaded to Host.
+Data loaded to device.
+973 correct out of 10000.	 Testing accuracy: 0.097300	 thread:0
+weight[103] = 1.603103
+Enter iterations (> 10):
+1000000
+old loss: 354262.369810 
+weight[107] = 0.561441
+weight[32] = 1.402307
+Training (log)loss: 354296.115270	 thread:0
+973 correct out of 10000.	 Testing accuracy: 0.097300	 thread:0
+weight[32] = 1.402298
+Training (log)loss: 16786871.838336	 thread:0
+1009 correct out of 10000.	 Testing accuracy: 0.100900	 thread:0
+weight[32] = 1.402288
+Training (log)loss: 34521393.015290	 thread:0
+1009 correct out of 10000.	 Testing accuracy: 0.100900	 thread:0
+weight[32] = 1.402279
+Training (log)loss: 52214055.577273	 thread:0
+1009 correct out of 10000.	 Testing accuracy: 0.100900	 thread:0
+weight[32] = -nan
+Training (log)loss: -nan	 thread:0
+0 correct out of 10000.	 Testing accuracy: 0.000000	 thread:0
+
+weight[32] = -nan
+Training (log)loss: -nan	 thread:0
+0 correct out of 10000.	 Testing accuracy: 0.000000	 thread:0
+Training ran for 418.782644
+new loss: -nan 
+0 correct out of 10000.	 Testing accuracy: 0.000000	 thread:0
+End
