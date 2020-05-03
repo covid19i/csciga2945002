@@ -154,8 +154,9 @@ int main(int argc, const char * argv[]) {
     double t = omp_get_wtime();
           printf("weight[107] = %f\n", weight[107]);
 
-    cudaDeviceSetLimit(cudaLimitPrintfFifoSize, 1024*1024*10);
+    //printf("Enter number of blocks to run simultaneously. Each block will process one data point at any time.\n");
     int n_blocks = 1;
+    //scanf("%d", n_blocks);
     //update the weight
     for(long j=0;j<n_iterations;j++){
 	run_hogwild_one_processor<<<n_blocks, BLOCK_SIZE>>>(weight_d,trainingData_d,trainingLabel_d,eta,n_images,size_image+1,10,lambda, j);
