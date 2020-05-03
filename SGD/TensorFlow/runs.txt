@@ -1,0 +1,48 @@
+Ilyeechs-MacBook-Pro:TensorFlow ilyeech$ python3 mnist.py
+2020-05-03 15:07:07.476682: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-03 15:07:07.488259: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7fdc3ed5b060 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-03 15:07:07.488296: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Enter the number of batches (batch_size = 1): 100000 
+Batch number: 1, w[432] = -0.0000298039
+Batch number: 1, w[432] = -0.0000298039
+Batch number: 1, Training loss: 2.302180, Training accuracy: 0.099150
+Batch number: 1, Testing loss: 2.302035, Testing accuracy: 0.100900
+Batch number: 2, w[432] = -0.0000446720
+Batch number: 3, w[432] = -0.0000555808
+Batch number: 4, w[432] = -0.0001328112
+Batch number: 5, w[432] = -0.0001328112
+Batch number: 6, w[432] = -0.0001462959
+Batch number: 7, w[432] = -0.0001462959
+Batch number: 8, w[432] = -0.0001462959
+Batch number: 9, w[432] = -0.0001517838
+Batch number: 10, w[432] = -0.0001517838
+Batch number: 11, w[432] = -0.0002510900
+Batch number: 12, w[432] = -0.0003445903
+Batch number: 13, w[432] = -0.0003619978
+Batch number: 14, w[432] = -0.0001466857
+Batch number: 15, w[432] = -0.0001466857
+Batch number: 16, w[432] = -0.0001692872
+Batch number: 17, w[432] = -0.0002741937
+Batch number: 18, w[432] = -0.0002741937
+Batch number: 19, w[432] = 0.0005139051
+Batch number: 20000, w[432] = -0.1374139389
+Batch number: 20000, Training loss: 0.491165, Training accuracy: 0.873867
+Batch number: 20000, Testing loss: 0.468911, Testing accuracy: 0.883300
+Batch number: 40000, w[432] = -0.1738915429
+Batch number: 40000, Training loss: 0.415735, Training accuracy: 0.887383
+Batch number: 40000, Testing loss: 0.396496, Testing accuracy: 0.894000
+Batch number: 60000, w[432] = -0.1887179706
+Batch number: 60000, Training loss: 0.380774, Training accuracy: 0.896833
+Batch number: 60000, Testing loss: 0.362302, Testing accuracy: 0.902300
+Batch number: 80000, w[432] = -0.2005739512
+Batch number: 80000, Training loss: 0.363259, Training accuracy: 0.897633
+Batch number: 80000, Testing loss: 0.346102, Testing accuracy: 0.905200
+Batch number: 100000, w[432] = -0.2099326933
+Batch number: 100000, Training loss: 0.350674, Training accuracy: 0.903250
+Batch number: 100000, Testing loss: 0.336897, Testing accuracy: 0.908700
+No of iterations: 100000
+Lambda (Regularization Parameter): 0
+Eta (Learning Rate): 0.001000
+After Batch number: 100000, loss: 0.336897, Testing accuracy: 0.908700
+Time elapsed in  training: 200.330454
+Time elapsed in training per data point= 0.002003
