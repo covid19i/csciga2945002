@@ -203,6 +203,8 @@ public:
 			}
 		}
 		printf("%d correct out of %d.\t Testing accuracy: %f\t thread:%d\n", correct_data, n_data, (float)correct_data/n_data, omp_get_thread_num());
+                if(correct_data > 0.95 * n_data)
+                   printf("Accuracy is too high. Check if weights are zeros.\n");
     }
 
 

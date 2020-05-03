@@ -49,7 +49,7 @@ double getLoss(double* weight,double** trainingData,uchar* trainingLabel,int n_d
     }
     
     regularizationTerm*=lambda;
-    return regularizationTerm+summ;
+    return (regularizationTerm+summ)/n_data;
 }
 
 __device__ void warpReduce(volatile double* smem, int tid) {
@@ -60,8 +60,9 @@ __device__ void warpReduce(volatile double* smem, int tid) {
   smem[tid] += smem[tid + 2];
   smem[tid] += smem[tid + 1];
 }
-#define BLOCK_SIZE 1024 //make sure this agrees with other files
-__global__  void run_hogwild_one_processor(double* weight, double* trainingData, uchar* trainingLabel, double eta, int n_data, const int n_weights, const int n_labels,const double lambda,const long loop) {
+#define BLOCK_SIZE 1024
+#define QUERY 432 //make sure this is less than BLOCK_SIZE
+__global__  void run_hogwild_one_processor(double* weight, double* trainingData, uchar* trainingLabel, double eta, int n_data, const int n_weights, const int n_labels,const double lambda,const long loop, const int total_loops) {
   __shared__ double smem[BLOCK_SIZE];//Gonna update 100% of weights in this kernel though.
   __shared__ double denominator;
   __shared__ double numerator[10];
@@ -73,8 +74,10 @@ __global__  void run_hogwild_one_processor(double* weight, double* trainingData,
   //curand_init(loop, tid, 0, &state);
   __shared__ int r;
   if(tid == 0){
+    //printf("Loop: %ld\n", loop);
     r = curand(&state) % n_data;
-   // printf("__shared__ r = %d for thread id: %d\n", r, tid);
+    if(loop == 0) r = 24356;
+    //printf("__shared__ r = %d for thread id: %d\n", r, tid);
   }
   for(int i=0; i < n_labels; i++){
     if(tid < n_weights){
@@ -113,10 +116,11 @@ __global__  void run_hogwild_one_processor(double* weight, double* trainingData,
     for(int j=0; j < n_labels; j++){
       if(tid < 785){//BLOCK_SIZE can't be 785
         //Lock free
-        if(tid == (int)sqrt(BLOCK_SIZE) && j==0){
-        //  printf("first term for weight[%d]= %f\n", tid, (numerator[j]) * trainingData[r * n_weights + tid]);
-        }
-        weight[j * n_weights + tid] -= eta * ( (numerator[j]) * trainingData[r * n_weights + tid] +
+        /*if(tid == QUERY && j == 0 && (loop < 3 || loop % (total_loops/5) == 0 || loop == (total_loops-1) ) ){
+          printf("first term for weight[%d]= %.10f\t for label %d\t block: %d\n", tid, -(numerator[j]) * trainingData[r * n_weights + tid], j, blockIdx.x);
+          printf("second term for weight[%d]= %.20f\t for label %d\t block: %d\n", tid, lambda * 2 * weight[j * n_weights + tid] / n_data, j, blockIdx.x);
+        }*/
+        weight[j * n_weights + tid] -= eta * ( -(numerator[j]) * trainingData[r * n_weights + tid] +
                                              (lambda * 2 * weight[j * n_weights + tid] / n_data) );//1/n_data makes a difference?
       }
     }

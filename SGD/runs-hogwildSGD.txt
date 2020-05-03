@@ -1,3 +1,824 @@
+[ir967@cuda2 SGD]$ nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD; rm -f hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+200000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000082263
+Iteration no: 0, weight[432] = 0.0000082263
+Training (log)loss: 2.2992419436	 thread:0
+6157 correct out of 60000.	 Testing accuracy: 0.102617	 thread:0
+1025 correct out of 10000.	 Testing accuracy: 0.102500	 thread:0
+Iteration no: 1, weight[432] = 0.0000094026
+Iteration no: 10, weight[432] = 0.0000641190
+Training (log)loss: 2.2266787264	 thread:0
+6547 correct out of 60000.	 Testing accuracy: 0.109117	 thread:0
+1075 correct out of 10000.	 Testing accuracy: 0.107500	 thread:0
+Iteration no: 100, weight[432] = 0.0001573637
+Training (log)loss: 1.7691780342	 thread:0
+9926 correct out of 60000.	 Testing accuracy: 0.165433	 thread:0
+1573 correct out of 10000.	 Testing accuracy: 0.157300	 thread:0
+Iteration no: 1000, weight[432] = 0.0126483279
+Training (log)loss: -2.7796292303	 thread:0
+13570 correct out of 60000.	 Testing accuracy: 0.226167	 thread:0
+2259 correct out of 10000.	 Testing accuracy: 0.225900	 thread:0
+Iteration no: 10000, weight[432] = 0.0643458458
+Training (log)loss: -43.9788302158	 thread:0
+19221 correct out of 60000.	 Testing accuracy: 0.320350	 thread:0
+3107 correct out of 10000.	 Testing accuracy: 0.310700	 thread:0
+Iteration no: 40000, weight[432] = 0.1944620787
+Training (log)loss: -139.4798429496	 thread:0
+20891 correct out of 60000.	 Testing accuracy: 0.348183	 thread:0
+3409 correct out of 10000.	 Testing accuracy: 0.340900	 thread:0
+Iteration no: 80000, weight[432] = 0.2835152045
+Training (log)loss: -207.9754847262	 thread:0
+21205 correct out of 60000.	 Testing accuracy: 0.353417	 thread:0
+3465 correct out of 10000.	 Testing accuracy: 0.346500	 thread:0
+Iteration no: 100000, weight[432] = 0.3269492777
+Training (log)loss: -229.6086932742	 thread:0
+21326 correct out of 60000.	 Testing accuracy: 0.355433	 thread:0
+3491 correct out of 10000.	 Testing accuracy: 0.349100	 thread:0
+Iteration no: 120000, weight[432] = 0.3432735632
+Training (log)loss: -244.8456832872	 thread:0
+21425 correct out of 60000.	 Testing accuracy: 0.357083	 thread:0
+3506 correct out of 10000.	 Testing accuracy: 0.350600	 thread:0
+Iteration no: 160000, weight[432] = 0.3593171581
+Training (log)loss: -266.1509113282	 thread:0
+21610 correct out of 60000.	 Testing accuracy: 0.360167	 thread:0
+3527 correct out of 10000.	 Testing accuracy: 0.352700	 thread:0
+Iteration no: 199999, weight[432] = 0.3842831032
+Training (log)loss: -279.7061422902	 thread:0
+21685 correct out of 60000.	 Testing accuracy: 0.361417	 thread:0
+3527 correct out of 10000.	 Testing accuracy: 0.352700	 thread:0
+
+Time elapsed in training = 165.991442 sec
+Time elapsed in training per iteration = 0.000830 sec
+new loss: -279.706142 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 16
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3527 correct out of 10000.	 Testing accuracy: 0.352700	 thread:0
+End
+
+
+
+
+
+
+
+[ir967@cuda2 SGD]$ nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD; rm -f hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+200000
+old loss: 2.302585 
+weight[432] = 0.000000
+first term for weight[432]= -0.0011764706	 for label 0	 block: 0
+first term for weight[432]= -0.0011764706	 for label 0	 block: 1
+first term for weight[432]= -0.0011764706	 for label 0	 block: 4
+first term for weight[432]= -0.0011761440	 for label 0	 block: 5
+first term for weight[432]= -0.0011761779	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000000000000	 for label 0	 block: 0
+first term for weight[432]= -0.0011757162	 for label 0	 block: 6
+first term for weight[432]= -0.0011757530	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000000000000	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000000000000	 for label 0	 block: 4
+first term for weight[432]= -0.0011749510	 for label 0	 block: 7
+second term for weight[432]= 0.00000000000003921569	 for label 0	 block: 5
+second term for weight[432]= 0.00000000000003921569	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000003921569	 for label 0	 block: 6
+second term for weight[432]= 0.00000000000003921569	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000011764706	 for label 0	 block: 7
+Iteration no: 0, weight[432] = 0.0000082320
+Iteration no: 0, weight[432] = 0.0000082320
+Training (log)loss: 2.3003755838	 thread:0
+5849 correct out of 60000.	 Testing accuracy: 0.097483	 thread:0
+976 correct out of 10000.	 Testing accuracy: 0.097600	 thread:0
+first term for weight[432]= -0.0011765867	 for label 0	 block: 0
+first term for weight[432]= 0.0121568579	 for label 0	 block: 4
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+first term for weight[432]= 0.0105901538	 for label 0	 block: 2
+first term for weight[432]= 0.0000000000	 for label 0	 block: 5
+second term for weight[432]= 0.00000000000027439920	 for label 0	 block: 0
+first term for weight[432]= -0.0000000000	 for label 0	 block: 6
+first term for weight[432]= -0.0000000000	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000027439920	 for label 0	 block: 4
+second term for weight[432]= 0.00000000000027439920	 for label 0	 block: 1
+first term for weight[432]= -0.0074489710	 for label 0	 block: 7
+second term for weight[432]= 0.00000000000031361876	 for label 0	 block: 5
+second term for weight[432]= 0.00000000000031361876	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000031361876	 for label 0	 block: 6
+second term for weight[432]= 0.00000000000031361876	 for label 0	 block: 3
+second term for weight[432]= -0.00000000000009160984	 for label 0	 block: 7
+Iteration no: 1, weight[432] = -0.0000058895
+first term for weight[432]= -0.0094186657	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 4
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+first term for weight[432]= 0.0000000000	 for label 0	 block: 5
+first term for weight[432]= -0.0000000000	 for label 0	 block: 2
+second term for weight[432]= -0.00000000000019631593	 for label 0	 block: 0
+second term for weight[432]= -0.00000000000019631593	 for label 0	 block: 4
+second term for weight[432]= -0.00000000000019631593	 for label 0	 block: 1
+first term for weight[432]= -0.0015701334	 for label 0	 block: 3
+first term for weight[432]= -0.0011776335	 for label 0	 block: 6
+first term for weight[432]= -0.0019605334	 for label 0	 block: 7
+second term for weight[432]= -0.00000000000019631593	 for label 0	 block: 5
+second term for weight[432]= 0.00000000000011763959	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000011763959	 for label 0	 block: 6
+second term for weight[432]= 0.00000000000011763959	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000011763959	 for label 0	 block: 7
+Iteration no: 2, weight[432] = 0.0000082375
+first term for weight[432]= 0.0000000000	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 4
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+first term for weight[432]= -0.0329449161	 for label 0	 block: 2
+first term for weight[432]= 0.0309837254	 for label 0	 block: 5
+second term for weight[432]= 0.00000000000027458293	 for label 0	 block: 0
+second term for weight[432]= 0.00000000000027458293	 for label 0	 block: 4
+second term for weight[432]= 0.00000000000027458293	 for label 0	 block: 1
+first term for weight[432]= 0.0000000000	 for label 0	 block: 6
+first term for weight[432]= 0.0000000000	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000027458293	 for label 0	 block: 5
+second term for weight[432]= 0.00000000000027458293	 for label 0	 block: 2
+first term for weight[432]= -0.0451035997	 for label 0	 block: 7
+second term for weight[432]= 0.00000000000027458293	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000027458293	 for label 0	 block: 6
+second term for weight[432]= -0.00000000000075820791	 for label 0	 block: 7
+Iteration no: 3, weight[432] = 0.0000223574
+first term for weight[432]= -0.0000000000	 for label 0	 block: 0
+first term for weight[432]= -0.0000000000	 for label 0	 block: 4
+first term for weight[432]= 0.0200083662	 for label 0	 block: 1
+first term for weight[432]= -0.0317648012	 for label 0	 block: 5
+first term for weight[432]= -0.0043103830	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000074524541	 for label 0	 block: 0
+first term for weight[432]= -0.0003921829	 for label 0	 block: 6
+first term for weight[432]= -0.0113763641	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000074524541	 for label 0	 block: 4
+second term for weight[432]= 0.00000000000074524541	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000074524541	 for label 0	 block: 5
+first term for weight[432]= -0.0011769798	 for label 0	 block: 7
+second term for weight[432]= 0.00000000000074524541	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000074524541	 for label 0	 block: 6
+second term for weight[432]= 0.00000000000074524541	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000128080601	 for label 0	 block: 7
+Iteration no: 4, weight[432] = 0.0000513697
+Iteration no: 10, weight[432] = 0.0001417045
+Training (log)loss: 2.2473452321	 thread:0
+6131 correct out of 60000.	 Testing accuracy: 0.102183	 thread:0
+1011 correct out of 10000.	 Testing accuracy: 0.101100	 thread:0
+Iteration no: 100, weight[432] = 0.0013517718
+Training (log)loss: 1.9507583758	 thread:0
+9899 correct out of 60000.	 Testing accuracy: 0.164983	 thread:0
+1672 correct out of 10000.	 Testing accuracy: 0.167200	 thread:0
+Iteration no: 1000, weight[432] = 0.0076382111
+Training (log)loss: -1.2813811960	 thread:0
+8193 correct out of 60000.	 Testing accuracy: 0.136550	 thread:0
+1373 correct out of 10000.	 Testing accuracy: 0.137300	 thread:0
+Iteration no: 10000, weight[432] = 0.0507961000
+Training (log)loss: -31.1675526240	 thread:0
+17929 correct out of 60000.	 Testing accuracy: 0.298817	 thread:0
+2913 correct out of 10000.	 Testing accuracy: 0.291300	 thread:0
+first term for weight[432]= -0.0010112884	 for label 0	 block: 0
+first term for weight[432]= -0.0008905207	 for label 0	 block: 4
+first term for weight[432]= -0.0349218050	 for label 0	 block: 1
+second term for weight[432]= 0.00000000515102486362	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 2
+first term for weight[432]= 0.0000000000	 for label 0	 block: 5
+second term for weight[432]= 0.00000000515102486362	 for label 0	 block: 4
+second term for weight[432]= 0.00000000515102486362	 for label 0	 block: 1
+first term for weight[432]= -0.0005396722	 for label 0	 block: 3
+first term for weight[432]= 0.0000000000	 for label 0	 block: 6
+second term for weight[432]= 0.00000000515105857306	 for label 0	 block: 2
+second term for weight[432]= 0.00000000515105857306	 for label 0	 block: 5
+first term for weight[432]= 0.0000000000	 for label 0	 block: 7
+second term for weight[432]= 0.00000000515225231691	 for label 0	 block: 3
+second term for weight[432]= 0.00000000515225231691	 for label 0	 block: 6
+second term for weight[432]= 0.00000000515225231656	 for label 0	 block: 7
+Iteration no: 40000, weight[432] = 0.1545681092
+Training (log)loss: -106.7473831041	 thread:0
+20758 correct out of 60000.	 Testing accuracy: 0.345967	 thread:0
+3377 correct out of 10000.	 Testing accuracy: 0.337700	 thread:0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 0
+first term for weight[432]= 0.0068476851	 for label 0	 block: 4
+first term for weight[432]= 0.0074820390	 for label 0	 block: 1
+second term for weight[432]= 0.00000000864147020350	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 2
+first term for weight[432]= 0.0000000000	 for label 0	 block: 5
+second term for weight[432]= 0.00000000864147020350	 for label 0	 block: 4
+second term for weight[432]= 0.00000000864147020350	 for label 0	 block: 1
+first term for weight[432]= -0.0029268144	 for label 0	 block: 3
+first term for weight[432]= 0.0416890512	 for label 0	 block: 6
+second term for weight[432]= 0.00000000864147020321	 for label 0	 block: 2
+second term for weight[432]= 0.00000000864147020321	 for label 0	 block: 5
+first term for weight[432]= 0.0000000000	 for label 0	 block: 7
+second term for weight[432]= 0.00000000864099254517	 for label 0	 block: 3
+second term for weight[432]= 0.00000000864099254517	 for label 0	 block: 6
+second term for weight[432]= 0.00000000864099254459	 for label 0	 block: 7
+Iteration no: 80000, weight[432] = 0.2591880873
+Training (log)loss: -171.4284621978	 thread:0
+21080 correct out of 60000.	 Testing accuracy: 0.351333	 thread:0
+3439 correct out of 10000.	 Testing accuracy: 0.343900	 thread:0
+Iteration no: 100000, weight[432] = 0.2969460487
+Training (log)loss: -194.5384646763	 thread:0
+21153 correct out of 60000.	 Testing accuracy: 0.352550	 thread:0
+3453 correct out of 10000.	 Testing accuracy: 0.345300	 thread:0
+first term for weight[432]= -0.0082219393	 for label 0	 block: 0
+first term for weight[432]= -0.0001606741	 for label 0	 block: 1
+first term for weight[432]= -0.0003327503	 for label 0	 block: 4
+second term for weight[432]= 0.00000001026513080566	 for label 0	 block: 0
+first term for weight[432]= 0.0128734934	 for label 0	 block: 5
+first term for weight[432]= 0.0019280608	 for label 0	 block: 2
+second term for weight[432]= 0.00000001026513080566	 for label 0	 block: 1
+second term for weight[432]= 0.00000001026513080566	 for label 0	 block: 4
+first term for weight[432]= -0.0006873486	 for label 0	 block: 3
+first term for weight[432]= 0.0000000000	 for label 0	 block: 6
+second term for weight[432]= 0.00000001026540486996	 for label 0	 block: 5
+second term for weight[432]= 0.00000001026540486996	 for label 0	 block: 2
+first term for weight[432]= -0.0000000000	 for label 0	 block: 7
+second term for weight[432]= 0.00000001026542131676	 for label 0	 block: 3
+second term for weight[432]= 0.00000001026542131676	 for label 0	 block: 6
+second term for weight[432]= 0.00000001026492793093	 for label 0	 block: 7
+Iteration no: 120000, weight[432] = 0.3079485252
+Training (log)loss: -211.8421246549	 thread:0
+21241 correct out of 60000.	 Testing accuracy: 0.354017	 thread:0
+3478 correct out of 10000.	 Testing accuracy: 0.347800	 thread:0
+first term for weight[432]= -0.0011729138	 for label 0	 block: 0
+first term for weight[432]= -0.0007526726	 for label 0	 block: 4
+first term for weight[432]= -0.0004619724	 for label 0	 block: 1
+second term for weight[432]= 0.00000001148906291695	 for label 0	 block: 0
+first term for weight[432]= -0.0200924024	 for label 0	 block: 2
+first term for weight[432]= -0.0112120005	 for label 0	 block: 5
+second term for weight[432]= 0.00000001148906291695	 for label 0	 block: 4
+second term for weight[432]= 0.00000001148906291695	 for label 0	 block: 1
+first term for weight[432]= 0.0000000000	 for label 0	 block: 6
+first term for weight[432]= 0.0146991368	 for label 0	 block: 3
+second term for weight[432]= 0.00000001148910201369	 for label 0	 block: 5
+second term for weight[432]= 0.00000001148910201369	 for label 0	 block: 2
+first term for weight[432]= 0.0000000000	 for label 0	 block: 7
+second term for weight[432]= 0.00000001148914250109	 for label 0	 block: 6
+second term for weight[432]= 0.00000001148914250109	 for label 0	 block: 3
+second term for weight[432]= 0.00000001149018598043	 for label 0	 block: 7
+Iteration no: 160000, weight[432] = 0.3446908802
+Training (log)loss: -237.7570998413	 thread:0
+21392 correct out of 60000.	 Testing accuracy: 0.356533	 thread:0
+3493 correct out of 10000.	 Testing accuracy: 0.349300	 thread:0
+first term for weight[432]= 0.0414827458	 for label 0	 block: 0
+first term for weight[432]= -0.0001149625	 for label 0	 block: 1
+first term for weight[432]= 0.0033202029	 for label 0	 block: 4
+first term for weight[432]= -0.0001515586	 for label 0	 block: 2
+first term for weight[432]= -0.0004334442	 for label 0	 block: 5
+second term for weight[432]= 0.00000001242185037386	 for label 0	 block: 0
+second term for weight[432]= 0.00000001242185037386	 for label 0	 block: 1
+second term for weight[432]= 0.00000001242185037386	 for label 0	 block: 4
+first term for weight[432]= 0.0000000000	 for label 0	 block: 3
+first term for weight[432]= 0.0000000000	 for label 0	 block: 6
+second term for weight[432]= 0.00000001242185037386	 for label 0	 block: 2
+second term for weight[432]= 0.00000001242185037386	 for label 0	 block: 5
+first term for weight[432]= 0.0101490258	 for label 0	 block: 7
+second term for weight[432]= 0.00000001242036077308	 for label 0	 block: 3
+second term for weight[432]= 0.00000001242036077308	 for label 0	 block: 6
+second term for weight[432]= 0.00000001242038027234	 for label 0	 block: 7
+Iteration no: 199999, weight[432] = 0.3726012591
+Training (log)loss: -256.1958248929	 thread:0
+21495 correct out of 60000.	 Testing accuracy: 0.358250	 thread:0
+3490 correct out of 10000.	 Testing accuracy: 0.349000	 thread:0
+
+Time elapsed in training = 154.483718 sec
+Time elapsed in training per iteration = 0.000772 sec
+new loss: -256.195825 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 8
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3490 correct out of 10000.	 Testing accuracy: 0.349000	 thread:0
+End
+
+
+
+
+
+
+
+
+[ir967@cuda2 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+1000000
+old loss: 2.302585 
+weight[432] = 0.000000
+first term for weight[432]= -0.0011764706	 for label 0	 block: 0
+first term for weight[432]= -0.0011764706	 for label 0	 block: 1
+first term for weight[432]= -0.0011761329	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000000000000	 for label 0	 block: 0
+first term for weight[432]= -0.0011757364	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000000000000	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000000000000	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000007843137	 for label 0	 block: 3
+Iteration no: 0, weight[432] = 0.0000047048
+Iteration no: 0, weight[432] = 0.0000047048
+Training (log)loss: 2.3009229658	 thread:0
+6028 correct out of 60000.	 Testing accuracy: 0.100467	 thread:0
+1010 correct out of 10000.	 Testing accuracy: 0.101000	 thread:0
+first term for weight[432]= -0.0011763616	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000015682702	 for label 0	 block: 0
+first term for weight[432]= 0.0105881554	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000015682702	 for label 0	 block: 1
+first term for weight[432]= -0.0000000000	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000019603907	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000019603907	 for label 0	 block: 3
+Iteration no: 1, weight[432] = -0.0000047070
+first term for weight[432]= -0.0094158386	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+second term for weight[432]= -0.00000000000015689944	 for label 0	 block: 0
+first term for weight[432]= -0.0000000000	 for label 0	 block: 2
+second term for weight[432]= -0.00000000000015689944	 for label 0	 block: 1
+first term for weight[432]= -0.0015697657	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000015696184	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000015696184	 for label 0	 block: 3
+Iteration no: 2, weight[432] = 0.0000062786
+first term for weight[432]= 0.0000000000	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000020928737	 for label 0	 block: 0
+first term for weight[432]= -0.0329700811	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000020928737	 for label 0	 block: 1
+first term for weight[432]= 0.0000000000	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000020928737	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000020928737	 for label 0	 block: 3
+Iteration no: 3, weight[432] = 0.0000392487
+first term for weight[432]= -0.0000000000	 for label 0	 block: 0
+first term for weight[432]= 0.0200189507	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000130829007	 for label 0	 block: 0
+first term for weight[432]= -0.0043147141	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000130829007	 for label 0	 block: 1
+first term for weight[432]= -0.0113837932	 for label 0	 block: 3
+second term for weight[432]= 0.00000000000130829007	 for label 0	 block: 2
+second term for weight[432]= 0.00000000000064099171	 for label 0	 block: 3
+Iteration no: 4, weight[432] = 0.0000349283
+Iteration no: 10, weight[432] = 0.0001412027
+Training (log)loss: 2.2674695371	 thread:0
+6363 correct out of 60000.	 Testing accuracy: 0.106050	 thread:0
+1042 correct out of 10000.	 Testing accuracy: 0.104200	 thread:0
+Iteration no: 100, weight[432] = 0.0003003274
+Training (log)loss: 2.0381258832	 thread:0
+8672 correct out of 60000.	 Testing accuracy: 0.144533	 thread:0
+1423 correct out of 10000.	 Testing accuracy: 0.142300	 thread:0
+Iteration no: 1000, weight[432] = 0.0049065678
+Training (log)loss: -0.5372687848	 thread:0
+11286 correct out of 60000.	 Testing accuracy: 0.188100	 thread:0
+1838 correct out of 10000.	 Testing accuracy: 0.183800	 thread:0
+Iteration no: 10000, weight[432] = 0.0412090485
+Training (log)loss: -24.3473795688	 thread:0
+17089 correct out of 60000.	 Testing accuracy: 0.284817	 thread:0
+2818 correct out of 10000.	 Testing accuracy: 0.281800	 thread:0
+Iteration no: 100000, weight[432] = 0.2746956575
+Training (log)loss: -170.6985874591	 thread:0
+21045 correct out of 60000.	 Testing accuracy: 0.350750	 thread:0
+3428 correct out of 10000.	 Testing accuracy: 0.342800	 thread:0
+first term for weight[432]= -0.0015353337	 for label 0	 block: 0
+first term for weight[432]= -0.0001790076	 for label 0	 block: 1
+second term for weight[432]= 0.00000001190293332094	 for label 0	 block: 0
+first term for weight[432]= -0.0003620915	 for label 0	 block: 2
+second term for weight[432]= 0.00000001190293332094	 for label 0	 block: 1
+first term for weight[432]= 0.0000000000	 for label 0	 block: 3
+second term for weight[432]= 0.00000001190298449834	 for label 0	 block: 2
+second term for weight[432]= 0.00000001190299046486	 for label 0	 block: 3
+Iteration no: 200000, weight[432] = 0.3570900760
+Training (log)loss: -237.3758770489	 thread:0
+21397 correct out of 60000.	 Testing accuracy: 0.356617	 thread:0
+3500 correct out of 10000.	 Testing accuracy: 0.350000	 thread:0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 0
+first term for weight[432]= -0.0165706961	 for label 0	 block: 1
+second term for weight[432]= 0.00000001305183902298	 for label 0	 block: 0
+first term for weight[432]= 0.0155515860	 for label 0	 block: 2
+second term for weight[432]= 0.00000001305183902298	 for label 0	 block: 1
+first term for weight[432]= -0.0001980185	 for label 0	 block: 3
+second term for weight[432]= 0.00000001305183902254	 for label 0	 block: 2
+second term for weight[432]= 0.00000001305239137864	 for label 0	 block: 3
+Iteration no: 400000, weight[432] = 0.3915563878
+Training (log)loss: -283.2488458687	 thread:0
+21734 correct out of 60000.	 Testing accuracy: 0.362233	 thread:0
+3512 correct out of 10000.	 Testing accuracy: 0.351200	 thread:0
+first term for weight[432]= 0.0075892724	 for label 0	 block: 0
+first term for weight[432]= -0.0002377895	 for label 0	 block: 1
+second term for weight[432]= 0.00000001476636371493	 for label 0	 block: 0
+first term for weight[432]= -0.0096790140	 for label 0	 block: 2
+second term for weight[432]= 0.00000001476636371493	 for label 0	 block: 1
+first term for weight[432]= -0.0077459494	 for label 0	 block: 3
+second term for weight[432]= 0.00000001476611073869	 for label 0	 block: 2
+second term for weight[432]= 0.00000001476611866451	 for label 0	 block: 3
+Iteration no: 600000, weight[432] = 0.4430009849
+Training (log)loss: -299.0423073782	 thread:0
+21954 correct out of 60000.	 Testing accuracy: 0.365900	 thread:0
+3510 correct out of 10000.	 Testing accuracy: 0.351000	 thread:0
+first term for weight[432]= 0.0041342376	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+second term for weight[432]= 0.00000001437362094634	 for label 0	 block: 0
+first term for weight[432]= 0.0202673427	 for label 0	 block: 2
+second term for weight[432]= 0.00000001437362094634	 for label 0	 block: 1
+first term for weight[432]= -0.0005375703	 for label 0	 block: 3
+second term for weight[432]= 0.00000001437348313794	 for label 0	 block: 2
+second term for weight[432]= 0.00000001437348313746	 for label 0	 block: 3
+Iteration no: 800000, weight[432] = 0.4311847643
+Training (log)loss: -304.6771151450	 thread:0
+21966 correct out of 60000.	 Testing accuracy: 0.366100	 thread:0
+3506 correct out of 10000.	 Testing accuracy: 0.350600	 thread:0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 0
+first term for weight[432]= 0.0096473805	 for label 0	 block: 1
+second term for weight[432]= 0.00000001473298159720	 for label 0	 block: 0
+first term for weight[432]= -0.0052403347	 for label 0	 block: 2
+second term for weight[432]= 0.00000001473298159720	 for label 0	 block: 1
+first term for weight[432]= -0.0012157871	 for label 0	 block: 3
+second term for weight[432]= 0.00000001473298159671	 for label 0	 block: 2
+second term for weight[432]= 0.00000001473266001687	 for label 0	 block: 3
+Iteration no: 999999, weight[432] = 0.4419862566
+Training (log)loss: -307.9696781270	 thread:0
+22070 correct out of 60000.	 Testing accuracy: 0.367833	 thread:0
+3519 correct out of 10000.	 Testing accuracy: 0.351900	 thread:0
+
+Time elapsed in training = 560.280800 sec
+Time elapsed in training per iteration = 0.000560 sec
+new loss: -307.969678 
+
+No of iterations for each thread block: 1000000
+No of threads in each block: 1024
+No of blocks: 4
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3519 correct out of 10000.	 Testing accuracy: 0.351900	 thread:0
+End
+
+
+
+
+
+
+
+
+
+[ir967@cuda2 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+1000000
+old loss: 2.302585 
+weight[432] = 0.000000
+first term for weight[432]= -0.0011764706	 for label 0	 block: 0
+first term for weight[432]= -0.0011764706	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000000000000	 for label 0	 block: 0
+second term for weight[432]= 0.00000000000000000000	 for label 0	 block: 1
+Iteration no: 0, weight[432] = 0.0000023529
+Iteration no: 0, weight[432] = 0.0000023529
+Training (log)loss: 2.3016546242	 thread:0
+6034 correct out of 60000.	 Testing accuracy: 0.100567	 thread:0
+1000 correct out of 10000.	 Testing accuracy: 0.100000	 thread:0
+first term for weight[432]= -0.0011764124	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000007843137	 for label 0	 block: 0
+second term for weight[432]= 0.00000000000007843137	 for label 0	 block: 1
+Iteration no: 1, weight[432] = 0.0000035294
+first term for weight[432]= -0.0094080710	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000011764512	 for label 0	 block: 0
+second term for weight[432]= 0.00000000000011764512	 for label 0	 block: 1
+Iteration no: 2, weight[432] = 0.0000129374
+first term for weight[432]= 0.0000000000	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000043124749	 for label 0	 block: 0
+second term for weight[432]= 0.00000000000043124749	 for label 0	 block: 1
+Iteration no: 3, weight[432] = 0.0000129374
+first term for weight[432]= -0.0000000000	 for label 0	 block: 0
+first term for weight[432]= 0.0199862011	 for label 0	 block: 1
+second term for weight[432]= 0.00000000000043124749	 for label 0	 block: 0
+second term for weight[432]= 0.00000000000043124749	 for label 0	 block: 1
+Iteration no: 4, weight[432] = -0.0000070488
+first term for weight[432]= -0.0014519465	 for label 0	 block: 0
+first term for weight[432]= -0.0002848598	 for label 0	 block: 1
+second term for weight[432]= 0.00000000837775848895	 for label 0	 block: 0
+second term for weight[432]= 0.00000000837775848895	 for label 0	 block: 1
+Iteration no: 200000, weight[432] = 0.2513344915
+Training (log)loss: -173.5822624660	 thread:0
+21027 correct out of 60000.	 Testing accuracy: 0.350450	 thread:0
+3442 correct out of 10000.	 Testing accuracy: 0.344200	 thread:0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 0
+first term for weight[432]= -0.0187127711	 for label 0	 block: 1
+second term for weight[432]= 0.00000001097469884235	 for label 0	 block: 0
+second term for weight[432]= 0.00000001097469884235	 for label 0	 block: 1
+Iteration no: 400000, weight[432] = 0.3292596780
+Training (log)loss: -239.5650074128	 thread:0
+21435 correct out of 60000.	 Testing accuracy: 0.357250	 thread:0
+3521 correct out of 10000.	 Testing accuracy: 0.352100	 thread:0
+first term for weight[432]= 0.0083723613	 for label 0	 block: 0
+first term for weight[432]= -0.0002480757	 for label 0	 block: 1
+second term for weight[432]= 0.00000001311044311719	 for label 0	 block: 0
+second term for weight[432]= 0.00000001311044311719	 for label 0	 block: 1
+Iteration no: 600000, weight[432] = 0.3933051692
+Training (log)loss: -269.7502429131	 thread:0
+21595 correct out of 60000.	 Testing accuracy: 0.359917	 thread:0
+3503 correct out of 10000.	 Testing accuracy: 0.350300	 thread:0
+first term for weight[432]= 0.0046311390	 for label 0	 block: 0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 1
+second term for weight[432]= 0.00000001374143413759	 for label 0	 block: 0
+second term for weight[432]= 0.00000001374143413759	 for label 0	 block: 1
+Iteration no: 800000, weight[432] = 0.4122383930
+Training (log)loss: -284.4518513657	 thread:0
+21691 correct out of 60000.	 Testing accuracy: 0.361517	 thread:0
+3505 correct out of 10000.	 Testing accuracy: 0.350500	 thread:0
+first term for weight[432]= 0.0000000000	 for label 0	 block: 0
+first term for weight[432]= 0.0086686695	 for label 0	 block: 1
+second term for weight[432]= 0.00000001391267411947	 for label 0	 block: 0
+second term for weight[432]= 0.00000001391267411947	 for label 0	 block: 1
+Iteration no: 999999, weight[432] = 0.4173715549
+Training (log)loss: -293.2470999402	 thread:0
+21847 correct out of 60000.	 Testing accuracy: 0.364117	 thread:0
+3500 correct out of 10000.	 Testing accuracy: 0.350000	 thread:0
+
+Time elapsed in training = 480.411388 sec
+Time elapsed in training per iteration = 0.000480 sec
+new loss: -293.247100 
+
+No of iterations for each thread block: 1000000
+No of threads in each block: 1024
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3500 correct out of 10000.	 Testing accuracy: 0.350000	 thread:0
+End
+
+
+
+
+
+
+
+
+
+[ir967@cuda2 SGD]$ ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+1000000
+old loss: 2.302585 
+weight[432] = 0.000000
+first term for weight[432]= -0.0011764706	 for label 0
+second term for weight[432]= 0.00000000000000000000	 for label 0
+Iteration no: 0, weight[432] = 0.0000011765
+Iteration no: 0, weight[432] = 0.0000011765
+Training (log)loss: 2.3019360710	 thread:0
+6340 correct out of 60000.	 Testing accuracy: 0.105667	 thread:0
+1048 correct out of 10000.	 Testing accuracy: 0.104800	 thread:0
+first term for weight[432]= -0.0011764046	 for label 0
+second term for weight[432]= 0.00000000000003921569	 for label 0
+Iteration no: 1, weight[432] = 0.0000023529
+first term for weight[432]= -0.0094095867	 for label 0
+second term for weight[432]= 0.00000000000007842917	 for label 0
+Iteration no: 2, weight[432] = 0.0000117625
+first term for weight[432]= 0.0000000000	 for label 0
+second term for weight[432]= 0.00000000000039208206	 for label 0
+Iteration no: 3, weight[432] = 0.0000117625
+first term for weight[432]= -0.0000000000	 for label 0
+second term for weight[432]= 0.00000000000039208206	 for label 0
+Iteration no: 4, weight[432] = 0.0000117625
+first term for weight[432]= 0.0035301030	 for label 0
+second term for weight[432]= 0.00000000000039208206	 for label 0
+Iteration no: 5, weight[432] = 0.0000082324
+first term for weight[432]= 0.0000000000	 for label 0
+second term for weight[432]= 0.00000000000027441196	 for label 0
+Iteration no: 6, weight[432] = 0.0000082324
+first term for weight[432]= -0.0011764156	 for label 0
+second term for weight[432]= 0.00000000000027441196	 for label 0
+Iteration no: 7, weight[432] = 0.0000094088
+first term for weight[432]= -0.0011765513	 for label 0
+second term for weight[432]= 0.00000000000031362582	 for label 0
+Iteration no: 8, weight[432] = 0.0000105853
+first term for weight[432]= 0.0000000000	 for label 0
+second term for weight[432]= 0.00000000000035284419	 for label 0
+Iteration no: 9, weight[432] = 0.0000105853
+Iteration no: 200000, weight[432] = 0.1490432103
+Training (log)loss: -115.4814183372	 thread:0
+20730 correct out of 60000.	 Testing accuracy: 0.345500	 thread:0
+3364 correct out of 10000.	 Testing accuracy: 0.336400	 thread:0
+Iteration no: 400000, weight[432] = 0.2362742398
+Training (log)loss: -183.0276989556	 thread:0
+21133 correct out of 60000.	 Testing accuracy: 0.352217	 thread:0
+3453 correct out of 10000.	 Testing accuracy: 0.345300	 thread:0
+Iteration no: 600000, weight[432] = 0.3012493066
+Training (log)loss: -222.9435874182	 thread:0
+21368 correct out of 60000.	 Testing accuracy: 0.356133	 thread:0
+3473 correct out of 10000.	 Testing accuracy: 0.347300	 thread:0
+Iteration no: 800000, weight[432] = 0.3416902986
+Training (log)loss: -248.6937980815	 thread:0
+21455 correct out of 60000.	 Testing accuracy: 0.357583	 thread:0
+3479 correct out of 10000.	 Testing accuracy: 0.347900	 thread:0
+Iteration no: 999999, weight[432] = 0.3542084094
+Training (log)loss: -265.4477568488	 thread:0
+21591 correct out of 60000.	 Testing accuracy: 0.359850	 thread:0
+3499 correct out of 10000.	 Testing accuracy: 0.349900	 thread:0
+Training ran for 449.028698
+new loss: -265.447757 
+3499 correct out of 10000.	 Testing accuracy: 0.349900	 thread:0
+End
+
+
+
+
+
+
+
+[ir967@cuda2 SGD]$ ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+100000
+old loss: 2.302585 
+weight[432] = 0.000000
+first term for weight[432]= -0.0011764706	 for label 0
+second term for weight[432]= 0.00000000000000000000	 for label 0
+Iteration no: 0, weight[432] = 0.0000011765
+Iteration no: 0, weight[432] = 0.0000011765
+Training (log)loss: 2.3019360710	 thread:0
+6340 correct out of 60000.	 Testing accuracy: 0.105667	 thread:0
+1048 correct out of 10000.	 Testing accuracy: 0.104800	 thread:0
+first term for weight[432]= -0.0011764046	 for label 0
+second term for weight[432]= 0.00000000000003921569	 for label 0
+Iteration no: 1, weight[432] = 0.0000023529
+first term for weight[432]= -0.0094095867	 for label 0
+second term for weight[432]= 0.00000000000007842917	 for label 0
+Iteration no: 2, weight[432] = 0.0000117625
+first term for weight[432]= 0.0000000000	 for label 0
+second term for weight[432]= 0.00000000000039208206	 for label 0
+Iteration no: 3, weight[432] = 0.0000117625
+first term for weight[432]= -0.0000000000	 for label 0
+second term for weight[432]= 0.00000000000039208206	 for label 0
+Iteration no: 4, weight[432] = 0.0000117625
+first term for weight[432]= 0.0035301030	 for label 0
+second term for weight[432]= 0.00000000000039208206	 for label 0
+Iteration no: 5, weight[432] = 0.0000082324
+first term for weight[432]= 0.0000000000	 for label 0
+second term for weight[432]= 0.00000000000027441196	 for label 0
+Iteration no: 6, weight[432] = 0.0000082324
+first term for weight[432]= -0.0011764156	 for label 0
+second term for weight[432]= 0.00000000000027441196	 for label 0
+Iteration no: 7, weight[432] = 0.0000094088
+first term for weight[432]= -0.0011765513	 for label 0
+second term for weight[432]= 0.00000000000031362582	 for label 0
+Iteration no: 8, weight[432] = 0.0000105853
+first term for weight[432]= 0.0000000000	 for label 0
+second term for weight[432]= 0.00000000000035284419	 for label 0
+Iteration no: 9, weight[432] = 0.0000105853
+Iteration no: 20000, weight[432] = 0.0163123143
+Training (log)loss: -12.6305380636	 thread:0
+15885 correct out of 60000.	 Testing accuracy: 0.264750	 thread:0
+2626 correct out of 10000.	 Testing accuracy: 0.262600	 thread:0
+Iteration no: 40000, weight[432] = 0.0332243599
+Training (log)loss: -26.2745915840	 thread:0
+17918 correct out of 60000.	 Testing accuracy: 0.298633	 thread:0
+2992 correct out of 10000.	 Testing accuracy: 0.299200	 thread:0
+Iteration no: 60000, weight[432] = 0.0513505771
+Training (log)loss: -39.4850572803	 thread:0
+18629 correct out of 60000.	 Testing accuracy: 0.310483	 thread:0
+3059 correct out of 10000.	 Testing accuracy: 0.305900	 thread:0
+Iteration no: 80000, weight[432] = 0.0694876832
+Training (log)loss: -52.6727005281	 thread:0
+19685 correct out of 60000.	 Testing accuracy: 0.328083	 thread:0
+3236 correct out of 10000.	 Testing accuracy: 0.323600	 thread:0
+Iteration no: 99999, weight[432] = 0.0945580015
+Training (log)loss: -64.9328740793	 thread:0
+20012 correct out of 60000.	 Testing accuracy: 0.333533	 thread:0
+3301 correct out of 10000.	 Testing accuracy: 0.330100	 thread:0
+Training ran for  67.170169
+new loss: -64.932874 
+3301 correct out of 10000.	 Testing accuracy: 0.330100	 thread:0
+End
+
+
+
+
+
+
+
+
+
+[ir967@cuda2 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; cuda-memcheck --print-limit 4 hogwildSGD
+========= CUDA-MEMCHECK
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+10000
+old loss: 138155.105580 
+weight[432] = 0.000000
+first term for weight[432]= 0.0011764706	 for label 0
+Iteration no: 0, weight[432] = -0.0000011765
+Iteration no: 0, weight[432] = -0.0000011765
+Training (log)loss: 138194.0527555375	 thread:0
+8952 correct out of 10000.	 Testing accuracy: 0.895200	 thread:0
+first term for weight[432]= 0.0011765366	 for label 0
+Iteration no: 1, weight[432] = -0.0000023530
+first term for weight[432]= 0.0094139413	 for label 0
+Iteration no: 2, weight[432] = -0.0000117669
+first term for weight[432]= -0.0000000000	 for label 0
+Iteration no: 3, weight[432] = -0.0000117669
+first term for weight[432]= 0.0000000000	 for label 0
+Iteration no: 4, weight[432] = -0.0000117669
+first term for weight[432]= -0.0035287200	 for label 0
+Iteration no: 5, weight[432] = -0.0000082382
+first term for weight[432]= -0.0000000000	 for label 0
+Iteration no: 6, weight[432] = -0.0000082382
+first term for weight[432]= 0.0011765250	 for label 0
+Iteration no: 7, weight[432] = -0.0000094148
+first term for weight[432]= 0.0011763894	 for label 0
+Iteration no: 8, weight[432] = -0.0000105911
+first term for weight[432]= -0.0000000000	 for label 0
+Iteration no: 9, weight[432] = -0.0000105911
+first term for weight[432]= 0.0502122175	 for label 0
+Iteration no: 10, weight[432] = -0.0000608034
+first term for weight[432]= 0.0000000000	 for label 0
+Iteration no: 11, weight[432] = -0.0000608034
+first term for weight[432]= 0.0000000000	 for label 0
+Iteration no: 12, weight[432] = -0.0000608034
+first term for weight[432]= -0.0000000000	 for label 0
+Iteration no: 13, weight[432] = -0.0000608034
+first term for weight[432]= -0.0113623355	 for label 0
+Iteration no: 14, weight[432] = -0.0000494410
+first term for weight[432]= -0.0000000000	 for label 0
+Iteration no: 15, weight[432] = -0.0000494410
+first term for weight[432]= -0.0000000000	 for label 0
+Iteration no: 16, weight[432] = -0.0000494410
+first term for weight[432]= 0.0321135975	 for label 0
+Iteration no: 17, weight[432] = -0.0000815546
+first term for weight[432]= 0.0242830718	 for label 0
+Iteration no: 18, weight[432] = -0.0001058377
+first term for weight[432]= 0.0015659628	 for label 0
+Iteration no: 19, weight[432] = -0.0001074037
+Iteration no: 2000, weight[432] = -0.0006848793
+Training (log)loss: 233020.8498889887	 thread:0
+832 correct out of 10000.	 Testing accuracy: 0.083200	 thread:0
+Iteration no: 4000, weight[432] = -0.0031341027
+Training (log)loss: 329837.0899513204	 thread:0
+777 correct out of 10000.	 Testing accuracy: 0.077700	 thread:0
+Iteration no: 6000, weight[432] = -0.0062459563
+Training (log)loss: 422959.9905052827	 thread:0
+681 correct out of 10000.	 Testing accuracy: 0.068100	 thread:0
+Iteration no: 8000, weight[432] = -0.0074912067
+Training (log)loss: 512778.1856922539	 thread:0
+751 correct out of 10000.	 Testing accuracy: 0.075100	 thread:0
+Iteration no: 9999, weight[432] = -0.0099771247
+Training (log)loss: 606541.8567649147	 thread:0
+617 correct out of 10000.	 Testing accuracy: 0.061700	 thread:0
+Training ran for 2560.989613
+new loss: 606541.856765 
+617 correct out of 10000.	 Testing accuracy: 0.061700	 thread:0
+End
+
+
+
+
+
 [ir967@cuda2 SGD]$ ./hogwildSGD 
 Started main.
 Data loaded to Host.

@@ -108,6 +108,8 @@ int main(int argc, const char * argv[]) {
     }
     */
     
+    printf("\nTime elapsed in training = %f sec\n", t);
+    printf("Time elapsed in training per iteration = %f sec\n", t/n_iter);
     //Testing the model
     printf("\nNo of iterations for each thread: %d\n", n_iter);
     printf("No of threads: %d\n", psgd.getn_threads());
@@ -115,8 +117,6 @@ int main(int argc, const char * argv[]) {
     printf("Eta (Learning Rate): %lf\n", eta);
     psgd.test(testingData, testingLabels, n_images_test, size_image+1, 10);
     //psgd.test(trainingData, trainingLabels, n_images, size_image+1, 10);
-    printf("\nTime elapsed in training = %f sec\n", t);
-    printf("Time elapsed in training per iteration = %f sec\n", t/n_iter);
     
     /*
     uchar a=1;
