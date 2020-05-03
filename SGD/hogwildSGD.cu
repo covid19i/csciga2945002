@@ -28,6 +28,7 @@ using namespace std;
 typedef unsigned char uchar;
 
 #define BLOCK_SIZE 1024
+//Should probably be 800 (= 785/32 * 32) for MNIST job
 
 void Check_CUDA_Error(const char *message){
   cudaError_t error = cudaGetLastError();
@@ -52,38 +53,6 @@ inline cudaError_t checkCuda(cudaError_t result)
   return result;
 }
 
-
-double getLossHogwild(double* weight,double** trainingData,uchar* trainingLabel,int n_data,int n_weights,int n_labels,double lambda){
-
-    double summ=0;
-    double* exponent=(double*)malloc(n_labels*sizeof(double));
-    for(int i=0;i<n_data;i++){
-        
-        double expSum=0;
-        for(int k=0;k<n_labels;k++){
-            exponent[k]=0;
-            for(int j=0;j<n_weights;j++){
-                exponent[k]+=weight[k*n_weights+j]*trainingData[i][j];
-                if(k==trainingLabel[i]){
-                    summ-=exponent[k];
-                }
-            }
-            expSum+=exp(exponent[k]);
-        }
-        if(expSum>0)summ+=log(expSum);
-    }
-    
-    double regularizationTerm=0;
-    for(int k=0; k<n_labels; k++){
-        for(int j=0; j<n_weights; j++){
-            regularizationTerm += weight[k*n_weights+j] * weight[k*n_weights+j];
-        }
-    }
-    
-    regularizationTerm*=lambda;
-    return regularizationTerm+summ;
-}
-
 int main(int argc, const char * argv[]) {
     printf("Started main.\n");
     mnist data;
@@ -94,6 +63,7 @@ int main(int argc, const char * argv[]) {
     //n_images 60000,size_image=784
     double * trainingData;
     cudaMallocHost((void**)&trainingData,n_images*(size_image+1)*sizeof(double));
+    Check_CUDA_Error("Malloc trainingData Host failed");
     
     for(int i=0;i<n_images;i++){
         for(int j=0;j<size_image+1;j++){
@@ -118,16 +88,17 @@ int main(int argc, const char * argv[]) {
     int n_labels_test;
     uchar *testingLabels;
     testingLabels = data.read_mnist_labels("t10k-labels-idx1-ubyte",n_labels_test);
+    printf("Data loaded to Host.\n");
 
     double *trainingData_d;
     uchar  *trainingLabel_d;
     cudaMalloc(&trainingData_d, (n_images * (size_image+1) *sizeof(double)));
-    Check_CUDA_Error("Malloc trainingData failed");
+    Check_CUDA_Error("Malloc trainingData Device failed");
     cudaMalloc(&trainingLabel_d, n_images *sizeof(uchar));
     cudaMemcpy(trainingData_d, trainingData, (n_images * (size_image+1) *sizeof(double)), cudaMemcpyHostToDevice);
     cudaMemcpy(trainingLabel_d, trainingLabel,n_images *sizeof(uchar), cudaMemcpyHostToDevice);
     cudaDeviceSynchronize(); 
-    printf("Data loaded.\n");
+    printf("Data loaded to device.\n");
 
     PSGD psgd(1);
     psgd.initialize(size_image+1,10);
@@ -163,8 +134,8 @@ int main(int argc, const char * argv[]) {
     }
     
     printf("Enter iterations (> 10):\n");
-    int n_iterations=1000;
-    scanf("%d", &n_iterations);
+    int n_iterations=10;
+    //scanf("%d", &n_iterations);
     
     double eta;
     eta=0.001;
@@ -180,7 +151,7 @@ int main(int argc, const char * argv[]) {
     printf("old loss: %f \n",oldLoss);
     double t = omp_get_wtime();
 
-    int n_blocks = 1;
+    int n_blocks = 10;
     //update the weight
     for(int j=0;j<n_iterations;j++){
 	run_hogwild_one_processor<<<n_blocks, BLOCK_SIZE>>>(weight_d,trainingData_d,trainingLabel_d,eta,n_images,size_image+1,10,lambda, j);

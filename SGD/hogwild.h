@@ -63,15 +63,17 @@ __device__ void warpReduce(volatile double* smem, int tid) {
   smem[tid] += smem[tid + 1];
 }
 
-__global__  void run_hogwild_one_processor(double* weight, const double* trainingData, const uchar* trainingLabel, double eta, int n_data, const int n_weights, const int n_labels, double lambda, int loop) {
+__global__  void run_hogwild_one_processor(double* weight, const double* trainingData, const uchar* trainingLabel, double eta, int n_data, const int n_weights, const int n_labels,const double lambda,const long loop) {
+  printf("Hello there from %d of %d\n", threadIdx.x, blockIdx.x);
   __shared__ double smem[785];//Gonna update 100% of weights in this kernel though.
   __shared__ double denominator;
   __shared__ double numerator[10];
   __shared__ double indicator[10];
   int tid = threadIdx.x;
+  printf("tid = %d\n", tid);
   //printf("Block %d: smem[%d] = a[%d] * b[%d] == %f += %f * %f\n", blockIdx.x, tid, idx, idx, smem[tid], a[idx], b[idx]);
   curandState_t state;
-  curand_init(loop, tid,0, &state);
+  curand_init(loop*loop, tid*tid, tid*tid*tid, &state);
   __shared__ int r;
   if(tid == 0){
     r = curand(&state) % n_data;
@@ -83,7 +85,7 @@ __global__  void run_hogwild_one_processor(double* weight, const double* trainin
     } else {
       smem[tid] = 0;
     }
-       // printf("Block %d: smem[%d] = %f\n", blockIdx.x, tid, smem[tid]);
+    printf("Block %d: smem[%d] = %f\n", blockIdx.x, tid, smem[tid]);
     __syncthreads();
     for(unsigned int s = blockDim.x/2; s>32; s>>=1){
         if(tid < s) {
