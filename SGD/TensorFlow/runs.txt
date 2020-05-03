@@ -1,4 +1,92 @@
 Ilyeechs-MacBook-Pro:TensorFlow ilyeech$ python3 mnist.py
+2020-05-03 18:50:38.443797: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-03 18:50:38.455405: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7fd3a95494c0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-03 18:50:38.455438: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Enter the number of batches (batch_size = 1): 200000
+Batch number: 1, w[432] = 0.0000000000
+Batch number: 1, w[432] = 0.0000000000
+Batch number: 1, Training loss (Cross Entropy): 2.301705, Training accuracy: 0.099300
+Batch number: 1, Testing loss (Cross Entropy): 2.301529, Testing accuracy: 0.103200
+Batch number: 2, w[432] = -0.0000540076
+Batch number: 40000, w[432] = -0.1693152098
+Batch number: 40000, Training loss (Cross Entropy): 0.413560, Training accuracy: 0.889550
+Batch number: 40000, Testing loss (Cross Entropy): 0.393873, Testing accuracy: 0.896900
+Batch number: 80000, w[432] = -0.1941599070
+Batch number: 80000, Training loss (Cross Entropy): 0.363263, Training accuracy: 0.899433
+Batch number: 80000, Testing loss (Cross Entropy): 0.347654, Testing accuracy: 0.905000
+Batch number: 120000, w[432] = -0.2083992288
+Batch number: 120000, Training loss (Cross Entropy): 0.338967, Training accuracy: 0.906533
+Batch number: 120000, Testing loss (Cross Entropy): 0.322348, Testing accuracy: 0.912000
+Batch number: 160000, w[432] = -0.2061415577
+Batch number: 160000, Training loss (Cross Entropy): 0.327045, Training accuracy: 0.910083
+Batch number: 160000, Testing loss (Cross Entropy): 0.313926, Testing accuracy: 0.911900
+Batch number: 200000, w[432] = -0.2063612841
+Batch number: 200000, Training loss (Cross Entropy): 0.315231, Training accuracy: 0.912133
+Batch number: 200000, Testing loss (Cross Entropy): 0.303893, Testing accuracy: 0.916400
+No of iterations: 200000
+Lambda (Regularization Parameter): 0
+Eta (Learning Rate): 0.001000
+After Batch number: 200000, loss (Cross Entropy): 0.303893, Testing accuracy: 0.916400
+Time elapsed in  training: 403.888490
+Time elapsed in training per data point= 0.002019
+
+
+
+
+Ilyeechs-MacBook-Pro:TensorFlow ilyeech$ python3 mnist.py
+2020-05-03 15:22:19.649606: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-03 15:22:19.661568: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7fdc452efac0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-03 15:22:19.661587: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Enter the number of batches (batch_size = 1): 1000000
+Batch number: 1, w[432] = -0.0000992157
+Batch number: 1, w[432] = -0.0000992157
+Batch number: 1, Training loss: 2.301210, Training accuracy: 0.102183
+Batch number: 1, Testing loss: 2.301198, Testing accuracy: 0.101000
+Batch number: 2, w[432] = -0.0001980339
+Batch number: 3, w[432] = -0.0001980339
+Batch number: 4, w[432] = -0.0001980339
+Batch number: 5, w[432] = -0.0002216203
+Batch number: 6, w[432] = -0.0003186777
+Batch number: 7, w[432] = -0.0003186777
+Batch number: 8, w[432] = -0.0004160336
+Batch number: 9, w[432] = -0.0005107211
+Batch number: 10, w[432] = -0.0006062843
+Batch number: 11, w[432] = -0.0006062843
+Batch number: 12, w[432] = -0.0007054134
+Batch number: 13, w[432] = -0.0008045075
+Batch number: 14, w[432] = -0.0008045075
+Batch number: 15, w[432] = -0.0008045075
+Batch number: 16, w[432] = -0.0008153046
+Batch number: 17, w[432] = -0.0006666765
+Batch number: 18, w[432] = -0.0007232546
+Batch number: 19, w[432] = -0.0007296371
+Batch number: 200000, w[432] = -0.2093942436
+Batch number: 200000, Training loss: 0.314872, Training accuracy: 0.911850
+Batch number: 200000, Testing loss: 0.304209, Testing accuracy: 0.916200
+Batch number: 400000, w[432] = -0.1905074535
+Batch number: 400000, Training loss: 0.291755, Training accuracy: 0.918717
+Batch number: 400000, Testing loss: 0.285712, Testing accuracy: 0.920400
+Batch number: 600000, w[432] = -0.1651260796
+Batch number: 600000, Training loss: 0.281561, Training accuracy: 0.922583
+Batch number: 600000, Testing loss: 0.280960, Testing accuracy: 0.922100
+Batch number: 800000, w[432] = -0.1459909820
+Batch number: 800000, Training loss: 0.274610, Training accuracy: 0.923767
+Batch number: 800000, Testing loss: 0.277686, Testing accuracy: 0.923100
+Batch number: 1000000, w[432] = -0.1163368467
+Batch number: 1000000, Training loss: 0.270145, Training accuracy: 0.925483
+Batch number: 1000000, Testing loss: 0.273740, Testing accuracy: 0.922200
+No of iterations: 1000000
+Lambda (Regularization Parameter): 0
+Eta (Learning Rate): 0.001000
+After Batch number: 1000000, loss: 0.273740, Testing accuracy: 0.922200
+Time elapsed in  training: 2017.893544
+Time elapsed in training per data point= 0.002018
+
+
+
+
+
+Ilyeechs-MacBook-Pro:TensorFlow ilyeech$ python3 mnist.py
 2020-05-03 15:07:07.476682: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
 2020-05-03 15:07:07.488259: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7fdc3ed5b060 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
 2020-05-03 15:07:07.488296: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
