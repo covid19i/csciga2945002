@@ -52,8 +52,6 @@ double getLoss(double* weight,double** trainingData,uchar* trainingLabel,int n_d
     return regularizationTerm+summ;
 }
 
-#define BLOCK_SIZE 1024
-
 __device__ void warpReduce(volatile double* smem, int tid) {
   smem[tid] += smem[tid + 32];
   smem[tid] += smem[tid + 16];
@@ -62,22 +60,22 @@ __device__ void warpReduce(volatile double* smem, int tid) {
   smem[tid] += smem[tid + 2];
   smem[tid] += smem[tid + 1];
 }
-
-__global__  void run_hogwild_one_processor(double* weight, const double* trainingData, const uchar* trainingLabel, double eta, int n_data, const int n_weights, const int n_labels,const double lambda,const long loop) {
-  printf("Hello there from %d of %d\n", threadIdx.x, blockIdx.x);
-  __shared__ double smem[785];//Gonna update 100% of weights in this kernel though.
+#define BLOCK_SIZE 64 //make sure this agrees with other files
+__global__  void run_hogwild_one_processor(double* weight, double* trainingData, uchar* trainingLabel, double eta, int n_data, const int n_weights, const int n_labels,const double lambda,const long loop) {
+  __shared__ double smem[BLOCK_SIZE];//Gonna update 100% of weights in this kernel though.
   __shared__ double denominator;
   __shared__ double numerator[10];
   __shared__ double indicator[10];
   int tid = threadIdx.x;
-  printf("tid = %d\n", tid);
+  //printf("tid = %d\n", tid);
   //printf("Block %d: smem[%d] = a[%d] * b[%d] == %f += %f * %f\n", blockIdx.x, tid, idx, idx, smem[tid], a[idx], b[idx]);
   curandState_t state;
-  curand_init(loop*loop, tid*tid, tid*tid*tid, &state);
+  curand_init(loop*loop, tid+blockIdx.x*blockDim.x, 0, &state);
+  //curand_init(loop, tid, 0, &state);
   __shared__ int r;
   if(tid == 0){
     r = curand(&state) % n_data;
-    printf("r = %d for thread id: %d\n", r, tid);
+    printf("__shared__ r = %d for thread id: %d\n", r, tid);
   }
   for(int i=0; i < n_labels; i++){
     if(tid < n_weights){
@@ -85,7 +83,7 @@ __global__  void run_hogwild_one_processor(double* weight, const double* trainin
     } else {
       smem[tid] = 0;
     }
-    printf("Block %d: smem[%d] = %f\n", blockIdx.x, tid, smem[tid]);
+    //printf("Block %d: smem[%d] = %f\n", blockIdx.x, tid, smem[tid]);
     __syncthreads();
     for(unsigned int s = blockDim.x/2; s>32; s>>=1){
         if(tid < s) {
@@ -93,7 +91,7 @@ __global__  void run_hogwild_one_processor(double* weight, const double* trainin
         }
         __syncthreads();
     }
-    if(tid < 32) warpReduce(smem, tid);
+    if(tid < 32) warpReduce(smem, tid);//Minimum BLOCK_SIZE = 64 because of this.
     __syncthreads();
     if(tid == 0){
       numerator[i] = smem[tid];

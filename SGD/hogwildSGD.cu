@@ -27,7 +27,7 @@
 using namespace std;
 typedef unsigned char uchar;
 
-#define BLOCK_SIZE 1024
+#define BLOCK_SIZE 64
 //Should probably be 800 (= 785/32 * 32) for MNIST job
 
 void Check_CUDA_Error(const char *message){
@@ -96,6 +96,7 @@ int main(int argc, const char * argv[]) {
     Check_CUDA_Error("Malloc trainingData Device failed");
     cudaMalloc(&trainingLabel_d, n_images *sizeof(uchar));
     cudaMemcpy(trainingData_d, trainingData, (n_images * (size_image+1) *sizeof(double)), cudaMemcpyHostToDevice);
+    Check_CUDA_Error("Copy to trainingData Device failed");
     cudaMemcpy(trainingLabel_d, trainingLabel,n_images *sizeof(uchar), cudaMemcpyHostToDevice);
     cudaDeviceSynchronize(); 
     printf("Data loaded to device.\n");
@@ -121,8 +122,10 @@ int main(int argc, const char * argv[]) {
     
     double* weight_d;
     cudaMalloc(&weight_d, weight_size*sizeof(double));
+    Check_CUDA_Error("Malloc Weights Device failed");
     cudaMemcpy(weight_d, weight, weight_size*sizeof(double), cudaMemcpyHostToDevice);
-    cudaDeviceSynchronize();    
+    printf("weight[103] = %f\n", weight[103]);
+    cudaDeviceSynchronize();    /*
     printf("\nGPU:\n");
     int nDevices;
     cudaGetDeviceCount(&nDevices);
@@ -131,34 +134,37 @@ int main(int argc, const char * argv[]) {
       cudaGetDeviceProperties(&prop, i);
       printf("Device Number: %d\n", i);
       printf("  Device name: %s\n", prop.name);
-    }
+    }*/
     
-    printf("Enter iterations (> 10):\n");
+    //printf("Enter iterations (> 10):\n");
     int n_iterations=10;
     //scanf("%d", &n_iterations);
     
     double eta;
     eta=0.001;
-    printf("\nEnter learning rate (eta = 0.001):\n");
+    //printf("\nEnter learning rate (eta = 0.001):\n");
     //scanf("%lf", &eta);
     
     double lambda;
     lambda=0.001;
-    printf("\nEnter regularization parameter (lambda = 0.001):\n");
+    //printf("\nEnter regularization parameter (lambda = 0.001):\n");
     //scanf("%lf", &lambda);
     
     double oldLoss=getLoss(weight,tempData,tempLabel,n_images,size_image+1,10,lambda);
     printf("old loss: %f \n",oldLoss);
     double t = omp_get_wtime();
+          printf("weight[107] = %f\n", weight[107]);
 
-    int n_blocks = 10;
+    cudaDeviceSetLimit(cudaLimitPrintfFifoSize, 1024*1024*10);
+    int n_blocks = 1;
     //update the weight
-    for(int j=0;j<n_iterations;j++){
-	run_hogwild_one_processor<<<n_blocks, BLOCK_SIZE>>>(weight_d,trainingData_d,trainingLabel_d,eta,n_images,size_image+1,10,lambda, j);
+    for(long j=0;j<n_iterations;j++){
+	run_hogwild_one_processor<<<n_blocks, BLOCK_SIZE>>>(weight,trainingData_d,trainingLabel_d,eta,n_images,size_image+1,10,lambda, j);
+        Check_CUDA_Error("Kernel Failed\n");
 	cudaDeviceSynchronize();
-        //printf("Iteration %i done.\n", j);
+        printf("Iteration %d done.\n", j);
     	if(j %(n_iterations/5) == 0 || j == n_iterations-1){
-          cudaMemcpy(weight, weight_d, weight_size*sizeof(double), cudaMemcpyDeviceToHost);
+          //cudaMemcpy(weight, weight_d, weight_size*sizeof(double), cudaMemcpyDeviceToHost);
 	  cudaDeviceSynchronize();
           printf("weight[107] = %f\n", weight[107]);
 	  double loss_now = getLoss(weight, tempData, tempLabel, n_images, size_image+1,10, lambda);
