@@ -1,3 +1,776 @@
+
+On cuda3.cims.nyu.edu
+
+
+
+
+
+[ir967@cuda3 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+200000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000011763
+Iteration no: 0, weight[432] = 0.0000011763
+Training (log)loss: 2.3013022522	 thread:0
+6162 correct out of 60000.	 Testing accuracy: 0.102700	 thread:0
+1020 correct out of 10000.	 Testing accuracy: 0.102000	 thread:0
+Iteration no: 1, weight[432] = 0.0000011763
+Iteration no: 10, weight[432] = 0.0000302235
+Training (log)loss: 2.2834004184	 thread:0
+6329 correct out of 60000.	 Testing accuracy: 0.105483	 thread:0
+1057 correct out of 10000.	 Testing accuracy: 0.105700	 thread:0
+Iteration no: 100, weight[432] = 0.0002819181
+Training (log)loss: 2.1403578769	 thread:0
+7720 correct out of 60000.	 Testing accuracy: 0.128667	 thread:0
+1257 correct out of 10000.	 Testing accuracy: 0.125700	 thread:0
+Iteration no: 1000, weight[432] = 0.0021117650
+Training (log)loss: 0.7902992187	 thread:0
+13243 correct out of 60000.	 Testing accuracy: 0.220717	 thread:0
+2181 correct out of 10000.	 Testing accuracy: 0.218100	 thread:0
+Iteration no: 10000, weight[432] = 0.0174563217
+Training (log)loss: -12.2221893045	 thread:0
+14590 correct out of 60000.	 Testing accuracy: 0.243167	 thread:0
+2397 correct out of 10000.	 Testing accuracy: 0.239700	 thread:0
+Iteration no: 40000, weight[432] = 0.0495832575
+Training (log)loss: -50.6986948851	 thread:0
+19451 correct out of 60000.	 Testing accuracy: 0.324183	 thread:0
+3202 correct out of 10000.	 Testing accuracy: 0.320200	 thread:0
+Iteration no: 80000, weight[432] = 0.0968453422
+Training (log)loss: -93.4492138277	 thread:0
+20369 correct out of 60000.	 Testing accuracy: 0.339483	 thread:0
+3326 correct out of 10000.	 Testing accuracy: 0.332600	 thread:0
+Iteration no: 100000, weight[432] = 0.1134102896
+Training (log)loss: -111.7266683436	 thread:0
+20703 correct out of 60000.	 Testing accuracy: 0.345050	 thread:0
+3396 correct out of 10000.	 Testing accuracy: 0.339600	 thread:0
+Iteration no: 120000, weight[432] = 0.1272786420
+Training (log)loss: -127.3862997785	 thread:0
+20658 correct out of 60000.	 Testing accuracy: 0.344300	 thread:0
+3367 correct out of 10000.	 Testing accuracy: 0.336700	 thread:0
+Iteration no: 160000, weight[432] = 0.1513763494
+Training (log)loss: -155.1687745391	 thread:0
+20839 correct out of 60000.	 Testing accuracy: 0.347317	 thread:0
+3400 correct out of 10000.	 Testing accuracy: 0.340000	 thread:0
+Iteration no: 199999, weight[432] = 0.1843715201
+Training (log)loss: -177.5223373869	 thread:0
+21072 correct out of 60000.	 Testing accuracy: 0.351200	 thread:0
+3454 correct out of 10000.	 Testing accuracy: 0.345400	 thread:0
+
+Time elapsed in training = 123.282203 sec
+Time elapsed in training per iteration = 0.000616 sec
+new loss: -177.522337 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 2
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3454 correct out of 10000.	 Testing accuracy: 0.345400	 thread:0
+End
+
+
+
+
+
+
+
+[ir967@cuda3 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+200000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000011765
+Iteration no: 0, weight[432] = 0.0000011765
+Training (log)loss: 2.3019360710	 thread:0
+6340 correct out of 60000.	 Testing accuracy: 0.105667	 thread:0
+1048 correct out of 10000.	 Testing accuracy: 0.104800	 thread:0
+Iteration no: 1, weight[432] = 0.0000023529
+Iteration no: 10, weight[432] = 0.0000607652
+Training (log)loss: 2.2972356859	 thread:0
+6292 correct out of 60000.	 Testing accuracy: 0.104867	 thread:0
+1023 correct out of 10000.	 Testing accuracy: 0.102300	 thread:0
+Iteration no: 100, weight[432] = 0.0001481743
+Training (log)loss: 2.2276097728	 thread:0
+7170 correct out of 60000.	 Testing accuracy: 0.119500	 thread:0
+1170 correct out of 10000.	 Testing accuracy: 0.117000	 thread:0
+Iteration no: 1000, weight[432] = 0.0019176615
+Training (log)loss: 1.5057260676	 thread:0
+7166 correct out of 60000.	 Testing accuracy: 0.119433	 thread:0
+1232 correct out of 10000.	 Testing accuracy: 0.123200	 thread:0
+Iteration no: 10000, weight[432] = 0.0096973723
+Training (log)loss: -5.2693502313	 thread:0
+12951 correct out of 60000.	 Testing accuracy: 0.215850	 thread:0
+2180 correct out of 10000.	 Testing accuracy: 0.218000	 thread:0
+Iteration no: 40000, weight[432] = 0.0332243599
+Training (log)loss: -26.2745915840	 thread:0
+17918 correct out of 60000.	 Testing accuracy: 0.298633	 thread:0
+2992 correct out of 10000.	 Testing accuracy: 0.299200	 thread:0
+Iteration no: 80000, weight[432] = 0.0694876832
+Training (log)loss: -52.6727005281	 thread:0
+19685 correct out of 60000.	 Testing accuracy: 0.328083	 thread:0
+3236 correct out of 10000.	 Testing accuracy: 0.323600	 thread:0
+Iteration no: 100000, weight[432] = 0.0945269016
+Training (log)loss: -64.9349596892	 thread:0
+20006 correct out of 60000.	 Testing accuracy: 0.333433	 thread:0
+3300 correct out of 10000.	 Testing accuracy: 0.330000	 thread:0
+Iteration no: 120000, weight[432] = 0.1009865274
+Training (log)loss: -76.0696802605	 thread:0
+19937 correct out of 60000.	 Testing accuracy: 0.332283	 thread:0
+3264 correct out of 10000.	 Testing accuracy: 0.326400	 thread:0
+Iteration no: 160000, weight[432] = 0.1296831486
+Training (log)loss: -97.1993142448	 thread:0
+20513 correct out of 60000.	 Testing accuracy: 0.341883	 thread:0
+3321 correct out of 10000.	 Testing accuracy: 0.332100	 thread:0
+Iteration no: 199999, weight[432] = 0.1490418673
+Training (log)loss: -115.4823283954	 thread:0
+20730 correct out of 60000.	 Testing accuracy: 0.345500	 thread:0
+3362 correct out of 10000.	 Testing accuracy: 0.336200	 thread:0
+
+Time elapsed in training = 118.767677 sec
+Time elapsed in training per iteration = 0.000594 sec
+new loss: -115.482328 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3362 correct out of 10000.	 Testing accuracy: 0.336200	 thread:0
+End
+
+
+
+
+[ir967@cuda3 SGD]$ ./hogwildSGD 
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+1000000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000011765
+Iteration no: 0, weight[432] = 0.0000011765
+Training (log)loss: 2.3019360710	 thread:0
+6340 correct out of 60000.	 Testing accuracy: 0.105667	 thread:0
+1048 correct out of 10000.	 Testing accuracy: 0.104800	 thread:0
+Iteration no: 1, weight[432] = 0.0000023529
+Iteration no: 10, weight[432] = 0.0000607652
+Training (log)loss: 2.2972356859	 thread:0
+6292 correct out of 60000.	 Testing accuracy: 0.104867	 thread:0
+1023 correct out of 10000.	 Testing accuracy: 0.102300	 thread:0
+Iteration no: 100, weight[432] = 0.0001481743
+Training (log)loss: 2.2276097728	 thread:0
+7170 correct out of 60000.	 Testing accuracy: 0.119500	 thread:0
+1170 correct out of 10000.	 Testing accuracy: 0.117000	 thread:0
+Iteration no: 1000, weight[432] = 0.0019176615
+Training (log)loss: 1.5057260676	 thread:0
+7166 correct out of 60000.	 Testing accuracy: 0.119433	 thread:0
+1232 correct out of 10000.	 Testing accuracy: 0.123200	 thread:0
+Iteration no: 10000, weight[432] = 0.0096973723
+Training (log)loss: -5.2693502313	 thread:0
+12951 correct out of 60000.	 Testing accuracy: 0.215850	 thread:0
+2180 correct out of 10000.	 Testing accuracy: 0.218000	 thread:0
+Iteration no: 100000, weight[432] = 0.0945269016
+Training (log)loss: -64.9349596892	 thread:0
+20006 correct out of 60000.	 Testing accuracy: 0.333433	 thread:0
+3300 correct out of 10000.	 Testing accuracy: 0.330000	 thread:0
+Iteration no: 200000, weight[432] = 0.1490432103
+Training (log)loss: -115.4814183372	 thread:0
+20730 correct out of 60000.	 Testing accuracy: 0.345500	 thread:0
+3364 correct out of 10000.	 Testing accuracy: 0.336400	 thread:0
+Iteration no: 400000, weight[432] = 0.2362742398
+Training (log)loss: -183.0276989556	 thread:0
+21133 correct out of 60000.	 Testing accuracy: 0.352217	 thread:0
+3453 correct out of 10000.	 Testing accuracy: 0.345300	 thread:0
+Iteration no: 600000, weight[432] = 0.3012493066
+Training (log)loss: -222.9435874182	 thread:0
+21368 correct out of 60000.	 Testing accuracy: 0.356133	 thread:0
+3473 correct out of 10000.	 Testing accuracy: 0.347300	 thread:0
+Iteration no: 800000, weight[432] = 0.3416902986
+Training (log)loss: -248.6937980815	 thread:0
+21455 correct out of 60000.	 Testing accuracy: 0.357583	 thread:0
+3479 correct out of 10000.	 Testing accuracy: 0.347900	 thread:0
+Iteration no: 999999, weight[432] = 0.3542084094
+Training (log)loss: -265.4477568488	 thread:0
+21591 correct out of 60000.	 Testing accuracy: 0.359850	 thread:0
+3499 correct out of 10000.	 Testing accuracy: 0.349900	 thread:0
+
+Time elapsed in training = 401.639975 sec
+Time elapsed in training per iteration = 0.000402 sec
+new loss: -265.447757 
+
+No of iterations for each thread block: 1000000
+No of threads in each block: 1024
+No of blocks: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3499 correct out of 10000.	 Testing accuracy: 0.349900	 thread:0
+End
+
+
+
+
+
+[ir967@cuda3 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+1000000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000011763
+Iteration no: 0, weight[432] = 0.0000011763
+Training (log)loss: 2.3013077460	 thread:0
+6095 correct out of 60000.	 Testing accuracy: 0.101583	 thread:0
+1004 correct out of 10000.	 Testing accuracy: 0.100400	 thread:0
+Iteration no: 1, weight[432] = 0.0000023528
+Iteration no: 10, weight[432] = -0.0000176295
+Training (log)loss: 2.2842235687	 thread:0
+6328 correct out of 60000.	 Testing accuracy: 0.105467	 thread:0
+1057 correct out of 10000.	 Testing accuracy: 0.105700	 thread:0
+Iteration no: 100, weight[432] = 0.0002147336
+Training (log)loss: 2.1455066262	 thread:0
+7722 correct out of 60000.	 Testing accuracy: 0.128700	 thread:0
+1257 correct out of 10000.	 Testing accuracy: 0.125700	 thread:0
+Iteration no: 1000, weight[432] = 0.0018971538
+Training (log)loss: 0.8231394541	 thread:0
+13144 correct out of 60000.	 Testing accuracy: 0.219067	 thread:0
+2161 correct out of 10000.	 Testing accuracy: 0.216100	 thread:0
+Iteration no: 10000, weight[432] = 0.0151816818
+Training (log)loss: -12.1587670142	 thread:0
+14472 correct out of 60000.	 Testing accuracy: 0.241200	 thread:0
+2366 correct out of 10000.	 Testing accuracy: 0.236600	 thread:0
+Iteration no: 100000, weight[432] = 0.1101202493
+Training (log)loss: -111.4484022395	 thread:0
+20740 correct out of 60000.	 Testing accuracy: 0.345667	 thread:0
+3397 correct out of 10000.	 Testing accuracy: 0.339700	 thread:0
+Iteration no: 200000, weight[432] = 0.1715960807
+Training (log)loss: -176.9890567740	 thread:0
+21074 correct out of 60000.	 Testing accuracy: 0.351233	 thread:0
+3453 correct out of 10000.	 Testing accuracy: 0.345300	 thread:0
+Iteration no: 400000, weight[432] = 0.2521534643
+Training (log)loss: -242.5238696003	 thread:0
+21447 correct out of 60000.	 Testing accuracy: 0.357450	 thread:0
+3497 correct out of 10000.	 Testing accuracy: 0.349700	 thread:0
+Iteration no: 600000, weight[432] = 0.3238774134
+Training (log)loss: -271.4628674586	 thread:0
+21628 correct out of 60000.	 Testing accuracy: 0.360467	 thread:0
+3514 correct out of 10000.	 Testing accuracy: 0.351400	 thread:0
+Iteration no: 800000, weight[432] = 0.3510542329
+Training (log)loss: -285.7406622033	 thread:0
+21753 correct out of 60000.	 Testing accuracy: 0.362550	 thread:0
+3502 correct out of 10000.	 Testing accuracy: 0.350200	 thread:0
+Iteration no: 999999, weight[432] = 0.3778385589
+Training (log)loss: -294.2883555176	 thread:0
+21852 correct out of 60000.	 Testing accuracy: 0.364200	 thread:0
+3500 correct out of 10000.	 Testing accuracy: 0.350000	 thread:0
+
+Time elapsed in training = 432.265863 sec
+Time elapsed in training per iteration = 0.000432 sec
+new loss: -294.288356 
+
+No of iterations for each thread block: 1000000
+No of threads in each block: 1024
+No of blocks: 2
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3500 correct out of 10000.	 Testing accuracy: 0.350000	 thread:0
+End
+
+
+
+
+
+
+
+[ir967@cuda3 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+200000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000302809
+Iteration no: 0, weight[432] = 0.0000302809
+Training (log)loss: 2.2868500593	 thread:0
+6039 correct out of 60000.	 Testing accuracy: 0.100650	 thread:0
+997 correct out of 10000.	 Testing accuracy: 0.099700	 thread:0
+Iteration no: 1, weight[432] = 0.0001992098
+Iteration no: 10, weight[432] = 0.0006407989
+Training (log)loss: 2.0289769302	 thread:0
+6179 correct out of 60000.	 Testing accuracy: 0.102983	 thread:0
+1034 correct out of 10000.	 Testing accuracy: 0.103400	 thread:0
+Iteration no: 100, weight[432] = 0.0040804262
+Training (log)loss: 0.0835112855	 thread:0
+8140 correct out of 60000.	 Testing accuracy: 0.135667	 thread:0
+1350 correct out of 10000.	 Testing accuracy: 0.135000	 thread:0
+Iteration no: 1000, weight[432] = 0.0306422826
+Training (log)loss: -19.0269516832	 thread:0
+16947 correct out of 60000.	 Testing accuracy: 0.282450	 thread:0
+2749 correct out of 10000.	 Testing accuracy: 0.274900	 thread:0
+Iteration no: 10000, weight[432] = 0.1829627497
+Training (log)loss: -150.7112445645	 thread:0
+20911 correct out of 60000.	 Testing accuracy: 0.348517	 thread:0
+3371 correct out of 10000.	 Testing accuracy: 0.337100	 thread:0
+Iteration no: 40000, weight[432] = 0.3645076325
+Training (log)loss: -277.2030292821	 thread:0
+21591 correct out of 60000.	 Testing accuracy: 0.359850	 thread:0
+3505 correct out of 10000.	 Testing accuracy: 0.350500	 thread:0
+Iteration no: 80000, weight[432] = 0.3829547782
+Training (log)loss: -307.3924325868	 thread:0
+21839 correct out of 60000.	 Testing accuracy: 0.363983	 thread:0
+3530 correct out of 10000.	 Testing accuracy: 0.353000	 thread:0
+Iteration no: 100000, weight[432] = 0.3849559875
+Training (log)loss: -312.6082780013	 thread:0
+21907 correct out of 60000.	 Testing accuracy: 0.365117	 thread:0
+3511 correct out of 10000.	 Testing accuracy: 0.351100	 thread:0
+Iteration no: 120000, weight[432] = 0.4073957106
+Training (log)loss: -314.8519343314	 thread:0
+22004 correct out of 60000.	 Testing accuracy: 0.366733	 thread:0
+3545 correct out of 10000.	 Testing accuracy: 0.354500	 thread:0
+Iteration no: 160000, weight[432] = 0.4115968071
+Training (log)loss: -320.2041619058	 thread:0
+22102 correct out of 60000.	 Testing accuracy: 0.368367	 thread:0
+3517 correct out of 10000.	 Testing accuracy: 0.351700	 thread:0
+Iteration no: 199999, weight[432] = 0.4231175923
+Training (log)loss: -321.2983987389	 thread:0
+22195 correct out of 60000.	 Testing accuracy: 0.369917	 thread:0
+3539 correct out of 10000.	 Testing accuracy: 0.353900	 thread:0
+
+Time elapsed in training = 451.138942 sec
+Time elapsed in training per iteration = 0.002256 sec
+new loss: -321.298399 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 64
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3539 correct out of 10000.	 Testing accuracy: 0.353900	 thread:0
+End
+
+
+
+
+
+[ir967@cuda3 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+200000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000035270
+Iteration no: 0, weight[432] = 0.0000035270
+Training (log)loss: 2.2993473932	 thread:0
+6081 correct out of 60000.	 Testing accuracy: 0.101350	 thread:0
+1003 correct out of 10000.	 Testing accuracy: 0.100300	 thread:0
+Iteration no: 1, weight[432] = 0.0000121517
+Iteration no: 10, weight[432] = 0.0000555752
+Training (log)loss: 2.2471109997	 thread:0
+6130 correct out of 60000.	 Testing accuracy: 0.102167	 thread:0
+1011 correct out of 10000.	 Testing accuracy: 0.101100	 thread:0
+Iteration no: 100, weight[432] = 0.0008369895
+Training (log)loss: 1.8810366633	 thread:0
+10940 correct out of 60000.	 Testing accuracy: 0.182333	 thread:0
+1819 correct out of 10000.	 Testing accuracy: 0.181900	 thread:0
+Iteration no: 1000, weight[432] = 0.0060870564
+Training (log)loss: -1.6064222409	 thread:0
+12589 correct out of 60000.	 Testing accuracy: 0.209817	 thread:0
+2082 correct out of 10000.	 Testing accuracy: 0.208200	 thread:0
+Iteration no: 10000, weight[432] = 0.0297752333
+Training (log)loss: -33.0533802550	 thread:0
+17961 correct out of 60000.	 Testing accuracy: 0.299350	 thread:0
+2892 correct out of 10000.	 Testing accuracy: 0.289200	 thread:0
+Iteration no: 40000, weight[432] = 0.1046596941
+Training (log)loss: -112.2973218688	 thread:0
+20637 correct out of 60000.	 Testing accuracy: 0.343950	 thread:0
+3383 correct out of 10000.	 Testing accuracy: 0.338300	 thread:0
+Iteration no: 80000, weight[432] = 0.1850944910
+Training (log)loss: -177.9815127181	 thread:0
+21077 correct out of 60000.	 Testing accuracy: 0.351283	 thread:0
+3450 correct out of 10000.	 Testing accuracy: 0.345000	 thread:0
+Iteration no: 100000, weight[432] = 0.2231914390
+Training (log)loss: -200.6973340834	 thread:0
+21175 correct out of 60000.	 Testing accuracy: 0.352917	 thread:0
+3488 correct out of 10000.	 Testing accuracy: 0.348800	 thread:0
+Iteration no: 120000, weight[432] = 0.2399418302
+Training (log)loss: -218.0210464391	 thread:0
+21298 correct out of 60000.	 Testing accuracy: 0.354967	 thread:0
+3476 correct out of 10000.	 Testing accuracy: 0.347600	 thread:0
+Iteration no: 160000, weight[432] = 0.2805606499
+Training (log)loss: -243.1849531171	 thread:0
+21420 correct out of 60000.	 Testing accuracy: 0.357000	 thread:0
+3493 correct out of 10000.	 Testing accuracy: 0.349300	 thread:0
+Iteration no: 199999, weight[432] = 0.2965593501
+Training (log)loss: -259.4997353815	 thread:0
+21588 correct out of 60000.	 Testing accuracy: 0.359800	 thread:0
+3490 correct out of 10000.	 Testing accuracy: 0.349000	 thread:0
+
+Time elapsed in training = 141.911966 sec
+Time elapsed in training per iteration = 0.000710 sec
+new loss: -259.499735 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 8
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3490 correct out of 10000.	 Testing accuracy: 0.349000	 thread:0
+End
+
+
+
+
+[ir967@cuda3 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+200000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000011765
+Iteration no: 0, weight[432] = 0.0000011765
+Training (log)loss: 2.3019360710	 thread:0
+6340 correct out of 60000.	 Testing accuracy: 0.105667	 thread:0
+1048 correct out of 10000.	 Testing accuracy: 0.104800	 thread:0
+Iteration no: 1, weight[432] = 0.0000023529
+Iteration no: 10, weight[432] = 0.0000607652
+Training (log)loss: 2.2972356859	 thread:0
+6292 correct out of 60000.	 Testing accuracy: 0.104867	 thread:0
+1023 correct out of 10000.	 Testing accuracy: 0.102300	 thread:0
+Iteration no: 100, weight[432] = 0.0001481743
+Training (log)loss: 2.2276097728	 thread:0
+7170 correct out of 60000.	 Testing accuracy: 0.119500	 thread:0
+1170 correct out of 10000.	 Testing accuracy: 0.117000	 thread:0
+Iteration no: 1000, weight[432] = 0.0019176615
+Training (log)loss: 1.5057260676	 thread:0
+7166 correct out of 60000.	 Testing accuracy: 0.119433	 thread:0
+1232 correct out of 10000.	 Testing accuracy: 0.123200	 thread:0
+Iteration no: 10000, weight[432] = 0.0096973723
+Training (log)loss: -5.2693502313	 thread:0
+12951 correct out of 60000.	 Testing accuracy: 0.215850	 thread:0
+2180 correct out of 10000.	 Testing accuracy: 0.218000	 thread:0
+Iteration no: 40000, weight[432] = 0.0332243599
+Training (log)loss: -26.2745915840	 thread:0
+17918 correct out of 60000.	 Testing accuracy: 0.298633	 thread:0
+2992 correct out of 10000.	 Testing accuracy: 0.299200	 thread:0
+Iteration no: 80000, weight[432] = 0.0694876832
+Training (log)loss: -52.6727005281	 thread:0
+19685 correct out of 60000.	 Testing accuracy: 0.328083	 thread:0
+3236 correct out of 10000.	 Testing accuracy: 0.323600	 thread:0
+Iteration no: 100000, weight[432] = 0.0945269016
+Training (log)loss: -64.9349596892	 thread:0
+20006 correct out of 60000.	 Testing accuracy: 0.333433	 thread:0
+3300 correct out of 10000.	 Testing accuracy: 0.330000	 thread:0
+Iteration no: 120000, weight[432] = 0.1009865274
+Training (log)loss: -76.0696802605	 thread:0
+19937 correct out of 60000.	 Testing accuracy: 0.332283	 thread:0
+3264 correct out of 10000.	 Testing accuracy: 0.326400	 thread:0
+Iteration no: 160000, weight[432] = 0.1296831486
+Training (log)loss: -97.1993142448	 thread:0
+20513 correct out of 60000.	 Testing accuracy: 0.341883	 thread:0
+3321 correct out of 10000.	 Testing accuracy: 0.332100	 thread:0
+Iteration no: 199999, weight[432] = 0.1490418673
+Training (log)loss: -115.4823283954	 thread:0
+20730 correct out of 60000.	 Testing accuracy: 0.345500	 thread:0
+3362 correct out of 10000.	 Testing accuracy: 0.336200	 thread:0
+
+Time elapsed in training = 118.767677 sec
+Time elapsed in training per iteration = 0.000594 sec
+new loss: -115.482328 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3362 correct out of 10000.	 Testing accuracy: 0.336200	 thread:0
+End
+
+
+
+
+
+[ir967@cuda3 SGD]$ nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr;
+[ir967@cuda3 SGD]$ ./hogwildSGD 
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+200000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000035277
+Iteration no: 0, weight[432] = 0.0000035277
+Training (log)loss: 2.2999841847	 thread:0
+6074 correct out of 60000.	 Testing accuracy: 0.101233	 thread:0
+1003 correct out of 10000.	 Testing accuracy: 0.100300	 thread:0
+Iteration no: 1, weight[432] = -0.0000058839
+Iteration no: 10, weight[432] = 0.0001110763
+Training (log)loss: 2.2710162735	 thread:0
+6306 correct out of 60000.	 Testing accuracy: 0.105100	 thread:0
+1032 correct out of 10000.	 Testing accuracy: 0.103200	 thread:0
+Iteration no: 100, weight[432] = -0.0000232513
+Training (log)loss: 2.0220523036	 thread:0
+8959 correct out of 60000.	 Testing accuracy: 0.149317	 thread:0
+1500 correct out of 10000.	 Testing accuracy: 0.150000	 thread:0
+Iteration no: 1000, weight[432] = 0.0022272280
+Training (log)loss: -0.6383038804	 thread:0
+10028 correct out of 60000.	 Testing accuracy: 0.167133	 thread:0
+1639 correct out of 10000.	 Testing accuracy: 0.163900	 thread:0
+Iteration no: 10000, weight[432] = 0.0262605690
+Training (log)loss: -25.7075794205	 thread:0
+17012 correct out of 60000.	 Testing accuracy: 0.283533	 thread:0
+2789 correct out of 10000.	 Testing accuracy: 0.278900	 thread:0
+Iteration no: 40000, weight[432] = 0.1021437320
+Training (log)loss: -92.1533412605	 thread:0
+20514 correct out of 60000.	 Testing accuracy: 0.341900	 thread:0
+3386 correct out of 10000.	 Testing accuracy: 0.338600	 thread:0
+Iteration no: 80000, weight[432] = 0.1783410306
+Training (log)loss: -153.3305884932	 thread:0
+20964 correct out of 60000.	 Testing accuracy: 0.349400	 thread:0
+3428 correct out of 10000.	 Testing accuracy: 0.342800	 thread:0
+Iteration no: 100000, weight[432] = 0.2189706142
+Training (log)loss: -175.7436600739	 thread:0
+21092 correct out of 60000.	 Testing accuracy: 0.351533	 thread:0
+3465 correct out of 10000.	 Testing accuracy: 0.346500	 thread:0
+Iteration no: 120000, weight[432] = 0.2349627410
+Training (log)loss: -193.5305493110	 thread:0
+21130 correct out of 60000.	 Testing accuracy: 0.352167	 thread:0
+3464 correct out of 10000.	 Testing accuracy: 0.346400	 thread:0
+Iteration no: 160000, weight[432] = 0.2770885245
+Training (log)loss: -221.8456211921	 thread:0
+21304 correct out of 60000.	 Testing accuracy: 0.355067	 thread:0
+3477 correct out of 10000.	 Testing accuracy: 0.347700	 thread:0
+Iteration no: 199999, weight[432] = 0.3064007411
+Training (log)loss: -241.0347167517	 thread:0
+21437 correct out of 60000.	 Testing accuracy: 0.357283	 thread:0
+3492 correct out of 10000.	 Testing accuracy: 0.349200	 thread:0
+
+Time elapsed in training = 137.629988 sec
+Time elapsed in training per iteration = 0.000688 sec
+new loss: -241.034717 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 4
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3492 correct out of 10000.	 Testing accuracy: 0.349200	 thread:0
+End
+
+
+
+
+[ir967@cuda3 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr;
+[ir967@cuda3 SGD]$ ./hogwildSGD 
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+200000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000047007
+Iteration no: 0, weight[432] = 0.0000047007
+Training (log)loss: 2.2971466850	 thread:0
+6063 correct out of 60000.	 Testing accuracy: 0.101050	 thread:0
+1004 correct out of 10000.	 Testing accuracy: 0.100400	 thread:0
+Iteration no: 1, weight[432] = -0.0000074550
+Iteration no: 10, weight[432] = -0.0002740105
+Training (log)loss: 2.2526234965	 thread:0
+6131 correct out of 60000.	 Testing accuracy: 0.102183	 thread:0
+1010 correct out of 10000.	 Testing accuracy: 0.101000	 thread:0
+Iteration no: 100, weight[432] = 0.0006842812
+Training (log)loss: 1.7801321601	 thread:0
+7995 correct out of 60000.	 Testing accuracy: 0.133250	 thread:0
+1361 correct out of 10000.	 Testing accuracy: 0.136100	 thread:0
+Iteration no: 1000, weight[432] = 0.0077437642
+Training (log)loss: -3.1549967059	 thread:0
+12402 correct out of 60000.	 Testing accuracy: 0.206700	 thread:0
+2081 correct out of 10000.	 Testing accuracy: 0.208100	 thread:0
+Iteration no: 10000, weight[432] = 0.0432403981
+Training (log)loss: -46.8572412410	 thread:0
+19652 correct out of 60000.	 Testing accuracy: 0.327533	 thread:0
+3182 correct out of 10000.	 Testing accuracy: 0.318200	 thread:0
+Iteration no: 40000, weight[432] = 0.1434308835
+Training (log)loss: -144.2470985172	 thread:0
+20985 correct out of 60000.	 Testing accuracy: 0.349750	 thread:0
+3455 correct out of 10000.	 Testing accuracy: 0.345500	 thread:0
+Iteration no: 80000, weight[432] = 0.2376864984
+Training (log)loss: -212.8647545851	 thread:0
+21298 correct out of 60000.	 Testing accuracy: 0.354967	 thread:0
+3460 correct out of 10000.	 Testing accuracy: 0.346000	 thread:0
+Iteration no: 100000, weight[432] = 0.2869254695
+Training (log)loss: -233.5574203212	 thread:0
+21426 correct out of 60000.	 Testing accuracy: 0.357100	 thread:0
+3475 correct out of 10000.	 Testing accuracy: 0.347500	 thread:0
+Iteration no: 120000, weight[432] = 0.3140654749
+Training (log)loss: -248.3900634056	 thread:0
+21549 correct out of 60000.	 Testing accuracy: 0.359150	 thread:0
+3485 correct out of 10000.	 Testing accuracy: 0.348500	 thread:0
+Iteration no: 160000, weight[432] = 0.3450984327
+Training (log)loss: -268.5832674896	 thread:0
+21582 correct out of 60000.	 Testing accuracy: 0.359700	 thread:0
+3518 correct out of 10000.	 Testing accuracy: 0.351800	 thread:0
+Iteration no: 199999, weight[432] = 0.3548957638
+Training (log)loss: -280.7865307654	 thread:0
+21654 correct out of 60000.	 Testing accuracy: 0.360900	 thread:0
+3500 correct out of 10000.	 Testing accuracy: 0.350000	 thread:0
+
+Time elapsed in training = 155.535668 sec
+Time elapsed in training per iteration = 0.000778 sec
+new loss: -280.786531 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 16
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3500 correct out of 10000.	 Testing accuracy: 0.350000	 thread:0
+End
+
+
+
+
+[ir967@cuda3 SGD]$ rm -f hogwildSGD; nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+Enter iterations (> 10):
+200000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000152430
+Iteration no: 0, weight[432] = 0.0000152430
+Training (log)loss: 2.2925784363	 thread:0
+6046 correct out of 60000.	 Testing accuracy: 0.100767	 thread:0
+999 correct out of 10000.	 Testing accuracy: 0.099900	 thread:0
+Iteration no: 1, weight[432] = -0.0000177253
+Iteration no: 10, weight[432] = -0.0000405696
+Training (log)loss: 2.1804862954	 thread:0
+6125 correct out of 60000.	 Testing accuracy: 0.102083	 thread:0
+1007 correct out of 10000.	 Testing accuracy: 0.100700	 thread:0
+Iteration no: 100, weight[432] = 0.0011291094
+Training (log)loss: 1.1335428694	 thread:0
+6144 correct out of 60000.	 Testing accuracy: 0.102400	 thread:0
+1009 correct out of 10000.	 Testing accuracy: 0.100900	 thread:0
+Iteration no: 1000, weight[432] = 0.0107315821
+Training (log)loss: -8.7002737355	 thread:0
+14075 correct out of 60000.	 Testing accuracy: 0.234583	 thread:0
+2337 correct out of 10000.	 Testing accuracy: 0.233700	 thread:0
+Iteration no: 10000, weight[432] = 0.0999891059
+Training (log)loss: -90.1093225955	 thread:0
+20521 correct out of 60000.	 Testing accuracy: 0.342017	 thread:0
+3305 correct out of 10000.	 Testing accuracy: 0.330500	 thread:0
+Iteration no: 40000, weight[432] = 0.2535570134
+Training (log)loss: -220.3821688809	 thread:0
+21381 correct out of 60000.	 Testing accuracy: 0.356350	 thread:0
+3475 correct out of 10000.	 Testing accuracy: 0.347500	 thread:0
+Iteration no: 80000, weight[432] = 0.3148354599
+Training (log)loss: -275.1332304515	 thread:0
+21592 correct out of 60000.	 Testing accuracy: 0.359867	 thread:0
+3491 correct out of 10000.	 Testing accuracy: 0.349100	 thread:0
+Iteration no: 100000, weight[432] = 0.3471458111
+Training (log)loss: -287.4681895582	 thread:0
+21703 correct out of 60000.	 Testing accuracy: 0.361717	 thread:0
+3506 correct out of 10000.	 Testing accuracy: 0.350600	 thread:0
+Iteration no: 120000, weight[432] = 0.3716508103
+Training (log)loss: -295.4092666168	 thread:0
+21800 correct out of 60000.	 Testing accuracy: 0.363333	 thread:0
+3518 correct out of 10000.	 Testing accuracy: 0.351800	 thread:0
+Iteration no: 160000, weight[432] = 0.3649979022
+Training (log)loss: -304.6871000191	 thread:0
+21901 correct out of 60000.	 Testing accuracy: 0.365017	 thread:0
+3530 correct out of 10000.	 Testing accuracy: 0.353000	 thread:0
+Iteration no: 199999, weight[432] = 0.3681586791
+Training (log)loss: -308.2100457872	 thread:0
+21953 correct out of 60000.	 Testing accuracy: 0.365883	 thread:0
+3530 correct out of 10000.	 Testing accuracy: 0.353000	 thread:0
+
+Time elapsed in training = 230.499940 sec
+Time elapsed in training per iteration = 0.001152 sec
+new loss: -308.210046 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 32
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3530 correct out of 10000.	 Testing accuracy: 0.353000	 thread:0
+End
+
+
+
+
+
+
+On cuda2.cims.nyu.edu
+
+
 [ir967@cuda2 SGD]$ nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr; ./hogwildSGD; rm -f hogwildSGD
 Started main.
 trainingData[24356][432] = -0.0117647059
