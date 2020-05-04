@@ -1,0 +1,151 @@
+[ir967@log-0 SGD]$ srun -t1:30:00 --mem=3000 --gres=gpu:1 --pty /bin/bash
+srun: job 9579235 queued and waiting for resources
+srun: job 9579235 has been allocated resources
+[ir967@gpu-90 SGD]$ module load tensorflow/python2.7/1.5.0
+
+
+The following have been reloaded with a version change:
+  1) cuda/10.2.89 => cuda/9.0.176
+
+[ir967@gpu-90 SGD]$ 
+[ir967@gpu-90 SGD]$ module load gcc/6.3.0
+[ir967@gpu-90 SGD]$ module list
+
+Currently Loaded Modules:
+  1) intel/17.0.1       3) python/intel/2.7.12            5) cuda/9.0.176      7) tensorflow/python2.7/1.5.0   9) mpfr/gnu/3.1.5  11) gcc/6.3.0
+  2) zlib/intel/1.2.8   4) numpy/python2.7/intel/1.14.0   6) cudnn/9.0v7.0.5   8) gmp/gnu/6.1.2               10) mpc/gnu/1.0.3
+
+ 
+
+[ir967@gpu-90 SGD]$ 
+[ir967@gpu-90 SGD]$ nvcc -arch=compute_30 -o hogwildSGD hogwildSGD.cu -Xcompiler -fopenmp --maxrregcount 60 --expt-relaxed-constexpr;
+
+[ir967@gpu-90 SGD]$ 
+[ir967@gpu-90 SGD]$ ./hogwildSGD
+Started main.
+trainingData[24356][432] = -0.0117647059
+trainingLabel[24356] = 3
+Data loaded to Host.
+Data loaded to device.
+10000 correct out of 10000.	 Testing accuracy: 1.000000	 thread:0
+Accuracy is too high. Check if weights are zeros.
+weight[432] = 0.0000000000
+old loss: 2.302585 
+weight[432] = 0.000000
+Iteration no: 0, weight[432] = 0.0000047044
+Iteration no: 0, weight[432] = 0.0000047044
+Training (log)loss: 2.3000116212	 thread:0
+6059 correct out of 60000.	 Testing accuracy: 0.100983	 thread:0
+1002 correct out of 10000.	 Testing accuracy: 0.100200	 thread:0
+Iteration no: 1, weight[432] = -0.0000047081
+Iteration no: 10, weight[432] = 0.0000835825
+Training (log)loss: 2.2699964797	 thread:0
+6295 correct out of 60000.	 Testing accuracy: 0.104917	 thread:0
+1032 correct out of 10000.	 Testing accuracy: 0.103200	 thread:0
+Iteration no: 100, weight[432] = 0.0000235126
+Training (log)loss: 2.0058437434	 thread:0
+8960 correct out of 60000.	 Testing accuracy: 0.149333	 thread:0
+1500 correct out of 10000.	 Testing accuracy: 0.150000	 thread:0
+Iteration no: 1000, weight[432] = 0.0029584965
+Training (log)loss: -0.7168510175	 thread:0
+10057 correct out of 60000.	 Testing accuracy: 0.167617	 thread:0
+1649 correct out of 10000.	 Testing accuracy: 0.164900	 thread:0
+Iteration no: 10000, weight[432] = 0.0312942186
+Training (log)loss: -26.3986336157	 thread:0
+17368 correct out of 60000.	 Testing accuracy: 0.289467	 thread:0
+2828 correct out of 10000.	 Testing accuracy: 0.282800	 thread:0
+Iteration no: 40000, weight[432] = 0.1098818320
+Training (log)loss: -94.3660616001	 thread:0
+20578 correct out of 60000.	 Testing accuracy: 0.342967	 thread:0
+3389 correct out of 10000.	 Testing accuracy: 0.338900	 thread:0
+Iteration no: 80000, weight[432] = 0.1906386302
+Training (log)loss: -156.6274465957	 thread:0
+21026 correct out of 60000.	 Testing accuracy: 0.350433	 thread:0
+3412 correct out of 10000.	 Testing accuracy: 0.341200	 thread:0
+Iteration no: 100000, weight[432] = 0.2173254597
+Training (log)loss: -179.3153606896	 thread:0
+21147 correct out of 60000.	 Testing accuracy: 0.352450	 thread:0
+3450 correct out of 10000.	 Testing accuracy: 0.345000	 thread:0
+Iteration no: 120000, weight[432] = 0.2367236972
+Training (log)loss: -197.2805670217	 thread:0
+21197 correct out of 60000.	 Testing accuracy: 0.353283	 thread:0
+3467 correct out of 10000.	 Testing accuracy: 0.346700	 thread:0
+Iteration no: 160000, weight[432] = 0.2803488145
+Training (log)loss: -225.4612281112	 thread:0
+21347 correct out of 60000.	 Testing accuracy: 0.355783	 thread:0
+3473 correct out of 10000.	 Testing accuracy: 0.347300	 thread:0
+Iteration no: 199999, weight[432] = 0.3102648076
+Training (log)loss: -244.7701698086	 thread:0
+21476 correct out of 60000.	 Testing accuracy: 0.357933	 thread:0
+3502 correct out of 10000.	 Testing accuracy: 0.350200	 thread:0
+
+Time elapsed in training = 107.200926 sec
+Time elapsed in training per iteration = 0.000536 sec
+new loss: -244.770170 
+
+No of iterations for each thread block: 200000
+No of threads in each block: 1024
+No of blocks: 4
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3502 correct out of 10000.	 Testing accuracy: 0.350200	 thread:0
+End
+[ir967@gpu-90 SGD]$ python ./TensorFlow/nikhil-mnist.py
+Loaded libraries
+Extracting MNIST_data/train-images-idx3-ubyte.gz
+Extracting MNIST_data/train-labels-idx1-ubyte.gz
+Extracting MNIST_data/t10k-images-idx3-ubyte.gz
+Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
+Data initialized
+WARNING:tensorflow:From ./TensorFlow/nikhil-mnist.py:56: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See tf.nn.softmax_cross_entropy_with_logits_v2.
+
+2020-05-04 01:11:02.489929: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2020-05-04 01:11:02.653156: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+name: Tesla V100-PCIE-16GB major: 7 minor: 0 memoryClockRate(GHz): 1.38
+pciBusID: 0000:d8:00.0
+totalMemory: 15.75GiB freeMemory: 15.44GiB
+2020-05-04 01:11:02.653418: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla V100-PCIE-16GB, pci bus id: 0000:d8:00.0, compute capability: 7.0)
+Initialized
+Minibatch loss at step 0: 13.1987953186
+Minibatch accuracy: 0.0%
+Validation accuracy: 7.1%
+Minibatch loss at step 20000: 7.2904214859
+Minibatch accuracy: 0.0%
+Validation accuracy: 64.4%
+Minibatch loss at step 40000: 0.000800051027909
+Minibatch accuracy: 100.0%
+Validation accuracy: 74.2%
+Minibatch loss at step 60000: 0.00200344971381
+Minibatch accuracy: 100.0%
+Validation accuracy: 78.8%
+Minibatch loss at step 80000: 4.54853010178
+Minibatch accuracy: 0.0%
+Validation accuracy: 80.8%
+Minibatch loss at step 100000: 0.00400313083082
+Minibatch accuracy: 100.0%
+Validation accuracy: 82.4%
+Minibatch loss at step 120000: 2.93396401405
+Minibatch accuracy: 0.0%
+Validation accuracy: 83.4%
+Minibatch loss at step 140000: 0.00856417324394
+Minibatch accuracy: 100.0%
+Validation accuracy: 84.4%
+Minibatch loss at step 160000: 9.84442520142
+Minibatch accuracy: 0.0%
+Validation accuracy: 84.7%
+Minibatch loss at step 180000: 4.9113019486e-05
+Minibatch accuracy: 100.0%
+Validation accuracy: 85.4%
+
+Test accuracy: 85.6%
+No of iterations: 200000
+Lambda (Regularization Parameter): 0
+Eta (Learning Rate): 0.001000
+Time elapsed in  training: 206.579092
+Time elapsed in training per data point= 0.001033

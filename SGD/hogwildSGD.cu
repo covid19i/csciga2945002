@@ -137,10 +137,11 @@ int main(int argc, const char * argv[]) {
       printf("  Device name: %s\n", prop.name);
     }*/
     
-    printf("Enter iterations (> 10):\n");
+    //printf("Enter iterations (> 10):\n");
     int n_iterations=10;
-    scanf("%d", &n_iterations);
-    
+    //scanf("%d", &n_iterations);
+    n_iterations = 200000;    
+
     double eta;
     eta=0.001;
     //printf("\nEnter learning rate (eta = 0.001):\n");
@@ -157,7 +158,7 @@ int main(int argc, const char * argv[]) {
           printf("weight[%d] = %f\n", QUERY, weight[QUERY]);
 
     //printf("Enter number of blocks to run simultaneously. Each block will process one data point at any time.\n");
-    int n_blocks = 2;
+    int n_blocks = 4;
     //scanf("%d", n_blocks);
     //update the weight
     for(long j=0;j<n_iterations;j++){

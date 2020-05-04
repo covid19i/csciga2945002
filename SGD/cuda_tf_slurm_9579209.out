@@ -1,0 +1,59 @@
+
+Currently Loaded Modules:
+  1) intel/17.0.1                   7) tensorflow/python2.7/1.5.0
+  2) zlib/intel/1.2.8               8) gmp/gnu/6.1.2
+  3) python/intel/2.7.12            9) mpfr/gnu/3.1.5
+  4) numpy/python2.7/intel/1.14.0  10) mpc/gnu/1.0.3
+  5) cuda/9.0.176                  11) gcc/6.3.0
+  6) cudnn/9.0v7.0.5
+
+ 
+
+Loaded libraries
+Successfully downloaded train-images-idx3-ubyte.gz 9912422 bytes.
+Extracting MNIST_data/train-images-idx3-ubyte.gz
+Successfully downloaded train-labels-idx1-ubyte.gz 28881 bytes.
+Extracting MNIST_data/train-labels-idx1-ubyte.gz
+Successfully downloaded t10k-images-idx3-ubyte.gz 1648877 bytes.
+Extracting MNIST_data/t10k-images-idx3-ubyte.gz
+Successfully downloaded t10k-labels-idx1-ubyte.gz 4542 bytes.
+Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
+Data initialized
+Initialized
+Minibatch loss at step 0: 19.0716724396
+Minibatch accuracy: 0.0%
+Validation accuracy: 7.7%
+Minibatch loss at step 20000: 0.00781573262066
+Minibatch accuracy: 100.0%
+Validation accuracy: 61.3%
+Minibatch loss at step 40000: 8.41726779938
+Minibatch accuracy: 0.0%
+Validation accuracy: 72.6%
+Minibatch loss at step 60000: 0.0884880423546
+Minibatch accuracy: 100.0%
+Validation accuracy: 76.9%
+Minibatch loss at step 80000: 0.0512302480638
+Minibatch accuracy: 100.0%
+Validation accuracy: 79.4%
+Minibatch loss at step 100000: 2.3841855068e-07
+Minibatch accuracy: 100.0%
+Validation accuracy: 81.1%
+Minibatch loss at step 120000: 0.000809580087662
+Minibatch accuracy: 100.0%
+Validation accuracy: 82.2%
+Minibatch loss at step 140000: 0.27367785573
+Minibatch accuracy: 100.0%
+Validation accuracy: 83.3%
+Minibatch loss at step 160000: 0.000156151974807
+Minibatch accuracy: 100.0%
+Validation accuracy: 84.0%
+Minibatch loss at step 180000: 0.0013428251259
+Minibatch accuracy: 100.0%
+Validation accuracy: 84.7%
+
+Test accuracy: 85.4%
+No of iterations: 200000
+Lambda (Regularization Parameter): 0
+Eta (Learning Rate): 0.001000
+Time elapsed in  training: 209.052657
+Time elapsed in training per data point= 0.001045

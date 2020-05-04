@@ -1,0 +1,52 @@
+
+Currently Loaded Modules:
+  1) intel/17.0.1                   5) cuda/9.0.176
+  2) zlib/intel/1.2.8               6) cudnn/9.0v7.0.5
+  3) python/intel/2.7.12            7) tensorflow/python2.7/1.5.0
+  4) numpy/python2.7/intel/1.14.0
+
+ 
+
+Loaded libraries
+Extracting MNIST_data/train-images-idx3-ubyte.gz
+Extracting MNIST_data/train-labels-idx1-ubyte.gz
+Extracting MNIST_data/t10k-images-idx3-ubyte.gz
+Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
+Data initialized
+Initialized
+Minibatch loss at step 0: 11.3676834106
+Minibatch accuracy: 0.0%
+Validation accuracy: 15.8%
+Minibatch loss at step 20000: 0.466161072254
+Minibatch accuracy: 100.0%
+Validation accuracy: 62.5%
+Minibatch loss at step 40000: 0.00823483336717
+Minibatch accuracy: 100.0%
+Validation accuracy: 74.1%
+Minibatch loss at step 60000: 0.00593234272674
+Minibatch accuracy: 100.0%
+Validation accuracy: 78.1%
+Minibatch loss at step 80000: 0.000599681283347
+Minibatch accuracy: 100.0%
+Validation accuracy: 80.7%
+Minibatch loss at step 100000: 0.0309089776129
+Minibatch accuracy: 100.0%
+Validation accuracy: 81.9%
+Minibatch loss at step 120000: 4.76837044516e-07
+Minibatch accuracy: 100.0%
+Validation accuracy: 83.1%
+Minibatch loss at step 140000: 0.00462082680315
+Minibatch accuracy: 100.0%
+Validation accuracy: 84.0%
+Minibatch loss at step 160000: 0.143575564027
+Minibatch accuracy: 100.0%
+Validation accuracy: 84.8%
+Minibatch loss at step 180000: 2.38418306253e-06
+Minibatch accuracy: 100.0%
+Validation accuracy: 85.2%
+
+Test accuracy: 85.7%
+No of iterations: 200000
+Lambda (Regularization Parameter): 0
+Eta (Learning Rate): 0.001000
+Time elapsed in  training: 207.467739

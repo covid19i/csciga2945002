@@ -6,10 +6,8 @@
 #SBATCH --output=slurm_hw5%j.out
 #SBATCH --error=slurm_hw5_%j.err
 #SBATCH --time=00:05:00
-#SBATCH --nodes=8
-#SBATCH --ntasks-per-node=10
-#SBATCH --ntasks-per-core=1
-#SBATCH --cpus-per-task=1
+#SBATCH --gres=gpu:1
+#SBATCH --ntasks-per-node=1
 #SBATCH --mem=2GB
 
 
