@@ -157,7 +157,7 @@ int main(int argc, const char * argv[]) {
           printf("weight[%d] = %f\n", QUERY, weight[QUERY]);
 
     //printf("Enter number of blocks to run simultaneously. Each block will process one data point at any time.\n");
-    int n_blocks = 16;
+    int n_blocks = 2;
     //scanf("%d", n_blocks);
     //update the weight
     for(long j=0;j<n_iterations;j++){
