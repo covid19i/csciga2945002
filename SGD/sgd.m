@@ -55,3 +55,8 @@ title(str_title)
 xlabel('Number of Blocks')
 ylabel('Iterations')
 legend('Iterations', 'Ideal Iterations')
+
+
+threads = [1, 2, 4, 8, 16];
+iterations = [1000000];
+time=[181.201322, 21.944274, 240.768346, 41.232886, 980.983760];

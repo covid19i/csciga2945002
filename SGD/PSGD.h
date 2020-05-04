@@ -123,8 +123,8 @@ public:
 						//This is useless as the weight variable of this object has not been updated yet.
 						double loss_now = loss.getLoss(parallel_weight, trainingData, trainingLabels, n_data,
 										  n_weights,10);
-						printf("Training (log)loss: %f\t thread:%d\n",loss_now, omp_get_thread_num());
-						test(parallel_weight, testingData, testingLabels, n_data_test, n_weights, n_labels);
+						//printf("Training (log)loss: %f\t thread:%d\n",loss_now, omp_get_thread_num());
+						//test(parallel_weight, testingData, testingLabels, n_data_test, n_weights, n_labels);
 					}
                     //printf("delta_weight %f %f %f \n",parallel_weight[300],parallel_weight[301],parallel_weight[302]);
                 }
@@ -134,7 +134,7 @@ public:
 					for(int k=0;k<weight_size;k++){
 						weight[k] += parallel_weight[k]/n_threads;//Not a reduction? But the original values have to be added to. Careful.
 					}
-					printf("weight[101] = %f\t thread:%d\n", weight[101], omp_get_thread_num());
+					//printf("weight[101] = %f\t thread:%d\n", weight[101], omp_get_thread_num());
 				}
             }
         }

@@ -58,9 +58,9 @@ int main(int argc, const char * argv[]) {
     
     MultiLog mlog;
     double lambda;
-    lambda=0.00;//0.001;
+    lambda=0.001;//0.001;
     printf("\nEnter regularization parameter (lambda = %f): (Note: make this zero if you don't want regularization.)\n", lambda);
-    scanf("%lf", &lambda);
+    //scanf("%lf", &lambda);
     mlog.setLambda(lambda);//Regularization parameter
     psgd.loss = &mlog;//setting the loss function in PSGD object
     double oldloss = mlog.getLoss(weight, trainingData, trainingLabels, n_images,
@@ -80,9 +80,9 @@ int main(int argc, const char * argv[]) {
     //loss=mlog.getLoss(weight,trainingData,trainingLabels,n_images,size_image+1,10);
     //printf("%f ",loss)
     //printf("Start Training.\n");
-    printf("Enter iterations for each thread (> 10):\n");
-    int n_iter = 10000;
-    scanf("%d", &n_iter);
+    //printf("Enter iterations for each thread (> 10):\n");
+    int n_iter = 1000000;
+    //scanf("%d", &n_iter);
     
     double t = omp_get_wtime();
     psgd.train(mlog, trainingData, trainingLabels, eta,
