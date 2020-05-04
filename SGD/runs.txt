@@ -1,3 +1,124 @@
+On my MacBook:
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -O3 -o main main.cpp -fopenmp
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+Enter no of threads:
+1
+973 correct out of 10000.	 Testing accuracy: 0.097300	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951
+Enter regularization parameter (lambda = 0.001000): (Note: make this zero if you don't want regularization.)
+
+old training logloss: 4.744351
+New training logloss: 1.916864
+
+Time elapsed in training = 23.296582 sec
+Time elapsed in training per iteration = 0.000023 sec
+
+No of iterations for each thread: 1000000
+No of threads: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3493 correct out of 10000.	 Testing accuracy: 0.349300	 thread:0
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+Enter no of threads:
+2
+861 correct out of 10000.	 Testing accuracy: 0.086100	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951
+Enter regularization parameter (lambda = 0.001000): (Note: make this zero if you don't want regularization.)
+
+old training logloss: 4.744351
+New training logloss: 1.916042
+
+Time elapsed in training = 25.462084 sec
+Time elapsed in training per iteration = 0.000025 sec
+
+No of iterations for each thread: 1000000
+No of threads: 2
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+1362 correct out of 10000.	 Testing accuracy: 0.136200	 thread:0
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+Enter no of threads:
+4
+739 correct out of 10000.	 Testing accuracy: 0.073900	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951
+Enter regularization parameter (lambda = 0.001000): (Note: make this zero if you don't want regularization.)
+
+old training logloss: 4.744351
+New training logloss: 1.915681
+
+Time elapsed in training = 30.809255 sec
+Time elapsed in training per iteration = 0.000031 sec
+
+No of iterations for each thread: 1000000
+No of threads: 4
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+1069 correct out of 10000.	 Testing accuracy: 0.106900	 thread:0
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+Enter no of threads:
+8
+723 correct out of 10000.	 Testing accuracy: 0.072300	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951
+Enter regularization parameter (lambda = 0.001000): (Note: make this zero if you don't want regularization.)
+
+old training logloss: 4.744351
+New training logloss: 1.915519
+
+Time elapsed in training = 47.147752 sec
+Time elapsed in training per iteration = 0.000047 sec
+
+No of iterations for each thread: 1000000
+No of threads: 8
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+985 correct out of 10000.	 Testing accuracy: 0.098500	 thread:0
+
+
+
+
+Ilyeechs-MacBook-Pro:SGD ilyeech$ ./main
+Enter no of threads:
+16
+800 correct out of 10000.	 Testing accuracy: 0.080000	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951
+Enter regularization parameter (lambda = 0.001000): (Note: make this zero if you don't want regularization.)
+
+old training logloss: 4.744351
+New training logloss: 1.915382
+
+Time elapsed in training = 93.062296 sec
+Time elapsed in training per iteration = 0.000093 sec
+
+No of iterations for each thread: 1000000
+No of threads: 16
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+932 correct out of 10000.	 Testing accuracy: 0.093200	 thread:0
+
+
+
+
+
+
+
 On cuda1.cims.nyu.edu:
 
 
