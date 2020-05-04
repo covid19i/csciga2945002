@@ -16,6 +16,16 @@ iterations = [200000, 200000, 200000, 200000, 200000, 200000, 200000];
 test_accuracy = [0.336200, 0.345400, 0.349200, 0.349000, 0.350000	, 0.353000, 0.353900];
 
 
+figure(2)
+plotspec = 'r-';
+plotspec2 = 'b-';
+plot(blocks, duration_per_iteration, plotspec2);
+str_title = sprintf('Duration per iteration vs Number of Blocks');
+title(str_title)
+xlabel('Number of Blocks')
+ylabel('Duration')
+legend('Duration/Iteration')
+
 figure(1)
 plotspec = 'r-';
 plotspec2 = 'b-';
