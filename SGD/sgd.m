@@ -57,6 +57,18 @@ ylabel('Iterations')
 legend('Iterations', 'Ideal Iterations')
 
 
-threads = [1, 2, 4, 8, 16];
+threads = [1, 2, 4, 8, 16, 32, 64];
 iterations = [1000000];
-time=[181.201322, 21.944274, 240.768346, 41.232886, 980.983760];
+duration=[53.397437, 57.486034, 57.508701, 71.859408, 100.28, 162.446, 318.7591];
+
+
+
+figure(4)
+plotspec = 'r-';
+plotspec2 = 'b-';
+plot(threads, duration, plotspec);
+str_title = sprintf('Duration vs #Threads per 1M iteratins');
+title(str_title)
+xlabel('Number of Threads')
+ylabel('Duration (sec)')
+legend('Duration')
