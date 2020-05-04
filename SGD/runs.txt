@@ -1,3 +1,137 @@
+On crunchy3.cims.nyu.edu:
+
+
+[ir967@crunchy3 SGD]$ g++ -march=native -O3 -o main main.cpp -fopenmp
+[ir967@crunchy3 SGD]$ ./main
+Enter no of threads:
+1
+973 correct out of 10000.	 Testing accuracy: 0.097300	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951	
+old training logloss: 4.744351
+New training logloss: 1.916384
+
+Time elapsed in training = 53.397437 sec
+Time elapsed in training per iteration = 0.000053 sec
+
+No of iterations for each thread: 1000000
+No of threads: 1
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+3519 correct out of 10000.	 Testing accuracy: 0.351900	 thread:0
+[ir967@crunchy3 SGD]$ ./main
+Enter no of threads:
+2
+861 correct out of 10000.	 Testing accuracy: 0.086100	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951	
+old training logloss: 4.744351
+New training logloss: 1.916012
+
+Time elapsed in training = 57.486034 sec
+Time elapsed in training per iteration = 0.000057 sec
+
+No of iterations for each thread: 1000000
+No of threads: 2
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+1386 correct out of 10000.	 Testing accuracy: 0.138600	 thread:0
+[ir967@crunchy3 SGD]$ ./main
+Enter no of threads:
+4
+786 correct out of 10000.	 Testing accuracy: 0.078600	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951	
+old training logloss: 4.744351
+New training logloss: 1.915597
+
+Time elapsed in training = 57.508701 sec
+Time elapsed in training per iteration = 0.000058 sec
+
+No of iterations for each thread: 1000000
+No of threads: 4
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+1357 correct out of 10000.	 Testing accuracy: 0.135700	 thread:0
+[ir967@crunchy3 SGD]$ ./main
+Enter no of threads:
+8
+734 correct out of 10000.	 Testing accuracy: 0.073400	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951	
+old training logloss: 4.744351
+New training logloss: 1.915492
+
+Time elapsed in training = 71.859408 sec
+Time elapsed in training per iteration = 0.000072 sec
+
+No of iterations for each thread: 1000000
+No of threads: 8
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+1174 correct out of 10000.	 Testing accuracy: 0.117400	 thread:0
+[ir967@crunchy3 SGD]$ ./main
+Enter no of threads:
+16
+795 correct out of 10000.	 Testing accuracy: 0.079500	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951	
+old training logloss: 4.744351
+New training logloss: 1.915376
+
+Time elapsed in training = 100.282014 sec
+Time elapsed in training per iteration = 0.000100 sec
+
+No of iterations for each thread: 1000000
+No of threads: 16
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+977 correct out of 10000.	 Testing accuracy: 0.097700	 thread:0
+[ir967@crunchy3 SGD]$ ./main
+Enter no of threads:
+32
+723 correct out of 10000.	 Testing accuracy: 0.072300	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951	
+old training logloss: 4.744351
+New training logloss: 1.915348
+
+Time elapsed in training = 162.446680 sec
+Time elapsed in training per iteration = 0.000162 sec
+
+No of iterations for each thread: 1000000
+No of threads: 32
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+983 correct out of 10000.	 Testing accuracy: 0.098300	 thread:0
+[ir967@crunchy3 SGD]$ ./main
+Enter no of threads:
+64
+706 correct out of 10000.	 Testing accuracy: 0.070600	 thread:0
+
+weight[300]: 0.523237	weight[301]: -1.420315	weight[302]: 0.316951	
+old training logloss: 4.744351
+New training logloss: 1.915320
+
+Time elapsed in training = 318.759185 sec
+Time elapsed in training per iteration = 0.000319 sec
+
+No of iterations for each thread: 1000000
+No of threads: 64
+Lambda (Regularization Parameter): 0.001000
+Eta (Learning Rate): 0.001000
+944 correct out of 10000.	 Testing accuracy: 0.094400	 thread:0
+
+
+
+
+
+
+
+
+
+
+
 On my MacBook:
 
 Ilyeechs-MacBook-Pro:SGD ilyeech$ g++-9 -O3 -o main main.cpp -fopenmp
