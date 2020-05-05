@@ -1,0 +1,16 @@
+For question 1:
+please have a look at the images in the folder /hw5.
+
+To submit to Prince,
+sbatch sbatch-run1.sh
+
+For question 2:
+
+To submit to Prince,
+sbatch sbatch-run2.sh
+
+With 64 processes, N = 10000: time elapsed is 0.023181 seconds.
+
+With 64 processes, N = 100000: time elapsed is 0.036866 seconds.
+
+With 64 processes, N = 1000000: time elapsed is 0.183551 seconds.

@@ -1,0 +1,10 @@
+rm -f hw5-1 ssort *~
+mpic++  -std=c++11 -O3 -march=native -fopenmp    hw5-1.cpp   -o hw5-1
+mpic++  -std=c++11 -O3 -march=native -fopenmp    ssort.cpp   -o ssort
+
+With 64 processes, N = 10000: time elapsed is 0.023181 seconds.
+
+With 64 processes, N = 100000: time elapsed is 0.036866 seconds.
+
+With 64 processes, N = 1000000: time elapsed is 0.183551 seconds.
+
