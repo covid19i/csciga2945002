@@ -1,7 +1,8 @@
 module purge
 module load mpi/openmpi-x86_64
 rm mpi-hw5-1
-mpic++ -O3 -o mpi-hw5-1 hw5-1.cpp
+make clean
+make
 mpirun -np 4 mpi-hw5-1  40000 10000
 mpirun -np 16 mpi-hw5-1 160000 10000
 mpirun -np 64 mpi-hw5-1 640000 10000
